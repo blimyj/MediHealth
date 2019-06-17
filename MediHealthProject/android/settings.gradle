@@ -1,0 +1,3 @@
+rootProject.name = 'MediHealthProject'
+
+include ':app'
