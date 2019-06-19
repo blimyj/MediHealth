@@ -1,21 +1,14 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
-import {
-    Icon,
-    Button,
-    Container,
-    Header,
-    Content,
-    Left,
-    Right
-} from "native-base";
+import { Icon, Button, Container, Content, Left, Right } from "native-base";
+import MyHeader from "../components/header";
 
 class HomeScreen extends Component {
     static navigationOptions = {
         drawerIcon: (
             <Image
                 source={require("../assets/images/home-icon.png")}
-                style={{ height: 24, width: 24 }}
+                style={{ height: 24, width: 24, tintColor: "black" }}
             />
         )
     };
@@ -23,24 +16,7 @@ class HomeScreen extends Component {
     render() {
         return (
             <Container>
-                <Header style={{ backgroundColor: "white" }}>
-                    <Left style={{ flex: 1, flexDirection: "row" }}>
-                        <Button
-                            transparent
-                            onPress={() => this.props.navigation.openDrawer()}
-                        >
-                            <Icon
-                                ios="ios-menu"
-                                android="md-menu"
-                                style={{ color: "black" }}
-                            />
-                        </Button>
-                    </Left>
-                    <View style={{ justifyContent: "center" }}>
-                        <Text>MediHealth</Text>
-                    </View>
-                    <Right />
-                </Header>
+                <MyHeader nav={this.props.navigation} />
                 <Content
                     contentContainerStyle={{
                         flex: 1,

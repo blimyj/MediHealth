@@ -11,6 +11,10 @@ import { Container, Content, Header, Body, Icon } from "native-base";
 
 import HomeScreen from "./containers/homeScreen";
 import SettingsScreen from "./containers/settingsScreen";
+import MedicineScreen from "./containers/medicineScreen";
+import AppointmentScreen from "./containers/appointmentScreen";
+import BiomarkerScreen from "./containers/biomarkerScreen";
+import RehabilitationScreen from "./containers/rehabilitationScreen";
 
 const CustomDrawerContentComponent = props => (
     <Container>
@@ -39,6 +43,18 @@ const MyApp = createDrawerNavigator(
         },
         Settings: {
             screen: SettingsScreen
+        },
+        Medicine: {
+            screen: MedicineScreen
+        },
+        Appointment: {
+            screen: AppointmentScreen
+        },
+        Biomarker: {
+            screen: BiomarkerScreen
+        },
+        Rehabilitation: {
+            screen: RehabilitationScreen
         }
     },
     {
