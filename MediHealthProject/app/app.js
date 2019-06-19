@@ -24,9 +24,9 @@ const CustomDrawerContentComponent = props => (
                     <Icon
                         type="FontAwesome"
                         name="user-circle"
-                        style={{ color: "black" }}
+                        style={{ color: "black", left: 5 }}
                     />
-                    <Text style={{ left: 20 }}>Joel Loong</Text>
+                    <Text style={{ left: 31 }}>Joel Loong</Text>
                 </View>
             </Body>
         </Header>
