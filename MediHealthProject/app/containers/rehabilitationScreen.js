@@ -16,7 +16,7 @@ class RehabilitationScreen extends Component {
     render() {
         return (
             <Container>
-                <MyHeader nav={this.props.navigation} />
+                <MyHeader nav={this.props.navigation} headerTitle="Rehabilitation" />
                 <Content
                     contentContainerStyle={{
                         flex: 1,
