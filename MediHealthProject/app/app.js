@@ -9,12 +9,12 @@ import {
 } from "react-navigation";
 import { Container, Content, Header, Body, Icon } from "native-base";
 
-import HomeScreen from "./containers/homeScreen";
-import SettingsScreen from "./containers/settingsScreen";
-import MedicineScreen from "./containers/medicineScreen";
-import AppointmentScreen from "./containers/appointmentScreen";
-import BiomarkerScreen from "./containers/biomarkerScreen";
-import RehabilitationScreen from "./containers/rehabilitationScreen";
+import HomeScreen from "./containers/HomeScreen/homeScreen";
+import SettingsScreen from "./containers/SettingsScreen/settingsScreen";
+import MedicineScreen from "./containers/MedicineScreen/medicineScreen";
+import AppointmentScreen from "./containers/AppointmentScreen/appointmentScreen";
+import BiomarkerScreen from "./containers/BiomarkerScreen/biomarkerScreen";
+import RehabilitationScreen from "./containers/RehabilitationScreen/rehabilitationScreen";
 
 const CustomDrawerContentComponent = props => (
     <Container>

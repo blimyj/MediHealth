@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Icon, Button, Container, Content, Left, Right } from "native-base";
-import MyHeader from "../components/header";
-import styles from '../appStyle'
+import MyHeader from "../../components/header";
+import styles from '../../appStyle'
 
 class HomeScreen extends Component {
     static navigationOptions = {
         drawerIcon: (
             <Image
-                source={require("../assets/images/home-icon.png")}
+                source={require("../../assets/images/home-icon.png")}
                 style={{ height: 24, width: 24, tintColor: "black" }}
             />
         )

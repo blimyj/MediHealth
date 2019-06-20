@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { Icon, Button, Container, Content, Left } from "native-base";
-import MyHeader from "../components/header";
+import MyHeader from "../../components/header";
 
 class SettingsScreen extends Component {
     static navigationOptions = {
         drawerIcon: (
             <Image
-                source={require("../assets/images/settings-icon.png")}
+                source={require("../../assets/images/settings-icon.png")}
                 style={{ height: 24, width: 24, tintColor: "black" }}
             />
         )
