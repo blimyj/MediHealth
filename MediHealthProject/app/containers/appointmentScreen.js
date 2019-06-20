@@ -4,31 +4,37 @@ import { Icon, Button, Container, Content, Left, Right } from "native-base";
 import MyHeader from "../components/header";
 
 class AppointmentScreen extends Component {
-    static navigationOptions = {
-        drawerIcon: (
-            <Image
-                source={require("../assets/images/appointment-icon.png")}
-                style={{ height: 24, width: 24, tintColor: "black" }}
-            />
-        )
-    };
+	static navigationOptions = {
+		drawerIcon: (
+			<Image
+				source={require("../assets/images/appointment-icon.png")}
+				style={{ height: 24, width: 24, tintColor: "black" }}
+			/>
+		)
+	};
 
-    render() {
-        return (
-            <Container>
-                <MyHeader nav={this.props.navigation} headerTitle="Appointment" />
-                <Content
-                    contentContainerStyle={{
-                        flex: 1,
-                        alignItems: "center",
-                        justifyContent: "center"
-                    }}
-                >
-                    <Text>Appointment Screen</Text>
-                </Content>
-            </Container>
-        );
-    }
+	render() {
+		const headerIconHolder = require("../assets/images/appointment-icon.png");
+
+		return (
+			<Container>
+				<MyHeader
+					nav={this.props.navigation}
+					headerTitle="Appointment"
+					headerIcon={headerIconHolder}
+				/>
+				<Content
+					contentContainerStyle={{
+						flex: 1,
+						alignItems: "center",
+						justifyContent: "center"
+					}}
+				>
+					<Text>Appointment Screen</Text>
+				</Content>
+			</Container>
+		);
+	}
 }
 
 export default AppointmentScreen;

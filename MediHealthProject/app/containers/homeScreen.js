@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Icon, Button, Container, Content, Left, Right } from "native-base";
 import MyHeader from "../components/header";
+import styles from "../appStyle";
 
 class HomeScreen extends Component {
 	static navigationOptions = {
@@ -14,9 +15,11 @@ class HomeScreen extends Component {
 	};
 
 	render() {
+		const headerIconHolder = require("../assets/images/home-icon.png");
+
 		return (
 			<Container>
-				<MyHeader nav={this.props.navigation} headerTitle="Home" />
+				<MyHeader nav={this.props.navigation} headerTitle="MediHealth" />
 				<Content
 					contentContainerStyle={{
 						flex: 1,
@@ -25,6 +28,42 @@ class HomeScreen extends Component {
 					}}
 				>
 					<Text>Home Screen</Text>
+
+					<TouchableOpacity
+						title="Medicine" //might want to remove
+						style={styles.bigButton}
+						accessibilityLabel="Medicine"
+						onPress={() => this.props.navigation.navigate("Medicine")}
+					>
+						<Text style={styles.bigButtonText}>Medicine</Text>
+					</TouchableOpacity>
+
+					<TouchableOpacity
+						title="Appointments"
+						style={styles.bigButton}
+						accessibilityLabel="Appointments"
+						onPress={() => this.props.navigation.navigate("Appointment")}
+					>
+						<Text style={styles.bigButtonText}>Appointment</Text>
+					</TouchableOpacity>
+
+					<TouchableOpacity
+						title="Biomarker"
+						style={styles.bigButton}
+						accessibilityLabel="Biomarker"
+						onPress={() => this.props.navigation.navigate("Biomarker")}
+					>
+						<Text style={styles.bigButtonText}>Biomarker</Text>
+					</TouchableOpacity>
+
+					<TouchableOpacity
+						title="Rehabilitation"
+						style={styles.bigButton}
+						accessibilityLabel="Rehabilitation"
+						onPress={() => this.props.navigation.navigate("Rehabilitation")}
+					>
+						<Text style={styles.bigButtonText}>Rehabilitation</Text>
+					</TouchableOpacity>
 				</Content>
 			</Container>
 		);

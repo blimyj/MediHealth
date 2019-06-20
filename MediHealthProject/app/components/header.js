@@ -20,7 +20,7 @@ class MyHeader extends Component {
 				>
 					<Text>{this.props.headerTitle}</Text>
 					{/* <Image
-						source={require("../assets/images/home-icon.png")}
+						source={this.props.headerIcon}
 						style={{ height: 24, width: 24, tintColor: "black", left: 8 }}
 					/> */}
 				</View>
