@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { Container } from "native-base";
-import MyHeader from "../components/header";
+import MyHeader from "../../components/header";
 
 class ProfileScreen extends Component {
 	static navigationOptions = {
@@ -17,12 +17,13 @@ class ProfileScreen extends Component {
 					<Image
 						style={styles.avatar}
 						source={{
-							uri: "https://bootdey.com/img/Content/avatar/avatar6.png"
+							uri:
+								"https://media.licdn.com/dms/image/C5103AQEiJL0AgWj5KQ/profile-displayphoto-shrink_800_800/0?e=1566432000&v=beta&t=MaAA-eyV5MXKmgj4rRqSfKE8fwGDtjkkVn-EMruGzKA"
 						}}
 					/>
 					<View style={styles.body}>
 						<View style={styles.bodyContent}>
-							<Text style={styles.name}>Joel Loong</Text>
+							<Text style={styles.name}>Sng Hao Jun</Text>
 							<Text style={styles.info}>Student</Text>
 							<Text style={styles.description}>
 								Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum
@@ -45,7 +46,7 @@ class ProfileScreen extends Component {
 
 const styles = StyleSheet.create({
 	header: {
-		backgroundColor: "#00BFFF",
+		backgroundColor: "#28DA9A",
 		height: 200
 	},
 	avatar: {
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
 	},
 	info: {
 		fontSize: 16,
-		color: "#00BFFF",
+		color: "#28DA9A",
 		marginTop: 10
 	},
 	description: {
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
 		marginBottom: 20,
 		width: 250,
 		borderRadius: 30,
-		backgroundColor: "#00BFFF"
+		backgroundColor: "#28DA9A"
 	}
 });
 

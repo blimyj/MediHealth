@@ -1,28 +1,22 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { Icon, Button, Container, Content, Left, Right } from "native-base";
-import MyHeader from "../components/header";
+import MyHeader from "../../components/header";
 
 class RehabilitationScreen extends Component {
 	static navigationOptions = {
 		drawerIcon: (
 			<Image
-				source={require("../assets/images/rehabilitation-icon.png")}
+				source={require("../../assets/images/rehabilitation-icon.png")}
 				style={{ height: 24, width: 24, tintColor: "black" }}
 			/>
 		)
 	};
 
 	render() {
-		const headerIconHolder = require("../assets/images/rehabilitation-icon.png");
-
 		return (
 			<Container>
-				<MyHeader
-					nav={this.props.navigation}
-					headerTitle="Rehabilitation"
-					headerIcon={headerIconHolder}
-				/>
+				<MyHeader nav={this.props.navigation} headerTitle="Rehabilitation" />
 				<Content
 					contentContainerStyle={{
 						flex: 1,

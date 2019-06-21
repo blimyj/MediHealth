@@ -5,29 +5,35 @@ import { Icon, Button, Header, Left, Right } from "native-base";
 class MyHeader extends Component {
 	render() {
 		return (
-			<Header style={{ backgroundColor: "white" }}>
-				<Left style={{ flex: 1, flexDirection: "row" }}>
+			<Header style={styles.headerStyle}>
+				<Left style={styles.leftStyle}>
 					<Button transparent onPress={() => this.props.nav.openDrawer()}>
 						<Icon ios="ios-menu" android="md-menu" style={{ color: "black" }} />
 					</Button>
 				</Left>
-				<View
-					style={{
-						justifyContent: "center",
-						flexDirection: "row",
-						alignItems: "center"
-					}}
-				>
+				<View style={styles.viewStyle}>
 					<Text>{this.props.headerTitle}</Text>
-					{/* <Image
-						source={this.props.headerIcon}
-						style={{ height: 24, width: 24, tintColor: "black", left: 8 }}
-					/> */}
 				</View>
 				<Right />
 			</Header>
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	headerStyle: {
+		backgroundColor: "white",
+		height: 60
+	},
+	leftStyle: {
+		flex: 1,
+		flexDirection: "row"
+	},
+	viewStyle: {
+		justifyContent: "center",
+		flexDirection: "row",
+		alignItems: "center"
+	}
+});
 
 export default MyHeader;

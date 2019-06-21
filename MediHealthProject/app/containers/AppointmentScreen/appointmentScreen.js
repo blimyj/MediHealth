@@ -1,28 +1,22 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { Icon, Button, Container, Content, Left, Right } from "native-base";
-import MyHeader from "../components/header";
+import MyHeader from "../../components/header";
 
-class BiomarkerScreen extends Component {
+class AppointmentScreen extends Component {
 	static navigationOptions = {
 		drawerIcon: (
 			<Image
-				source={require("../assets/images/biomarker-icon.png")}
+				source={require("../../assets/images/appointment-icon.png")}
 				style={{ height: 24, width: 24, tintColor: "black" }}
 			/>
 		)
 	};
 
 	render() {
-		const headerIconHolder = require("../assets/images/biomarker-icon.png");
-
 		return (
 			<Container>
-				<MyHeader
-					nav={this.props.navigation}
-					headerTitle="Biomarker"
-					headerIcon={headerIconHolder}
-				/>
+				<MyHeader nav={this.props.navigation} headerTitle="Appointment" />
 				<Content
 					contentContainerStyle={{
 						flex: 1,
@@ -30,11 +24,11 @@ class BiomarkerScreen extends Component {
 						justifyContent: "center"
 					}}
 				>
-					<Text>Biomarker Screen</Text>
+					<Text>Appointment Screen</Text>
 				</Content>
 			</Container>
 		);
 	}
 }
 
-export default BiomarkerScreen;
+export default AppointmentScreen;
