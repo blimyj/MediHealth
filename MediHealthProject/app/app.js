@@ -25,6 +25,7 @@ import AppointmentInputScreen from "./containers/AppointmentScreen/AppointmentIn
 import BiomarkerScreen from "./containers/BiomarkerScreen/biomarkerScreen";
 import RehabilitationScreen from "./containers/RehabilitationScreen/rehabilitationScreen";
 import ProfileScreen from "./containers/ProfileScreen/profileScreen";
+import MapScreen from "./containers/MapScreen/mapScreen";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -138,6 +139,17 @@ const MyApp = createDrawerNavigator(
 			screen: ProfileScreen,
 			navigationOptions: {
 				drawerLabel: () => null
+			}
+		},
+		Map: {
+			screen: MapScreen,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/map-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "black" }}
+					/>
+				)
 			}
 		}
 	},
