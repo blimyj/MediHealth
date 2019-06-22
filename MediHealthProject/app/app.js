@@ -11,14 +11,17 @@ import {
 	createAppContainer,
 	createStackNavigator,
 	createDrawerNavigator,
-	DrawerItems
+	DrawerItems,
+	NavigationActions,
+	StackActions
 } from "react-navigation";
 import { Container, Content, Header, Body, Icon, Button } from "native-base";
 
 import HomeScreen from "./containers/HomeScreen/homeScreen";
 import SettingsScreen from "./containers/SettingsScreen/settingsScreen";
 import MedicineScreen from "./containers/MedicineScreen/medicineScreen";
-import AppointmentStack from "./containers/AppointmentScreen/appointmentStack";
+import AppointmentScreen from "./containers/AppointmentScreen/appointmentScreen";
+import AppointmentInputScreen from "./containers/AppointmentScreen/AppointmentInputScreen/appointmentInputScreen";
 import BiomarkerScreen from "./containers/BiomarkerScreen/biomarkerScreen";
 import RehabilitationScreen from "./containers/RehabilitationScreen/rehabilitationScreen";
 import ProfileScreen from "./containers/ProfileScreen/profileScreen";
@@ -93,7 +96,7 @@ const MyApp = createDrawerNavigator(
 			}
 		},
 		Appointment: {
-			screen: AppointmentStack,
+			screen: AppointmentScreen,
 			navigationOptions: {
 				drawerIcon: (
 					<Image
@@ -101,6 +104,12 @@ const MyApp = createDrawerNavigator(
 						style={{ height: 24, width: 24, tintColor: "black" }}
 					/>
 				)
+			}
+		},
+		AppointmentInput: {
+			screen: AppointmentInputScreen,
+			navigationOptions: {
+				drawerLabel: () => null
 			}
 		},
 		Biomarker: {

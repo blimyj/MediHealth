@@ -16,7 +16,6 @@ class HomeScreen extends Component {
 						justifyContent: "center"
 					}}
 				>
-					<Text>Home Screen</Text>
 					<TouchableOpacity
 						title="Medicine" //might want to remove
 						style={styles.bigButton}
@@ -29,19 +28,19 @@ class HomeScreen extends Component {
 					<TouchableOpacity
 						title="Appointments"
 						style={styles.bigButton}
-						accessibilityLabel="Appointments"
+						accessibilityLabel="Appointment"
 						onPress={() => this.props.navigation.navigate("Appointment")}
 					>
-						<Text style={styles.bigButtonText}>Appointments</Text>
+						<Text style={styles.bigButtonText}>Appointment</Text>
 					</TouchableOpacity>
 
 					<TouchableOpacity
 						title="Biomarker"
 						style={styles.bigButton}
 						accessibilityLabel="Biomarker"
-						onPress={() => this.props.navigation.navigate("Biomarkers")}
+						onPress={() => this.props.navigation.navigate("Biomarker")}
 					>
-						<Text style={styles.bigButtonText}>Biomarkers</Text>
+						<Text style={styles.bigButtonText}>Biomarker</Text>
 					</TouchableOpacity>
 
 					<TouchableOpacity
