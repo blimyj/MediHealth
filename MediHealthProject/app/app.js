@@ -60,25 +60,76 @@ const CustomDrawerContentComponent = props => (
 const MyApp = createDrawerNavigator(
 	{
 		Home: {
-			screen: HomeScreen
+			screen: HomeScreen,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/home-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "black" }}
+					/>
+				)
+			}
 		},
 		Settings: {
-			screen: SettingsScreen
+			screen: SettingsScreen,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/settings-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "black" }}
+					/>
+				)
+			}
 		},
 		Medicine: {
-			screen: MedicineScreen
+			screen: MedicineScreen,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/medicine-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "black" }}
+					/>
+				)
+			}
 		},
 		Appointment: {
-			screen: AppointmentStack
+			screen: AppointmentStack,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/appointment-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "black" }}
+					/>
+				)
+			}
 		},
 		Biomarker: {
-			screen: BiomarkerScreen
+			screen: BiomarkerScreen,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/biomarker-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "black" }}
+					/>
+				)
+			}
 		},
 		Rehabilitation: {
-			screen: RehabilitationScreen
+			screen: RehabilitationScreen,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/rehabilitation-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "black" }}
+					/>
+				)
+			}
 		},
 		Profile: {
-			screen: ProfileScreen
+			screen: ProfileScreen,
+			navigationOptions: {
+				drawerLabel: () => null
+			}
 		}
 	},
 	{

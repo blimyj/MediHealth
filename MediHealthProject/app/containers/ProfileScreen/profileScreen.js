@@ -4,10 +4,6 @@ import { Container } from "native-base";
 import MyHeader from "../../components/header";
 
 class ProfileScreen extends Component {
-	static navigationOptions = {
-		drawerLabel: () => null
-	};
-
 	render() {
 		return (
 			<Container>
