@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { Icon, Button, Container, Content, Left, Right } from "native-base";
+import { View, Text, Image, TouchableOpacity, TextInput } from "react-native";
+import { Form, Input, Container, Content, Item, Label } from "native-base";
 import MyHeader from "../../components/header";
 import styles from "../../appStyle";
 
