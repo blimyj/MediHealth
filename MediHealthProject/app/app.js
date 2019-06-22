@@ -12,7 +12,7 @@ import { Container, Content, Header, Body, Icon } from "native-base";
 import HomeScreen from "./containers/HomeScreen/homeScreen";
 import SettingsScreen from "./containers/SettingsScreen/settingsScreen";
 import MedicineScreen from "./containers/MedicineScreen/medicineScreen";
-import AppointmentScreen from "./containers/AppointmentScreen/appointmentScreen";
+import AppointmentStack from "./containers/AppointmentScreen/appointmentStack";
 import BiomarkerScreen from "./containers/BiomarkerScreen/biomarkerScreen";
 import RehabilitationScreen from "./containers/RehabilitationScreen/rehabilitationScreen";
 
@@ -48,7 +48,7 @@ const MyApp = createDrawerNavigator(
             screen: MedicineScreen
         },
         Appointment: {
-            screen: AppointmentScreen
+            screen: AppointmentStack
         },
         Biomarker: {
             screen: BiomarkerScreen
