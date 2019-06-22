@@ -17,7 +17,7 @@ class AppointmentScreen extends Component {
     render() {
         return (
             <Container>
-                <MyHeader nav={this.props.navigation} />
+                <MyHeader nav={this.props.navigation} headerTitle="Appointment"/>
                 <Content
                     contentContainerStyle={{
                         flex: 1
