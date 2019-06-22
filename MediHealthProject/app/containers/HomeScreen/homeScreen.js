@@ -39,7 +39,7 @@ class HomeScreen extends Component {
                         title="Appointments"
                         style={styles.bigButton}
                         accessibilityLabel="Appointments"
-                        onPress={() => this.props.navigation.navigate('Appointments')}
+                        onPress={() => this.props.navigation.navigate('Appointment')}
                     >
                         <Text style={styles.bigButtonText}>Appointments</Text>
                     </TouchableOpacity>
