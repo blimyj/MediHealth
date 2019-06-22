@@ -14,6 +14,16 @@ class AppointmentInputScreen extends Component {
         )
     };
 
+    constructor(props) {
+        super(props);
+        this.state = { 
+                        appointment: 'Useless Placeholder',
+                        location: '',
+                        date: '',
+                        time: 'U',
+                     };
+    }
+
     render() {
         return (
             <Container>
@@ -28,19 +38,33 @@ class AppointmentInputScreen extends Component {
                     <Form>
                         <Item stackedLabel>
                             <Label>Appointment</Label>
-                            <Input />
+                            <Input
+                                value={this.state.appointment}
+                                editable={true}
+                                onSubmitEditing={(text) => this.setState({appointment: text})}
+
+                            />
                         </Item>
                         <Item stackedLabel num1>
                             <Label>Location</Label>
-                            <Input />
+                            <Input
+                                onChangeText={(text) => this.setState({text})}
+                                value={this.state.location}
+                            />
                         </Item>
                         <Item stackedLabel num2>
                             <Label>Date</Label>
-                            <Input />
+                            <Input
+                                onChangeText={(text) => this.setState({text})}
+                                value={this.state.date}
+                            />
                         </Item>
                         <Item stackedLabel num3>
                             <Label>Time</Label>
-                            <Input />
+                            <Input
+                                onChangeText={(text) => this.setState({text})}
+                                value={this.state.time}
+                            />
                         </Item>                        
                     </Form>
 
