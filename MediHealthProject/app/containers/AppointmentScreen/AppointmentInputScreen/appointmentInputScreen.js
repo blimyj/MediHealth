@@ -17,10 +17,10 @@ class AppointmentInputScreen extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-                        appointment: 'Useless Placeholder',
+                        appointment: '',
                         location: '',
                         date: '',
-                        time: 'U',
+                        time: '',
                      };
     }
 
@@ -39,31 +39,25 @@ class AppointmentInputScreen extends Component {
                         <Item stackedLabel>
                             <Label>Appointment</Label>
                             <Input
-                                value={this.state.appointment}
-                                editable={true}
                                 onSubmitEditing={(text) => this.setState({appointment: text})}
-
                             />
                         </Item>
                         <Item stackedLabel num1>
                             <Label>Location</Label>
                             <Input
-                                onChangeText={(text) => this.setState({text})}
-                                value={this.state.location}
+                                onSubmitEditing={(text) => this.setState({location: text})}
                             />
                         </Item>
                         <Item stackedLabel num2>
                             <Label>Date</Label>
                             <Input
-                                onChangeText={(text) => this.setState({text})}
-                                value={this.state.date}
+                                onSubmitEditing={(text) => this.setState({date: text})}
                             />
                         </Item>
                         <Item stackedLabel num3>
                             <Label>Time</Label>
                             <Input
-                                onChangeText={(text) => this.setState({text})}
-                                value={this.state.time}
+                                onSubmitEditing={(text) => this.setState({time: text})}
                             />
                         </Item>                        
                     </Form>
