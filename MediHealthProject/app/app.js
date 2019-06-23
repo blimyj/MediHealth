@@ -9,13 +9,10 @@ import {
 } from "react-native";
 import {
 	createAppContainer,
-	createStackNavigator,
 	createDrawerNavigator,
-	DrawerItems,
-	NavigationActions,
-	StackActions
+	DrawerItems
 } from "react-navigation";
-import { Container, Content, Header, Body, Icon, Button } from "native-base";
+import { Container, Content, Header, Body } from "native-base";
 
 import HomeScreen from "./containers/HomeScreen/homeScreen";
 import SettingsScreen from "./containers/SettingsScreen/settingsScreen";
