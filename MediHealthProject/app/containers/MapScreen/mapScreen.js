@@ -4,6 +4,12 @@ import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { Container } from "native-base";
 import MyHeader from "../../components/header";
 
+const API_KEY = `${process.env.REACT_APP_MAPS_API_KEY}`;
+console.log(`${process.env.REACT_APP_MAPS_API_KEY}`);
+console.log(process.env.REACT_APP_MAPS_API_KEY);
+console.log("API", API_KEY);
+console.log(`${process.env.REACT_APP_KEY}`);
+
 const { width, height } = Dimensions.get("window");
 
 const ASPECT_RATIO = width / height;
@@ -58,22 +64,25 @@ class MapScreen extends Component {
 					showsMyLocationButton={true}
 					followsUserLocation={true} //iOS ONLY
 					onMapReady={this.setMargin}
-					kmlSrc={KML_FILE}
-					onKmlReady={this.onKmlReady}
+					// kmlSrc={KML_FILE}
+					// onKmlReady={this.onKmlReady}
 				>
-					{/* <Marker
+					<Marker
 						coordinate={{
 							latitude: 1.279597,
 							longitude: 103.835886 //Singapore General Hospital
 						}}
+						title="SGH"
 						image={require("../../assets/images/mapMarker-icon.png")}
-					/> */}
-					{/* <Marker
-						coordinate={this.state.region}
-						title="Pharmacy"
-						description="Pharmacy"
+					/>
+					<Marker
+						coordinate={{
+							latitude: 1.37624319753702,
+							longitude: 103.75640094280243
+						}}
+						title="Hillsta"
 						image={require("../../assets/images/mapMarker-icon.png")}
-					/> */}
+					/>
 				</MapView>
 			</Container>
 		);
