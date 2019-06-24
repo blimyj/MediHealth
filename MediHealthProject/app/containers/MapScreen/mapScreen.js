@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Dimensions, Image } from "react-native";
+import { Dimensions, Image, PermissionsAndroid } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { Container } from "native-base";
 import MyHeader from "../../components/header";
@@ -23,10 +23,20 @@ class MapScreen extends Component {
 				longitude: LONGITUDE,
 				latitudeDelta: LATITUDE_DELTA,
 				longitudeDelta: LONGITUDE_DELTA
-			}
+			},
+			mapMargin: 1
 		};
 
+		this.setMargin = this.setMargin.bind(this);
 		this.onKmlReady = this.onKmlReady.bind(this);
+	}
+
+	setMargin() {
+		PermissionsAndroid.request(
+			PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
+		).then(granted => {
+			this.setState({ mapMargin: 0 });
+		});
 	}
 
 	onKmlReady() {
@@ -42,8 +52,12 @@ class MapScreen extends Component {
 						this.map = ref;
 					}}
 					provider={PROVIDER_GOOGLE}
-					style={{ flex: 1 }}
+					style={{ flex: 1, marginBottom: this.state.mapMargin }}
 					initialRegion={this.state.region}
+					showsUserLocation={true}
+					showsMyLocationButton={true}
+					followsUserLocation={true} //iOS ONLY
+					onMapReady={this.setMargin}
 					kmlSrc={KML_FILE}
 					onKmlReady={this.onKmlReady}
 				>
@@ -54,12 +68,12 @@ class MapScreen extends Component {
 						}}
 						image={require("../../assets/images/mapMarker-icon.png")}
 					/> */}
-					<Marker
+					{/* <Marker
 						coordinate={this.state.region}
 						title="Pharmacy"
 						description="Pharmacy"
 						image={require("../../assets/images/mapMarker-icon.png")}
-					/>
+					/> */}
 				</MapView>
 			</Container>
 		);
