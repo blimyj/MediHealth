@@ -4,12 +4,6 @@ import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { Container } from "native-base";
 import MyHeader from "../../components/header";
 
-const API_KEY = `${process.env.REACT_APP_MAPS_API_KEY}`;
-console.log(`${process.env.REACT_APP_MAPS_API_KEY}`);
-console.log(process.env.REACT_APP_MAPS_API_KEY);
-console.log("API", API_KEY);
-console.log(`${process.env.REACT_APP_KEY}`);
-
 const { width, height } = Dimensions.get("window");
 
 const ASPECT_RATIO = width / height;
