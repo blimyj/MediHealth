@@ -3,9 +3,6 @@ import { View, Text, FlatList, TouchableOpacity, ListView } from "react-native";
 import { Container, Content } from "native-base";
 import MyHeader from "../../components/header";
 import styles from "./appStyle";
-
-import Config from "react-native-config";
-
 import * as firebase from "firebase";
 
 var data = [];
@@ -29,7 +26,6 @@ class AppointmentScreen extends Component {
 
 	componentDidMount() {
 		this.readUserData();
-		console.log("Mounted");
 	}
 
 	readUserData = () => {
