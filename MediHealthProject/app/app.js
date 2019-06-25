@@ -24,6 +24,9 @@ import RehabilitationScreen from "./containers/RehabilitationScreen/rehabilitati
 import ProfileScreen from "./containers/ProfileScreen/profileScreen";
 import MapScreen from "./containers/MapScreen/mapScreen";
 
+import Config from "react-native-config";
+console.log(Config.appId);
+
 const { width, height } = Dimensions.get("screen");
 
 const CustomDrawerContentComponent = props => (
