@@ -43,6 +43,18 @@ class MapScreen extends Component {
 		this.map.fitToElements(true);
 	}
 
+	renderData(latitude, longitude) {
+		return (
+			<Marker
+				coordinate={{
+					latitude: latitude,
+					longitude: longitude
+				}}
+				image={require("../../assets/images/mapMarker-icon.png")}
+			/>
+		);
+	}
+
 	render() {
 		return (
 			<Container>
