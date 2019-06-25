@@ -1,10 +1,47 @@
 import React, { Component } from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, ListView } from "react-native";
 import { Container, Content } from "native-base";
 import MyHeader from "../../components/header";
 import styles from "./appStyle";
+import * as firebase from "firebase";
+
+var data = [];
 
 class AppointmentScreen extends Component {
+	constructor(props) {
+		super(props);
+
+		this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
+		this.state = {
+			listViewData: data,
+			appointment: "",
+			location: "",
+			date: "",
+			time: ""
+		};
+
+		this.readUserData = this.readUserData.bind(this);
+	}
+
+	componentDidMount() {
+		this.readUserData();
+	}
+
+	readUserData = () => {
+		firebase
+			.database()
+			.ref("/items")
+			.once("value", snapshot => {
+				const fbObject = snapshot.val();
+				const newArr = Object.keys(fbObject).map(key => {
+					fbObject[key].id = key;
+					return fbObject[key];
+				});
+				this.setState({ listViewData: newArr });
+			});
+	};
+
 	render() {
 		return (
 			<Container>
@@ -18,50 +55,7 @@ class AppointmentScreen extends Component {
 					}}
 				>
 					<FlatList
-						data={[
-							{
-								key: "a",
-								appt: "Dr Bong",
-								location: "SGH",
-								date: "21-June-2019",
-								time: "16:51"
-							},
-							{
-								key: "b",
-								appt: "Dr Gregory",
-								location: "SGH",
-								date: "21-June-2019",
-								time: "16:51"
-							},
-							{
-								key: "c",
-								appt: "Dr Hong",
-								location: "SGH",
-								date: "21-June-2019",
-								time: "16:51"
-							},
-							{
-								key: "d",
-								appt: "Dr James",
-								location: "SGH",
-								date: "21-June-2019",
-								time: "16:51"
-							},
-							{
-								key: "e",
-								appt: "Dr Quack",
-								location: "SGH",
-								date: "21-June-2019",
-								time: "16:51"
-							},
-							{
-								key: "f",
-								appt: "Dr Cynthia",
-								location: "SGH",
-								date: "21-June-2019",
-								time: "16:51"
-							}
-						]}
+						data={this.state.listViewData}
 						renderItem={({ item }) => (
 							<View style={styles.AppointmentButtonContainer}>
 								<View style={styles.AppointmentButtonPadding} />

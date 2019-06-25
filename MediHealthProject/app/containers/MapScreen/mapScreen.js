@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Dimensions, Image, PermissionsAndroid } from "react-native";
+import { Dimensions, Image, PermissionsAndroid, ListView } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { Container } from "native-base";
 import MyHeader from "../../components/header";
+import * as firebase from "firebase";
 
 const { width, height } = Dimensions.get("window");
 
@@ -11,11 +12,12 @@ const LATITUDE = 1.29027;
 const LONGITUDE = 103.851959;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-const KML_FILE = "https://pastebin.com/raw/MvMiJt7a";
 
 class MapScreen extends Component {
 	constructor(props) {
 		super(props);
+
+		this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 		this.state = {
 			region: {
@@ -24,14 +26,16 @@ class MapScreen extends Component {
 				latitudeDelta: LATITUDE_DELTA,
 				longitudeDelta: LONGITUDE_DELTA
 			},
-			mapMargin: 1
+			mapMargin: 1,
+			markerData: []
 		};
 
 		this.setMargin = this.setMargin.bind(this);
-		this.onKmlReady = this.onKmlReady.bind(this);
+		this.readUserData = this.readUserData.bind(this);
 	}
 
 	setMargin() {
+		this.map.fitToElements(true);
 		PermissionsAndroid.request(
 			PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
 		).then(granted => {
@@ -39,8 +43,23 @@ class MapScreen extends Component {
 		});
 	}
 
-	onKmlReady() {
-		this.map.fitToElements(true);
+	readUserData = () => {
+		firebase
+			.database()
+			.ref("/locations")
+			.once("value", snapshot => {
+				const fbObject = snapshot.val();
+				const newArr = Object.keys(fbObject).map(key => {
+					fbObject[key].id = key;
+					return fbObject[key];
+				});
+				this.setState({ markerData: newArr });
+				console.log(this.state.markerData);
+			});
+	};
+
+	componentDidMount() {
+		this.readUserData();
 	}
 
 	renderData(latitude, longitude) {
@@ -70,8 +89,6 @@ class MapScreen extends Component {
 					showsMyLocationButton={true}
 					followsUserLocation={true} //iOS ONLY
 					onMapReady={this.setMargin}
-					// kmlSrc={KML_FILE}
-					// onKmlReady={this.onKmlReady}
 				>
 					<Marker
 						coordinate={{
@@ -89,6 +106,18 @@ class MapScreen extends Component {
 						title="Hillsta"
 						image={require("../../assets/images/mapMarker-icon.png")}
 					/>
+					{this.state.markerData.map(coordinate => {
+						return (
+							<Marker
+								coordinate={{
+									latitude: coordinate.Latitude,
+									longitude: coordinate.Longitude
+								}}
+								title={coordinate["Pharmacy Name"]}
+								image={require("../../assets/images/mapMarker-icon.png")}
+							/>
+						);
+					})}
 				</MapView>
 			</Container>
 		);
