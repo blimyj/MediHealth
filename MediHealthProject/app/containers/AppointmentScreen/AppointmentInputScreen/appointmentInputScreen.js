@@ -4,21 +4,7 @@ import { Form, Input, Item, Label, Container, Content } from "native-base";
 import MyHeader from "../../../components/header";
 import styles from "./appStyle";
 
-import Config from 'react-native-config'
-
 import * as firebase from 'firebase'
-
-var firebaseConfig = {
-    apiKey: Config.apiKey,
-    authDomain: Config.authDomain,
-    databaseURL: Config.databaseURL,
-    projectId: Config.projectId,
-    storageBucket: Config.storageBucket,
-    messagingSenderId: Config.messagingSenderId,
-    appId: Config.appId 
-}
-
-firebase.initializeApp(firebaseConfig)
 
 var data = []
 

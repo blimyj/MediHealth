@@ -1,10 +1,56 @@
 import React, { Component } from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, ListView } from "react-native";
 import { Container, Content } from "native-base";
 import MyHeader from "../../components/header";
 import styles from "./appStyle";
 
+import * as firebase from 'firebase'
+
+var data = []
+
 class AppointmentScreen extends Component {
+	constructor(props) {
+		super(props);
+	
+		this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
+		
+		this.state = {
+            listViewData: data,
+            appointment: "",
+			location: "",
+			date: "",
+			time: "",
+			uid: ""
+		};
+	}
+
+	componentDidMount() {
+		firebase.database().ref('/items').on('value', (dataSnapshot) => {
+			//handle read data.
+			const fbObject = dataSnapshot.val();
+			const newArr = [];
+			Object.keys(fbObject).map( (key,index)=>{
+				console.log(key);
+				console.log("||");
+				console.log(index);
+				newArr.push(fbObject[key]);
+			});
+			this.setState({ listViewData: newArr });
+			console.log(this.state.listViewData);
+		});	
+		/*
+		var that = this
+	
+		firebase.database().ref('/items').on('child_added', function (data) {
+	
+			var newData = [...that.state.listViewData]
+			newData.push(data)
+			that.setState({ listViewData: newData })
+
+		})
+
+	*/}
+
 	render() {
 		return (
 			<Container>
@@ -12,56 +58,10 @@ class AppointmentScreen extends Component {
 				<Content
 					contentContainerStyle={{
 						flex: 1
-						//alignItems: "center",
-						//width: "100%"
-						//justifyContent: "center"
 					}}
 				>
 					<FlatList
-						data={[
-							{
-								key: "a",
-								appt: "Dr Bong",
-								location: "SGH",
-								date: "21-June-2019",
-								time: "16:51"
-							},
-							{
-								key: "b",
-								appt: "Dr Gregory",
-								location: "SGH",
-								date: "21-June-2019",
-								time: "16:51"
-							},
-							{
-								key: "c",
-								appt: "Dr Hong",
-								location: "SGH",
-								date: "21-June-2019",
-								time: "16:51"
-							},
-							{
-								key: "d",
-								appt: "Dr James",
-								location: "SGH",
-								date: "21-June-2019",
-								time: "16:51"
-							},
-							{
-								key: "e",
-								appt: "Dr Quack",
-								location: "SGH",
-								date: "21-June-2019",
-								time: "16:51"
-							},
-							{
-								key: "f",
-								appt: "Dr Cynthia",
-								location: "SGH",
-								date: "21-June-2019",
-								time: "16:51"
-							}
-						]}
+						data={ this.state.listViewData }
 						renderItem={({ item }) => (
 							<View style={styles.AppointmentButtonContainer}>
 								<View style={styles.AppointmentButtonPadding} />

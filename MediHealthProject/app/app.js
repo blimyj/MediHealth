@@ -23,6 +23,22 @@ import BiomarkerScreen from "./containers/BiomarkerScreen/biomarkerScreen";
 import RehabilitationScreen from "./containers/RehabilitationScreen/rehabilitationScreen";
 import ProfileScreen from "./containers/ProfileScreen/profileScreen";
 import MapScreen from "./containers/MapScreen/mapScreen";
+import LoginScreen from "./containers/LoginScreen/loginScreen";
+
+import Config from 'react-native-config'
+import * as firebase from 'firebase'
+
+var firebaseConfig = {
+    apiKey: Config.FIREBASE_API_KEY,
+    authDomain: Config.authDomain,
+    databaseURL: Config.databaseURL,
+    projectId: Config.projectId,
+    storageBucket: Config.storageBucket,
+    messagingSenderId: Config.messagingSenderId,
+    appId: Config.appId 
+}
+
+firebase.initializeApp(firebaseConfig);
 
 const { width, height } = Dimensions.get("screen");
 
@@ -140,6 +156,17 @@ const MyApp = createDrawerNavigator(
 		},
 		Map: {
 			screen: MapScreen,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/map-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "black" }}
+					/>
+				)
+			}
+		},
+		Login: {
+			screen: LoginScreen,
 			navigationOptions: {
 				drawerIcon: (
 					<Image
