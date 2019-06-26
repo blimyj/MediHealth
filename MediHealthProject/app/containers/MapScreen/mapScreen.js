@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import { Dimensions, Image, PermissionsAndroid, ListView } from "react-native";
+import { Dimensions, PermissionsAndroid } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { Container } from "native-base";
 import MyHeader from "../../components/header";
 import * as firebase from "firebase";
+import Config from "react-native-config";
+import MapViewDirections from "react-native-maps-directions";
 
 const { width, height } = Dimensions.get("window");
 
+const MAPS_API_KEY = Config.GOOGLE_MAPS_API_KEY;
 const ASPECT_RATIO = width / height;
 const LATITUDE = 1.29027;
 const LONGITUDE = 103.851959;
@@ -16,8 +19,6 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 class MapScreen extends Component {
 	constructor(props) {
 		super(props);
-
-		this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 		this.state = {
 			region: {
@@ -35,7 +36,6 @@ class MapScreen extends Component {
 	}
 
 	setMargin() {
-		this.map.fitToElements(true);
 		PermissionsAndroid.request(
 			PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
 		).then(granted => {
@@ -62,16 +62,8 @@ class MapScreen extends Component {
 		this.readUserData();
 	}
 
-	renderData(latitude, longitude) {
-		return (
-			<Marker
-				coordinate={{
-					latitude: latitude,
-					longitude: longitude
-				}}
-				image={require("../../assets/images/mapMarker-icon.png")}
-			/>
-		);
+	componentDidUpdate() {
+		this.map.fitToElements(true);
 	}
 
 	render() {
@@ -84,7 +76,7 @@ class MapScreen extends Component {
 					}}
 					provider={PROVIDER_GOOGLE}
 					style={{ flex: 1, marginBottom: this.state.mapMargin }}
-					initialRegion={this.state.region}
+					// initialRegion={this.state.region}
 					showsUserLocation={true}
 					showsMyLocationButton={true}
 					followsUserLocation={true} //iOS ONLY
@@ -98,14 +90,6 @@ class MapScreen extends Component {
 						title="SGH"
 						image={require("../../assets/images/mapMarker-icon.png")}
 					/>
-					<Marker
-						coordinate={{
-							latitude: 1.37624319753702,
-							longitude: 103.75640094280243
-						}}
-						title="Hillsta"
-						image={require("../../assets/images/mapMarker-icon.png")}
-					/>
 					{this.state.markerData.map(coordinate => {
 						return (
 							<Marker
@@ -115,9 +99,19 @@ class MapScreen extends Component {
 								}}
 								title={coordinate["Pharmacy Name"]}
 								image={require("../../assets/images/mapMarker-icon.png")}
+								key={coordinate.id}
 							/>
 						);
 					})}
+					{/* <MapViewDirections
+						origin={{ latitude: 1.279597, longitude: 103.835886 }} // Daily Limit: 1
+						destination={{
+							latitude: 1.37624319753702,
+							longitude: 103.75640094280243
+						}}
+						apikey={MAPS_API_KEY}
+						mode="WALKING"
+					/> */}
 				</MapView>
 			</Container>
 		);
