@@ -3,6 +3,9 @@ import { View, Text, FlatList, TouchableOpacity, ListView } from "react-native";
 import { Container, Content } from "native-base";
 import MyHeader from "../../components/header";
 import styles from "./appStyle";
+import * as firebase from "firebase";
+
+var data = [];
 
 import * as firebase from 'firebase'
 
@@ -11,45 +14,37 @@ var data = []
 class AppointmentScreen extends Component {
 	constructor(props) {
 		super(props);
-	
-		this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
-		
+
+		this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
 		this.state = {
-            listViewData: data,
-            appointment: "",
+			listViewData: data,
+			appointment: "",
 			location: "",
 			date: "",
-			time: "",
-			uid: ""
+			time: ""
 		};
+
+		this.readUserData = this.readUserData.bind(this);
 	}
 
 	componentDidMount() {
-		firebase.database().ref('/items').on('value', (dataSnapshot) => {
-			//handle read data.
-			const fbObject = dataSnapshot.val();
-			const newArr = [];
-			Object.keys(fbObject).map( (key,index)=>{
-				console.log(key);
-				console.log("||");
-				console.log(index);
-				newArr.push(fbObject[key]);
+		this.readUserData();
+	}
+
+	readUserData = () => {
+		firebase
+			.database()
+			.ref("/items")
+			.once("value", snapshot => {
+				const fbObject = snapshot.val();
+				const newArr = Object.keys(fbObject).map(key => {
+					fbObject[key].id = key;
+					return fbObject[key];
+				});
+				this.setState({ listViewData: newArr });
 			});
-			this.setState({ listViewData: newArr });
-			console.log(this.state.listViewData);
-		});	
-		/*
-		var that = this
-	
-		firebase.database().ref('/items').on('child_added', function (data) {
-	
-			var newData = [...that.state.listViewData]
-			newData.push(data)
-			that.setState({ listViewData: newData })
-
-		})
-
-	*/}
+	};
 
 	render() {
 		return (
@@ -61,7 +56,7 @@ class AppointmentScreen extends Component {
 					}}
 				>
 					<FlatList
-						data={ this.state.listViewData }
+						data={this.state.listViewData}
 						renderItem={({ item }) => (
 							<View style={styles.AppointmentButtonContainer}>
 								<View style={styles.AppointmentButtonPadding} />
