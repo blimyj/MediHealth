@@ -6,6 +6,7 @@ import MyHeader from "../../components/header";
 import * as firebase from "firebase";
 import Config from "react-native-config";
 import MapViewDirections from "react-native-maps-directions";
+import { SearchBar } from "react-native-elements";
 
 const { width, height } = Dimensions.get("window");
 
@@ -69,7 +70,8 @@ class MapScreen extends Component {
 	render() {
 		return (
 			<Container>
-				<MyHeader nav={this.props.navigation} headerTitle="Map" />
+				{/* <MyHeader nav={this.props.navigation} headerTitle="Map" /> */}
+				<SearchBar placeholder="Type Here..." />
 				<MapView
 					ref={ref => {
 						this.map = ref;
