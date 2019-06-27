@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Dimensions, PermissionsAndroid } from "react-native";
+import { Dimensions, PermissionsAndroid, StyleSheet, View } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
-import { Container } from "native-base";
+import { Container, Left, Right, Icon, Button } from "native-base";
 import MyHeader from "../../components/header";
 import * as firebase from "firebase";
 import Config from "react-native-config";
@@ -89,7 +89,10 @@ class MapScreen extends Component {
 	render() {
 		return (
 			<Container>
-				{/* <MyHeader nav={this.props.navigation} headerTitle="Map" /> */}
+				<MyHeader nav={this.props.navigation} headerTitle="Map" />
+				{/* <Button transparent onPress={() => this.props.navigation.openDrawer()}>
+					<Icon ios="ios-menu" android="md-menu" style={{ color: "black" }} />
+				</Button> */}
 				<SearchableDropdown
 					onItemSelect={item => {
 						alert("You've selected " + item.name);
