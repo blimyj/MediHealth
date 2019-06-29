@@ -55,13 +55,12 @@ const MyStackNav = createStackNavigator(
 			headerBackImage: (
 				<Image
 					source={require("./assets/images/back-icon.png")}
-					style={{ height: 24, width: 24 }}
+					style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
 				/>
 			),
 			headerStyle: { height: 60 }
 		},
-		headerMode: "float",
-		headerBackImage: <Image source={require("./assets/images/back-icon.png")} />
+		headerMode: "float"
 	}
 );
 
@@ -100,7 +99,7 @@ const MyApp = createDrawerNavigator(
 				drawerIcon: (
 					<Image
 						source={require("./assets/images/home-icon.png")}
-						style={{ height: 24, width: 24, tintColor: "black" }}
+						style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
 					/>
 				)
 			}
@@ -111,7 +110,7 @@ const MyApp = createDrawerNavigator(
 				drawerIcon: (
 					<Image
 						source={require("./assets/images/settings-icon.png")}
-						style={{ height: 24, width: 24, tintColor: "black" }}
+						style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
 					/>
 				)
 			}
@@ -178,7 +177,7 @@ const MyApp = createDrawerNavigator(
 				drawerIcon: (
 					<Image
 						source={require("./assets/images/map-icon.png")}
-						style={{ height: 24, width: 24, tintColor: "black" }}
+						style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
 					/>
 				)
 			}
@@ -201,7 +200,7 @@ const styles = StyleSheet.create({
 	profileIcon: {
 		height: 24,
 		width: 24,
-		tintColor: "black",
+		tintColor: "#28DA9A",
 		left: 5
 	},
 	profileName: {

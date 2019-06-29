@@ -1,19 +1,17 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { Icon, Button, Container, Content, Left, Right } from "native-base";
+import { View, Text, TouchableOpacity } from "react-native";
+import { Container, Content } from "native-base";
 import { DrawerActions } from "react-navigation";
 import styles from "../../appStyle";
+import MenuButton from "../../components/menuButton";
 
 class HomeScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
 		headerLeft: (
 			<View>
-				<Button
-					transparent
-					onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-				>
-					<Icon ios="ios-menu" android="md-menu" style={{ color: "black" }} />
-				</Button>
+				<MenuButton
+					whenPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+				/>
 			</View>
 		),
 		headerTitle: (

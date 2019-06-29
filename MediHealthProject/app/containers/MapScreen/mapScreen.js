@@ -6,6 +6,7 @@ import * as firebase from "firebase";
 import Config from "react-native-config";
 import MapViewDirections from "react-native-maps-directions";
 import SearchableDropdown from "react-native-searchable-dropdown";
+import MenuButton from "../../components/menuButton";
 
 const { width, height } = Dimensions.get("window");
 
@@ -90,16 +91,7 @@ class MapScreen extends Component {
 			<Container>
 				<View style={{ flexDirection: "row", alignItems: "center" }}>
 					<View>
-						<Button
-							transparent
-							onPress={() => this.props.navigation.openDrawer()}
-						>
-							<Icon
-								ios="ios-menu"
-								android="md-menu"
-								style={{ color: "black" }}
-							/>
-						</Button>
+						<MenuButton whenPress={() => this.props.navigation.openDrawer()} />
 					</View>
 					<SearchableDropdown
 						onItemSelect={item => {
@@ -112,7 +104,7 @@ class MapScreen extends Component {
 						itemsContainerStyle={{ maxHeight: 140 }}
 						items={this.state.markerData}
 						defaultIndex={2}
-						placeholder="Address"
+						placeholder="Search Address"
 						resetValue={false}
 						underlineColorAndroid="transparent"
 					/>
@@ -169,7 +161,7 @@ const styles = StyleSheet.create({
 	searchTextInput: {
 		padding: 12,
 		borderWidth: 1,
-		borderColor: "#ccc",
+		borderColor: "#28DA9A",
 		borderRadius: 5
 	},
 	searchItem: {
