@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Dimensions, PermissionsAndroid, StyleSheet, View } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { Container, Left, Right, Icon, Button } from "native-base";
-import MyHeader from "../../components/header";
 import * as firebase from "firebase";
 import Config from "react-native-config";
 import MapViewDirections from "react-native-maps-directions";
@@ -72,8 +71,8 @@ class MapScreen extends Component {
 			region: {
 				latitude: item.Latitude,
 				longitude: item.Longitude,
-				latitudeDelta: 0.01,
-				longitudeDelta: 0.01
+				latitudeDelta: 0.005,
+				longitudeDelta: 0.005
 			}
 		});
 	}
@@ -89,38 +88,35 @@ class MapScreen extends Component {
 	render() {
 		return (
 			<Container>
-				<MyHeader nav={this.props.navigation} headerTitle="Map" />
-				{/* <Button transparent onPress={() => this.props.navigation.openDrawer()}>
-					<Icon ios="ios-menu" android="md-menu" style={{ color: "black" }} />
-				</Button> */}
-				<SearchableDropdown
-					onItemSelect={item => {
-						alert("You've selected " + item.name);
-						this.changeSelectedRegion(item);
-					}}
-					containerStyle={{ padding: 5 }}
-					textInputStyle={{
-						padding: 12,
-						borderWidth: 1,
-						borderColor: "#ccc",
-						borderRadius: 5
-					}}
-					itemStyle={{
-						padding: 10,
-						marginTop: 2,
-						backgroundColor: "#ddd",
-						borderColor: "#bbb",
-						borderWidth: 1,
-						borderRadius: 5
-					}}
-					itemTextStyle={{ color: "#222" }}
-					itemsContainerStyle={{ maxHeight: 140 }}
-					items={this.state.markerData}
-					defaultIndex={2}
-					placeholder="Address"
-					resetValue={false}
-					underlineColorAndroid="transparent"
-				/>
+				<View style={{ flexDirection: "row", alignItems: "center" }}>
+					<View>
+						<Button
+							transparent
+							onPress={() => this.props.navigation.openDrawer()}
+						>
+							<Icon
+								ios="ios-menu"
+								android="md-menu"
+								style={{ color: "black" }}
+							/>
+						</Button>
+					</View>
+					<SearchableDropdown
+						onItemSelect={item => {
+							this.changeSelectedRegion(item);
+						}}
+						containerStyle={{ padding: 5, flex: 1 }}
+						textInputStyle={styles.searchTextInput}
+						itemStyle={styles.searchItem}
+						itemTextStyle={{ color: "black" }}
+						itemsContainerStyle={{ maxHeight: 140 }}
+						items={this.state.markerData}
+						defaultIndex={2}
+						placeholder="Address"
+						resetValue={false}
+						underlineColorAndroid="transparent"
+					/>
+				</View>
 				<MapView
 					ref={ref => {
 						this.map = ref;
@@ -168,6 +164,23 @@ class MapScreen extends Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	searchTextInput: {
+		padding: 12,
+		borderWidth: 1,
+		borderColor: "#ccc",
+		borderRadius: 5
+	},
+	searchItem: {
+		padding: 10,
+		marginTop: 2,
+		backgroundColor: "white",
+		borderColor: "#28DA9A",
+		borderWidth: 1,
+		borderRadius: 5
+	}
+});
 
 MapScreen.propTypes = {
 	provider: MapView.ProviderPropType

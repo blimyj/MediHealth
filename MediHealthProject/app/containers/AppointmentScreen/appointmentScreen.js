@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, FlatList, TouchableOpacity, ListView } from "react-native";
 import { Container, Content } from "native-base";
+import { NavigationEvents } from "react-navigation";
 import MyHeader from "../../components/header";
 import styles from "./appStyle";
 import * as firebase from "firebase";
@@ -24,9 +25,9 @@ class AppointmentScreen extends Component {
 		this.readUserData = this.readUserData.bind(this);
 	}
 
-	componentDidMount() {
-		this.readUserData();
-	}
+	// componentDidMount() {
+	// 	this.readUserData();
+	// }
 
 	readUserData = () => {
 		firebase
@@ -45,6 +46,7 @@ class AppointmentScreen extends Component {
 	render() {
 		return (
 			<Container>
+				<NavigationEvents onDidFocus={this.readUserData} />
 				<MyHeader nav={this.props.navigation} headerTitle="Appointment" />
 				<Content
 					contentContainerStyle={{
