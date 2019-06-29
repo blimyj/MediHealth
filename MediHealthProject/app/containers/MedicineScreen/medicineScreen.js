@@ -1,14 +1,21 @@
 import React, { Component } from "react";
-import { View, Text, Image, FlatList, TouchableOpacity } from "react-native";
-import { Icon, Button, Container, Content, Left, Right } from "native-base";
-import MyHeader from "../../components/header";
+import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
+import { Container, Content } from "native-base";
 import styles from "./appStyle";
 
 class MedicineScreen extends Component {
+	static navigationOptions = ({ navigation }) => ({
+		headerTitle: (
+			<View style={{ alignSelf: "center", flex: 1 }}>
+				<Text style={{ textAlign: "center" }}>Medicine</Text>
+			</View>
+		),
+		headerRight: <View />
+	});
+
 	render() {
 		return (
 			<Container>
-				<MyHeader nav={this.props.navigation} headerTitle="Medicine" />
 				<Content
 					contentContainerStyle={{
 						flex: 1

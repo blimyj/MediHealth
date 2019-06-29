@@ -2,13 +2,21 @@ import React, { Component } from "react";
 import { View, Text, FlatList, TouchableOpacity, ListView } from "react-native";
 import { Container, Content } from "native-base";
 import { NavigationEvents } from "react-navigation";
-import MyHeader from "../../components/header";
 import styles from "./appStyle";
 import * as firebase from "firebase";
 
 var data = [];
 
 class AppointmentScreen extends Component {
+	static navigationOptions = ({ navigation }) => ({
+		headerTitle: (
+			<View style={{ alignSelf: "center", flex: 1 }}>
+				<Text style={{ textAlign: "center" }}>Appointment</Text>
+			</View>
+		),
+		headerRight: <View />
+	});
+
 	constructor(props) {
 		super(props);
 
@@ -25,9 +33,9 @@ class AppointmentScreen extends Component {
 		this.readUserData = this.readUserData.bind(this);
 	}
 
-	// componentDidMount() {
-	// 	this.readUserData();
-	// }
+	componentDidMount() {
+		this.readUserData();
+	}
 
 	readUserData = () => {
 		firebase
@@ -47,7 +55,6 @@ class AppointmentScreen extends Component {
 		return (
 			<Container>
 				<NavigationEvents onDidFocus={this.readUserData} />
-				<MyHeader nav={this.props.navigation} headerTitle="Appointment" />
 				<Content
 					contentContainerStyle={{
 						flex: 1

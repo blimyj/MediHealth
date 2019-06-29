@@ -1,14 +1,32 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Icon, Button, Container, Content, Left, Right } from "native-base";
-import MyHeader from "../../components/header";
+import { DrawerActions } from "react-navigation";
 import styles from "../../appStyle";
 
 class HomeScreen extends Component {
+	static navigationOptions = ({ navigation }) => ({
+		headerLeft: (
+			<View>
+				<Button
+					transparent
+					onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+				>
+					<Icon ios="ios-menu" android="md-menu" style={{ color: "black" }} />
+				</Button>
+			</View>
+		),
+		headerTitle: (
+			<View style={{ alignSelf: "center", flex: 1 }}>
+				<Text style={{ textAlign: "center" }}>Home</Text>
+			</View>
+		),
+		headerRight: <View />
+	});
+
 	render() {
 		return (
 			<Container>
-				<MyHeader nav={this.props.navigation} headerTitle="MediHealth" />
 				<Content
 					contentContainerStyle={{
 						flex: 1,

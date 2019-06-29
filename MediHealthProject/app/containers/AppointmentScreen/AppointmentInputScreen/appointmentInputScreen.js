@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, ListView } from "react-native";
 import { Form, Input, Item, Label, Container, Content } from "native-base";
-import MyHeader from "../../../components/header";
 import styles from "./appStyle";
 
 import Config from "react-native-config";
@@ -23,6 +22,15 @@ firebase.initializeApp(firebaseConfig);
 var data = [];
 
 class AppointmentInputScreen extends Component {
+	static navigationOptions = ({ navigation }) => ({
+		headerTitle: (
+			<View style={{ alignSelf: "center", flex: 1 }}>
+				<Text style={{ textAlign: "center" }}>Appointment</Text>
+			</View>
+		),
+		headerRight: <View />
+	});
+
 	constructor(props) {
 		super(props);
 
@@ -57,7 +65,6 @@ class AppointmentInputScreen extends Component {
 	render() {
 		return (
 			<Container>
-				<MyHeader nav={this.props.navigation} headerTitle="Appointment" />
 				<Content
 					contentContainerStyle={{
 						flex: 1
