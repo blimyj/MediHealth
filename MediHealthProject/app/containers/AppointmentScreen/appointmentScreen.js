@@ -1,6 +1,13 @@
 import React, { Component } from "react";
-import { View, Text, FlatList, TouchableOpacity, ListView } from "react-native";
-import { Container, Content } from "native-base";
+import {
+	View,
+	Text,
+	FlatList,
+	TouchableOpacity,
+	ListView,
+	Image
+} from "react-native";
+import { Container, Content, Button } from "native-base";
 import { NavigationEvents } from "react-navigation";
 import styles from "./appStyle";
 import * as firebase from "firebase";
@@ -105,16 +112,19 @@ class AppointmentScreen extends Component {
 							</View>
 						)}
 					/>
-					<View>
-						<TouchableOpacity
-							title="AppointmentInput"
+
+					<Button
+						transparent
+						title="AppointmentInput"
+						accessibilityLabel="Appointment Input Button"
+						onPress={() => this.props.navigation.navigate("AppointmentInput")}
+						style={{ alignSelf: "flex-end", bottom: 15, right: 15 }}
+					>
+						<Image
+							source={require("../../assets/images/plus-icon.png")}
 							style={styles.appointmentInputButton}
-							accessibilityLabel="Appointment Input Button"
-							onPress={() => this.props.navigation.navigate("AppointmentInput")}
-						>
-							<Text style={styles.bigButtonText}>+</Text>
-						</TouchableOpacity>
-					</View>
+						/>
+					</Button>
 				</Content>
 			</Container>
 		);

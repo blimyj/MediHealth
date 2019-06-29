@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { Dimensions, PermissionsAndroid, StyleSheet, View } from "react-native";
+import {
+	Dimensions,
+	PermissionsAndroid,
+	StyleSheet,
+	View,
+	Text
+} from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { Container, Left, Right, Icon, Button } from "native-base";
 import * as firebase from "firebase";
@@ -97,7 +103,7 @@ class MapScreen extends Component {
 						onItemSelect={item => {
 							this.changeSelectedRegion(item);
 						}}
-						containerStyle={{ padding: 5, flex: 1 }}
+						containerStyle={{ flex: 1, padding: 3 }}
 						textInputStyle={styles.searchTextInput}
 						itemStyle={styles.searchItem}
 						itemTextStyle={{ color: "black" }}

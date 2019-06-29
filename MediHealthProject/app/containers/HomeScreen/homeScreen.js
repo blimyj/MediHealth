@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import { Container, Content } from "native-base";
 import { DrawerActions } from "react-navigation";
 import styles from "../../appStyle";
 import MenuButton from "../../components/menuButton";
+
+console.ignoredYellowBox = ["Setting a timer"];
 
 class HomeScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
@@ -38,7 +40,13 @@ class HomeScreen extends Component {
 						accessibilityLabel="Medicine"
 						onPress={() => this.props.navigation.navigate("Medicine")}
 					>
-						<Text style={styles.bigButtonText}>Medicine</Text>
+						<View style={styles.bigButtonView}>
+							<Image
+								source={require("../../assets/images/medicine-icon.png")}
+								style={styles.icon}
+							/>
+							<Text style={[styles.bigButtonText, { left: 52 }]}>Medicine</Text>
+						</View>
 					</TouchableOpacity>
 
 					<TouchableOpacity
@@ -47,7 +55,15 @@ class HomeScreen extends Component {
 						accessibilityLabel="Appointment"
 						onPress={() => this.props.navigation.navigate("Appointment")}
 					>
-						<Text style={styles.bigButtonText}>Appointment</Text>
+						<View style={styles.bigButtonView}>
+							<Image
+								source={require("../../assets/images/appointment-icon.png")}
+								style={styles.icon}
+							/>
+							<Text style={[styles.bigButtonText, { left: 40 }]}>
+								Appointment
+							</Text>
+						</View>
 					</TouchableOpacity>
 
 					<TouchableOpacity
@@ -56,7 +72,15 @@ class HomeScreen extends Component {
 						accessibilityLabel="Biomarker"
 						onPress={() => this.props.navigation.navigate("Biomarker")}
 					>
-						<Text style={styles.bigButtonText}>Biomarker</Text>
+						<View style={styles.bigButtonView}>
+							<Image
+								source={require("../../assets/images/biomarker-icon.png")}
+								style={styles.icon}
+							/>
+							<Text style={[styles.bigButtonText, { left: 48 }]}>
+								Biomarker
+							</Text>
+						</View>
 					</TouchableOpacity>
 
 					<TouchableOpacity
@@ -65,7 +89,15 @@ class HomeScreen extends Component {
 						accessibilityLabel="Rehabilitation"
 						onPress={() => this.props.navigation.navigate("Rehabilitation")}
 					>
-						<Text style={styles.bigButtonText}>Rehabilitation</Text>
+						<View style={styles.bigButtonView}>
+							<Image
+								source={require("../../assets/images/rehabilitation-icon.png")}
+								style={styles.icon}
+							/>
+							<Text style={[styles.bigButtonText, { left: 38 }]}>
+								Rehabilitation
+							</Text>
+						</View>
 					</TouchableOpacity>
 				</Content>
 			</Container>

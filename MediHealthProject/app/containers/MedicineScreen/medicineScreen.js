@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
-import { Container, Content } from "native-base";
+import { Container, Content, Button } from "native-base";
 import styles from "./appStyle";
 
 class MedicineScreen extends Component {
@@ -16,14 +16,7 @@ class MedicineScreen extends Component {
 	render() {
 		return (
 			<Container>
-				<Content
-					contentContainerStyle={{
-						flex: 1
-						//alignItems: "center",
-						//width: "100%"
-						//justifyContent: "center"
-					}}
-				>
+				<Content contentContainerStyle={{ flex: 1 }}>
 					<FlatList
 						data={[
 							{ key: "Panadol" },
@@ -53,15 +46,18 @@ class MedicineScreen extends Component {
 							</View>
 						)}
 					/>
-
-					<TouchableOpacity
+					<Button
+						transparent
 						title="MedicineInput"
-						style={styles.medicineInputButton}
 						accessibilityLabel="Medicine Input Button"
 						onPress={() => this.props.navigation.navigate("Rehabilitation")}
+						style={{ alignSelf: "flex-end", bottom: 15, right: 15 }}
 					>
-						<Text style={styles.bigButtonText}>+</Text>
-					</TouchableOpacity>
+						<Image
+							source={require("../../assets/images/plus-icon.png")}
+							style={styles.medicineInputButton}
+						/>
+					</Button>
 				</Content>
 			</Container>
 		);

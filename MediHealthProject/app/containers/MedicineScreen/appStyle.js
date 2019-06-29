@@ -37,10 +37,8 @@ export default StyleSheet.create({
 		color: "#FFFFFF"
 	},
 	medicineInputButton: {
-		alignItems: "center",
 		height: 50,
 		width: 50,
-		backgroundColor: "#28DA9A",
-		borderRadius: 50
+		tintColor: "#28DA9A"
 	}
 });

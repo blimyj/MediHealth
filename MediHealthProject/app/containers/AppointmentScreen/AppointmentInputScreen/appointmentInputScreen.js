@@ -1,6 +1,14 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, ListView } from "react-native";
-import { Form, Input, Item, Label, Container, Content } from "native-base";
+import { View, Text, TouchableOpacity, ListView, Image } from "react-native";
+import {
+	Form,
+	Input,
+	Item,
+	Label,
+	Container,
+	Content,
+	Button
+} from "native-base";
 import styles from "./appStyle";
 
 import Config from "react-native-config";
@@ -93,9 +101,9 @@ class AppointmentInputScreen extends Component {
 						</Item>
 					</Form>
 
-					<TouchableOpacity
+					<Button
+						transparent
 						title="AppointmentInput"
-						style={styles.appointmentInputButton}
 						accessibilityLabel="Appointment Input Button"
 						onPress={() => {
 							this.addAppointment(
@@ -106,9 +114,13 @@ class AppointmentInputScreen extends Component {
 							);
 							this.props.navigation.navigate("Appointment");
 						}}
+						style={{ alignSelf: "flex-end", bottom: 15, right: 15 }}
 					>
-						<Text style={styles.bigButtonText}>+</Text>
-					</TouchableOpacity>
+						<Image
+							source={require("../../../assets/images/plus-icon.png")}
+							style={styles.appointmentInputButton}
+						/>
+					</Button>
 				</Content>
 			</Container>
 		);
