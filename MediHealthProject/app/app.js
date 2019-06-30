@@ -25,6 +25,7 @@ import RehabilitationScreen from "./containers/RehabilitationScreen/rehabilitati
 import ProfileScreen from "./containers/ProfileScreen/profileScreen";
 import MapScreen from "./containers/MapScreen/mapScreen";
 
+console.ignoredYellowBox = ["Setting a timer"];
 const { width, height } = Dimensions.get("screen");
 
 const MyStackNav = createStackNavigator(
@@ -104,17 +105,6 @@ const MyApp = createDrawerNavigator(
 				)
 			}
 		},
-		Settings: {
-			screen: SettingsScreen,
-			navigationOptions: {
-				drawerIcon: (
-					<Image
-						source={require("./assets/images/settings-icon.png")}
-						style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
-					/>
-				)
-			}
-		},
 		// Medicine: {
 		// 	screen: MedicineScreen,
 		// 	navigationOptions: {
@@ -177,6 +167,17 @@ const MyApp = createDrawerNavigator(
 				drawerIcon: (
 					<Image
 						source={require("./assets/images/map-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
+					/>
+				)
+			}
+		},
+		Settings: {
+			screen: SettingsScreen,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/settings-icon.png")}
 						style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
 					/>
 				)

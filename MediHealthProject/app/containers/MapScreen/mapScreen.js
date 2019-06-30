@@ -4,7 +4,8 @@ import {
 	PermissionsAndroid,
 	StyleSheet,
 	View,
-	Text
+	Text,
+	Keyboard
 } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { Container, Left, Right, Icon, Button } from "native-base";
@@ -86,6 +87,7 @@ class MapScreen extends Component {
 
 	componentDidMount() {
 		this.readUserData();
+		console.ignoredYellowBox = ["Setting a timer"];
 	}
 
 	componentDidUpdate() {
@@ -126,6 +128,7 @@ class MapScreen extends Component {
 					followsUserLocation={true} //iOS ONLY
 					onMapReady={this.setMargin}
 					region={this.state.region}
+					onPress={Keyboard.dismiss}
 				>
 					<Marker
 						coordinate={{

@@ -112,7 +112,6 @@ class AppointmentScreen extends Component {
 							</View>
 						)}
 					/>
-
 					<Button
 						transparent
 						title="AppointmentInput"
