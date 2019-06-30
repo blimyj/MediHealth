@@ -11,6 +11,7 @@ import {
 	createAppContainer,
 	createDrawerNavigator,
 	createStackNavigator,
+	createSwitchNavigator,
 	DrawerItems
 } from "react-navigation";
 import { Container, Content, Header, Body } from "native-base";
@@ -25,6 +26,7 @@ import RehabilitationScreen from "./containers/RehabilitationScreen/rehabilitati
 import ProfileScreen from "./containers/ProfileScreen/profileScreen";
 import MapScreen from "./containers/MapScreen/mapScreen";
 import LoginScreen from "./containers/LoginScreen/loginScreen";
+import LoadingScreen from "./containers/LoginScreen/loadingScreen";
 
 import Config from "react-native-config";
 import * as firebase from "firebase";
@@ -168,7 +170,24 @@ const MyApp = createDrawerNavigator(
 	}
 );
 
-const AppContainer = createAppContainer(MyApp);
+const MySwitch = createSwitchNavigator(
+	{
+		Loading: {
+			screen: LoadingScreen
+		},
+		Login: {
+			screen: LoginScreen
+		},
+		Home: {
+			screen: MyApp
+		}
+	},
+	{
+		initialRouteName: "Loading"
+	}
+);
+
+const AppContainer = createAppContainer(MySwitch);
 
 const styles = StyleSheet.create({
 	sideBarHeader: {
