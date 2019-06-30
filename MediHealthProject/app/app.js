@@ -43,7 +43,6 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-console.ignoredYellowBox = ["Setting a timer"];
 const { width, height } = Dimensions.get("screen");
 
 const MyStackNav = createStackNavigator(
@@ -198,6 +197,11 @@ const styles = StyleSheet.create({
 });
 
 export default class App extends Component {
+	constructor(props) {
+		super(props);
+		console.disableYellowBox = true;
+	}
+
 	render() {
 		return <AppContainer />;
 	}

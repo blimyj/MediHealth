@@ -70,11 +70,7 @@ class AppointmentScreen extends Component {
 		return (
 			<Container>
 				<NavigationEvents onDidFocus={this.readUserData} />
-				<Content
-					contentContainerStyle={{
-						flex: 1
-					}}
-				>
+				<Content contentContainerStyle={{ flex: 1 }}>
 					<FlatList
 						data={this.state.listViewData}
 						renderItem={({ item }) => (
@@ -116,6 +112,7 @@ class AppointmentScreen extends Component {
 								<View style={styles.AppointmentButtonPadding} />
 							</View>
 						)}
+						keyExtractor={item => item.appointmentDate}
 					/>
 					<Button
 						transparent

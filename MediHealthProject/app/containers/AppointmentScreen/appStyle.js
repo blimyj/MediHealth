@@ -7,7 +7,7 @@ export default StyleSheet.create({
 		backgroundColor: "#28DA9A",
 		width: 270,
 		height: 60,
-		borderRadius: 8,
+		borderRadius: 5,
 		padding: 15,
 		marginTop: 10
 	},
@@ -28,7 +28,7 @@ export default StyleSheet.create({
 		backgroundColor: "transparent",
 		flex: 3,
 		height: 60,
-		borderRadius: 8,
+		borderRadius: 5,
 		padding: 15,
 		marginTop: 10,
 		borderColor: "#28DA9A",

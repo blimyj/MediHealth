@@ -11,7 +11,7 @@ class ProfileScreen extends Component {
 		super(props);
 
 		this.state = {
-			profilePic: "",
+			profilePic: "https://i.imgur.com/MQHYB.jpg",
 			displayName: "",
 			age: 0,
 			weight: 0,
@@ -24,7 +24,6 @@ class ProfileScreen extends Component {
 
 	componentDidMount() {
 		this.readUserData();
-		console.log("Mounted");
 	}
 
 	readUserData = () => {
