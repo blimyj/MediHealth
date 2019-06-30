@@ -11,9 +11,9 @@ import {
 } from "native-base";
 import styles from "./appStyle";
 
-import * as firebase from 'firebase'
+import * as firebase from "firebase";
 
-var data = []
+var data = [];
 
 class AppointmentInputScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
@@ -40,21 +40,27 @@ class AppointmentInputScreen extends Component {
 	}
 
 	addAppointment(dataAppt, dataLocat, dataDate, dataTime) {
-		var key = firebase
-			.database()
-			.ref("/users/" + uid)
-			.push().key;
+		var user = firebase.auth().currentUser;
+		if (user != null) {
+			const uid = user.uid;
+			var key = firebase
+				.database()
+				.ref("/users_URW/" + uid + "/appointments/list")
+				.push().key;
 
-		firebase
-			.database()
-			.ref("/users/" + uid)
-			.child(key)
-			.set({
-				appointment: dataAppt,
-				location: dataLocat,
-				date: dataDate,
-				time: dataTime
-			});
+			firebase
+				.database()
+				.ref("/users_URW/" + uid + "/appointments/list")
+				.child(key)
+				.set({
+					appointment: dataAppt,
+					location: dataLocat,
+					date: dataDate,
+					time: dataTime
+				});
+		} else {
+			console.log(user);
+		}
 	}
 
 	render() {

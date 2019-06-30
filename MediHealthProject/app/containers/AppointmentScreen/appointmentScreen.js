@@ -45,17 +45,25 @@ class AppointmentScreen extends Component {
 	}
 
 	readUserData = () => {
-		firebase
-			.database()
-			.ref("/items")
-			.once("value", snapshot => {
-				const fbObject = snapshot.val();
-				const newArr = Object.keys(fbObject).map(key => {
-					fbObject[key].id = key;
-					return fbObject[key];
+		var user = firebase.auth().currentUser;
+		if (user != null) {
+			const uid = user.uid;
+
+			firebase
+				.database()
+				.ref("/users_URW/" + uid + "/appointments/list")
+				.once("value", snapshot => {
+					const fbObject = snapshot.val();
+					console.log("Here: ", fbObject);
+					const newArr = Object.keys(fbObject).map(key => {
+						fbObject[key].id = key;
+						return fbObject[key];
+					});
+					this.setState({ listViewData: newArr });
 				});
-				this.setState({ listViewData: newArr });
-			});
+		} else {
+			console.log(user);
+		}
 	};
 
 	render() {
@@ -73,16 +81,16 @@ class AppointmentScreen extends Component {
 							<View style={styles.AppointmentButtonContainer}>
 								<View style={styles.AppointmentButtonPadding} />
 								<TouchableOpacity
-									title={item.appt}
+									title={item.appointment}
 									style={styles.AppointmentButton}
-									accessibilityLabel={item.appt}
+									accessibilityLabel={item.appointment}
 									onPress={() => this.props.navigation.navigate("Biomarker")}
 								>
 									<View style={styles.AppointmentButtonRow}>
 										{/*Row 1*/}
 										<View style={styles.AppointmentButtonRowLeftColumn}>
 											<Text style={styles.AppointmentButtonApptText}>
-												{item.appt}
+												{item.appointment}
 											</Text>
 										</View>
 										<View style={styles.AppointmentButtonRowRightColumn}>
