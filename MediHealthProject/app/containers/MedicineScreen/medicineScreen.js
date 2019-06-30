@@ -1,22 +1,22 @@
 import React, { Component } from "react";
-import { View, Text, Image, FlatList, TouchableOpacity } from "react-native";
-import { Icon, Button, Container, Content, Left, Right } from "native-base";
-import MyHeader from "../../components/header";
+import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
+import { Container, Content, Button } from "native-base";
 import styles from "./appStyle";
 
 class MedicineScreen extends Component {
+	static navigationOptions = ({ navigation }) => ({
+		headerTitle: (
+			<View style={{ alignSelf: "center", flex: 1 }}>
+				<Text style={{ textAlign: "center" }}>Medicine</Text>
+			</View>
+		),
+		headerRight: <View />
+	});
+
 	render() {
 		return (
 			<Container>
-				<MyHeader nav={this.props.navigation} headerTitle="Medicine" />
-				<Content
-					contentContainerStyle={{
-						flex: 1
-						//alignItems: "center",
-						//width: "100%"
-						//justifyContent: "center"
-					}}
-				>
+				<Content contentContainerStyle={{ flex: 1 }}>
 					<FlatList
 						data={[
 							{ key: "Panadol" },
@@ -46,15 +46,18 @@ class MedicineScreen extends Component {
 							</View>
 						)}
 					/>
-
-					<TouchableOpacity
+					<Button
+						transparent
 						title="MedicineInput"
-						style={styles.medicineInputButton}
 						accessibilityLabel="Medicine Input Button"
 						onPress={() => this.props.navigation.navigate("Rehabilitation")}
+						style={{ alignSelf: "flex-end", bottom: 15, right: 15 }}
 					>
-						<Text style={styles.bigButtonText}>+</Text>
-					</TouchableOpacity>
+						<Image
+							source={require("../../assets/images/plus-icon.png")}
+							style={styles.medicineInputButton}
+						/>
+					</Button>
 				</Content>
 			</Container>
 		);

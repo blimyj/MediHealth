@@ -24,23 +24,24 @@ export default StyleSheet.create({
 	},
 	MedicineButton: {
 		alignItems: "flex-start",
-		backgroundColor: "#28DA9A",
+		backgroundColor: "transparent",
 		flex: 3,
 		height: 60,
-		borderRadius: 8,
+		borderRadius: 5,
 		padding: 15,
-		marginTop: 10
+		marginTop: 10,
+		borderColor: "#28DA9A",
+		borderWidth: 2
 	},
 	MedicineButtonText: {
 		fontSize: 20,
 		fontWeight: "400",
-		color: "#FFFFFF"
+		color: "black",
+		alignSelf: "center"
 	},
 	medicineInputButton: {
-		alignItems: "center",
 		height: 50,
 		width: 50,
-		backgroundColor: "#28DA9A",
-		borderRadius: 50
+		tintColor: "#28DA9A"
 	}
 });

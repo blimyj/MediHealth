@@ -10,6 +10,7 @@ import {
 import {
 	createAppContainer,
 	createDrawerNavigator,
+	createStackNavigator,
 	DrawerItems
 } from "react-navigation";
 import { Container, Content, Header, Body } from "native-base";
@@ -40,7 +41,45 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+console.ignoredYellowBox = ["Setting a timer"];
 const { width, height } = Dimensions.get("screen");
+
+const MyStackNav = createStackNavigator(
+	{
+		Home: {
+			screen: HomeScreen
+		},
+		Medicine: {
+			screen: MedicineScreen
+		},
+		Appointment: {
+			screen: AppointmentScreen
+		},
+		AppointmentInput: {
+			screen: AppointmentInputScreen
+		},
+		Biomarker: {
+			screen: BiomarkerScreen
+		},
+		Rehabilitation: {
+			screen: RehabilitationScreen
+		}
+	},
+	{
+		initialRouteName: "Home",
+		defaultNavigationOptions: {
+			headerLeftContainerStyle: { left: 3 },
+			headerBackImage: (
+				<Image
+					source={require("./assets/images/back-icon.png")}
+					style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
+				/>
+			),
+			headerStyle: { height: 60 }
+		},
+		headerMode: "float"
+	}
+);
 
 const CustomDrawerContentComponent = props => (
 	<Container>
@@ -54,11 +93,6 @@ const CustomDrawerContentComponent = props => (
 					}} // Clickable area
 				>
 					<View style={{ flexDirection: "row", alignItems: "center" }}>
-						{/* <Icon
-							type="FontAwesome"
-							name="user-circle"
-							style={{ color: "black", left: 5 }}
-						/> */}
 						<Image
 							source={require("./assets/images/profile-icon.png")}
 							style={styles.profileIcon}
@@ -77,77 +111,66 @@ const CustomDrawerContentComponent = props => (
 const MyApp = createDrawerNavigator(
 	{
 		Home: {
-			screen: HomeScreen,
+			screen: MyStackNav,
 			navigationOptions: {
 				drawerIcon: (
 					<Image
 						source={require("./assets/images/home-icon.png")}
-						style={{ height: 24, width: 24, tintColor: "black" }}
+						style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
 					/>
 				)
 			}
 		},
-		Settings: {
-			screen: SettingsScreen,
-			navigationOptions: {
-				drawerIcon: (
-					<Image
-						source={require("./assets/images/settings-icon.png")}
-						style={{ height: 24, width: 24, tintColor: "black" }}
-					/>
-				)
-			}
-		},
-		Medicine: {
-			screen: MedicineScreen,
-			navigationOptions: {
-				drawerIcon: (
-					<Image
-						source={require("./assets/images/medicine-icon.png")}
-						style={{ height: 24, width: 24, tintColor: "black" }}
-					/>
-				)
-			}
-		},
-		Appointment: {
-			screen: AppointmentScreen,
-			navigationOptions: {
-				drawerIcon: (
-					<Image
-						source={require("./assets/images/appointment-icon.png")}
-						style={{ height: 24, width: 24, tintColor: "black" }}
-					/>
-				)
-			}
-		},
-		AppointmentInput: {
-			screen: AppointmentInputScreen,
-			navigationOptions: {
-				drawerLabel: () => null
-			}
-		},
-		Biomarker: {
-			screen: BiomarkerScreen,
-			navigationOptions: {
-				drawerIcon: (
-					<Image
-						source={require("./assets/images/biomarker-icon.png")}
-						style={{ height: 24, width: 24, tintColor: "black" }}
-					/>
-				)
-			}
-		},
-		Rehabilitation: {
-			screen: RehabilitationScreen,
-			navigationOptions: {
-				drawerIcon: (
-					<Image
-						source={require("./assets/images/rehabilitation-icon.png")}
-						style={{ height: 24, width: 24, tintColor: "black" }}
-					/>
-				)
-			}
-		},
+		// Medicine: {
+		// 	screen: MedicineScreen,
+		// 	navigationOptions: {
+		// 		drawerIcon: (
+		// 			<Image
+		// 				source={require("./assets/images/medicine-icon.png")}
+		// 				style={{ height: 24, width: 24, tintColor: "black" }}
+		// 			/>
+		// 		)
+		// 	}
+		// },
+		// Appointment: {
+		// 	screen: AppointmentScreen,
+		// 	navigationOptions: {
+		// 		drawerIcon: (
+		// 			<Image
+		// 				source={require("./assets/images/appointment-icon.png")}
+		// 				style={{ height: 24, width: 24, tintColor: "black" }}
+		// 			/>
+		// 		)
+		// 	}
+		// },
+		// AppointmentInput: {
+		// 	screen: AppointmentInputScreen,
+		// 	navigationOptions: {
+		// 		drawerLabel: () => null
+		// 	}
+		// },
+		// Biomarker: {
+		// 	screen: BiomarkerScreen,
+		// 	navigationOptions: {
+		// 		drawerIcon: (
+		// 			<Image
+		// 				source={require("./assets/images/biomarker-icon.png")}
+		// 				style={{ height: 24, width: 24, tintColor: "black" }}
+		// 			/>
+		// 		)
+		// 	}
+		// },
+		// Rehabilitation: {
+		// 	screen: RehabilitationScreen,
+		// 	navigationOptions: {
+		// 		drawerIcon: (
+		// 			<Image
+		// 				source={require("./assets/images/rehabilitation-icon.png")}
+		// 				style={{ height: 24, width: 24, tintColor: "black" }}
+		// 			/>
+		// 		)
+		// 	}
+		// },
 		Profile: {
 			screen: ProfileScreen,
 			navigationOptions: {
@@ -160,7 +183,18 @@ const MyApp = createDrawerNavigator(
 				drawerIcon: (
 					<Image
 						source={require("./assets/images/map-icon.png")}
-						style={{ height: 24, width: 24, tintColor: "black" }}
+						style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
+					/>
+				)
+			}
+		},
+		Settings: {
+			screen: SettingsScreen,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/settings-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
 					/>
 				)
 			}
@@ -194,13 +228,14 @@ const styles = StyleSheet.create({
 	profileIcon: {
 		height: 24,
 		width: 24,
-		tintColor: "black",
+		tintColor: "#28DA9A",
 		left: 5
 	},
 	profileName: {
 		left: 35,
 		fontWeight: "bold",
-		color: "black"
+		color: "black",
+		fontSize: 16
 	}
 });
 

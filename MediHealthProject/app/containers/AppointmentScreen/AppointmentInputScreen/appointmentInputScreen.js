@@ -1,7 +1,14 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, ListView } from "react-native";
-import { Form, Input, Item, Label, Container, Content } from "native-base";
-import MyHeader from "../../../components/header";
+import { View, Text, TouchableOpacity, ListView, Image } from "react-native";
+import {
+	Form,
+	Input,
+	Item,
+	Label,
+	Container,
+	Content,
+	Button
+} from "native-base";
 import styles from "./appStyle";
 
 import * as firebase from 'firebase'
@@ -9,6 +16,15 @@ import * as firebase from 'firebase'
 var data = []
 
 class AppointmentInputScreen extends Component {
+	static navigationOptions = ({ navigation }) => ({
+		headerTitle: (
+			<View style={{ alignSelf: "center", flex: 1 }}>
+				<Text style={{ textAlign: "center" }}>Appointment</Text>
+			</View>
+		),
+		headerRight: <View />
+	});
+
 	constructor(props) {
 		super(props);
 
@@ -44,7 +60,6 @@ class AppointmentInputScreen extends Component {
 	render() {
 		return (
 			<Container>
-				<MyHeader nav={this.props.navigation} headerTitle="Appointment" />
 				<Content
 					contentContainerStyle={{
 						flex: 1
@@ -73,9 +88,9 @@ class AppointmentInputScreen extends Component {
 						</Item>
 					</Form>
 
-					<TouchableOpacity
+					<Button
+						transparent
 						title="AppointmentInput"
-						style={styles.appointmentInputButton}
 						accessibilityLabel="Appointment Input Button"
 						onPress={() => {
 							this.addAppointment(
@@ -86,9 +101,13 @@ class AppointmentInputScreen extends Component {
 							);
 							this.props.navigation.navigate("Appointment");
 						}}
+						style={{ alignSelf: "flex-end", bottom: 15, right: 15 }}
 					>
-						<Text style={styles.bigButtonText}>+</Text>
-					</TouchableOpacity>
+						<Image
+							source={require("../../../assets/images/plus-icon.png")}
+							style={styles.appointmentInputButton}
+						/>
+					</Button>
 				</Content>
 			</Container>
 		);

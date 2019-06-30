@@ -1,13 +1,20 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
-import { Icon, Button, Container, Content, Left, Right } from "native-base";
-import MyHeader from "../../components/header";
+import { View, Text } from "react-native";
+import { Container, Content } from "native-base";
 
 class RehabilitationScreen extends Component {
+	static navigationOptions = ({ navigation }) => ({
+		headerTitle: (
+			<View style={{ alignSelf: "center", flex: 1 }}>
+				<Text style={{ textAlign: "center" }}>Rehabilitation</Text>
+			</View>
+		),
+		headerRight: <View />
+	});
+
 	render() {
 		return (
 			<Container>
-				<MyHeader nav={this.props.navigation} headerTitle="Rehabilitation" />
 				<Content
 					contentContainerStyle={{
 						flex: 1,
