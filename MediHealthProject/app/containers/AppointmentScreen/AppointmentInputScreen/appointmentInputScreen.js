@@ -1,79 +1,98 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity } from "react-native";
-import { Form, Input, Item, Label, Container, Content} from "native-base";
+import { View, Text, TouchableOpacity, ListView } from "react-native";
+import { Form, Input, Item, Label, Container, Content } from "native-base";
 import MyHeader from "../../../components/header";
-import styles from './appStyle'
+import styles from "./appStyle";
+
+import * as firebase from 'firebase'
+
+var data = []
 
 class AppointmentInputScreen extends Component {
-    static navigationOptions = {
-        drawerIcon: (
-            <Image
-                source={require("../../../assets/images/appointment-icon.png")}
-                style={{ height: 24, width: 24, tintColor: "black" }}
-            />
-        )
-    };
+	constructor(props) {
+		super(props);
 
-    constructor(props) {
-        super(props);
-        this.state = { 
-                        appointment: '',
-                        location: '',
-                        date: '',
-                        time: '',
-                     };
-    }
+		this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
-    render() {
-        return (
-            <Container>
-                <MyHeader nav={this.props.navigation} headerTitle="Appointment" />
-                <Content
-                    contentContainerStyle={{
-                        flex: 1
-                    }}
-                >   
-                    <Text>ApointmentInputScreen</Text>
+		this.state = {
+			listViewData: data,
+			appointment: "",
+			location: "",
+			date: "",
+			time: ""
+		};
+	}
 
-                    <Form>
-                        <Item stackedLabel>
-                            <Label>Appointment</Label>
-                            <Input
-                                onSubmitEditing={(text) => this.setState({appointment: text})}
-                            />
-                        </Item>
-                        <Item stackedLabel num1>
-                            <Label>Location</Label>
-                            <Input
-                                onSubmitEditing={(text) => this.setState({location: text})}
-                            />
-                        </Item>
-                        <Item stackedLabel num2>
-                            <Label>Date</Label>
-                            <Input
-                                onSubmitEditing={(text) => this.setState({date: text})}
-                            />
-                        </Item>
-                        <Item stackedLabel num3>
-                            <Label>Time</Label>
-                            <Input
-                                onSubmitEditing={(text) => this.setState({time: text})}
-                            />
-                        </Item>                        
-                    </Form>
+	addAppointment(dataAppt, dataLocat, dataDate, dataTime) {
+		var key = firebase
+			.database()
+			.ref("/users/" + uid)
+			.push().key;
 
-                    <TouchableOpacity
-                        title="AppointmentInput"
-                        style={styles.appointmentInputButton}
-                        accessibilityLabel="Appointment Input Button"
-                        onPress={() => this.props.navigation.navigate('AppointmentInput')}
-                    >
-                        <Text style={styles.bigButtonText}>+</Text>
-                    </TouchableOpacity>
-                </Content>
-            </Container>
-        );
-    }
+		firebase
+			.database()
+			.ref("/users/" + uid)
+			.child(key)
+			.set({
+				appointment: dataAppt,
+				location: dataLocat,
+				date: dataDate,
+				time: dataTime
+			});
+	}
+
+	render() {
+		return (
+			<Container>
+				<MyHeader nav={this.props.navigation} headerTitle="Appointment" />
+				<Content
+					contentContainerStyle={{
+						flex: 1
+					}}
+				>
+					<Text>AppointmentInputScreen</Text>
+
+					<Form>
+						<Item stackedLabel>
+							<Label>Appointment</Label>
+							<Input
+								onChangeText={text => this.setState({ appointment: text })}
+							/>
+						</Item>
+						<Item stackedLabel num1>
+							<Label>Location</Label>
+							<Input onChangeText={text => this.setState({ location: text })} />
+						</Item>
+						<Item stackedLabel num2>
+							<Label>Date</Label>
+							<Input onChangeText={text => this.setState({ date: text })} />
+						</Item>
+						<Item stackedLabel num3>
+							<Label>Time</Label>
+							<Input onChangeText={text => this.setState({ time: text })} />
+						</Item>
+					</Form>
+
+					<TouchableOpacity
+						title="AppointmentInput"
+						style={styles.appointmentInputButton}
+						accessibilityLabel="Appointment Input Button"
+						onPress={() => {
+							this.addAppointment(
+								this.state.appointment,
+								this.state.location,
+								this.state.date,
+								this.state.time
+							);
+							this.props.navigation.navigate("Appointment");
+						}}
+					>
+						<Text style={styles.bigButtonText}>+</Text>
+					</TouchableOpacity>
+				</Content>
+			</Container>
+		);
+	}
 }
 
 export default AppointmentInputScreen;

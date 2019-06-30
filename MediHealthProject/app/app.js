@@ -9,19 +9,36 @@ import {
 } from "react-native";
 import {
 	createAppContainer,
-	createStackNavigator,
 	createDrawerNavigator,
 	DrawerItems
 } from "react-navigation";
-import { Container, Content, Header, Body, Icon, Button } from "native-base";
+import { Container, Content, Header, Body } from "native-base";
 
 import HomeScreen from "./containers/HomeScreen/homeScreen";
 import SettingsScreen from "./containers/SettingsScreen/settingsScreen";
 import MedicineScreen from "./containers/MedicineScreen/medicineScreen";
-import AppointmentStack from "./containers/AppointmentScreen/appointmentStack";
+import AppointmentScreen from "./containers/AppointmentScreen/appointmentScreen";
+import AppointmentInputScreen from "./containers/AppointmentScreen/AppointmentInputScreen/appointmentInputScreen";
 import BiomarkerScreen from "./containers/BiomarkerScreen/biomarkerScreen";
 import RehabilitationScreen from "./containers/RehabilitationScreen/rehabilitationScreen";
 import ProfileScreen from "./containers/ProfileScreen/profileScreen";
+import MapScreen from "./containers/MapScreen/mapScreen";
+import LoginScreen from "./containers/LoginScreen/loginScreen";
+
+import Config from 'react-native-config'
+import * as firebase from 'firebase'
+
+var firebaseConfig = {
+    apiKey: Config.FIREBASE_API_KEY,
+    authDomain: Config.authDomain,
+    databaseURL: Config.databaseURL,
+    projectId: Config.projectId,
+    storageBucket: Config.storageBucket,
+    messagingSenderId: Config.messagingSenderId,
+    appId: Config.appId 
+}
+
+firebase.initializeApp(firebaseConfig);
 
 const { width, height } = Dimensions.get("screen");
 
@@ -60,25 +77,104 @@ const CustomDrawerContentComponent = props => (
 const MyApp = createDrawerNavigator(
 	{
 		Home: {
-			screen: HomeScreen
+			screen: HomeScreen,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/home-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "black" }}
+					/>
+				)
+			}
 		},
 		Settings: {
-			screen: SettingsScreen
+			screen: SettingsScreen,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/settings-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "black" }}
+					/>
+				)
+			}
 		},
 		Medicine: {
-			screen: MedicineScreen
+			screen: MedicineScreen,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/medicine-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "black" }}
+					/>
+				)
+			}
 		},
 		Appointment: {
-			screen: AppointmentStack
+			screen: AppointmentScreen,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/appointment-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "black" }}
+					/>
+				)
+			}
+		},
+		AppointmentInput: {
+			screen: AppointmentInputScreen,
+			navigationOptions: {
+				drawerLabel: () => null
+			}
 		},
 		Biomarker: {
-			screen: BiomarkerScreen
+			screen: BiomarkerScreen,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/biomarker-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "black" }}
+					/>
+				)
+			}
 		},
 		Rehabilitation: {
-			screen: RehabilitationScreen
+			screen: RehabilitationScreen,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/rehabilitation-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "black" }}
+					/>
+				)
+			}
 		},
 		Profile: {
-			screen: ProfileScreen
+			screen: ProfileScreen,
+			navigationOptions: {
+				drawerLabel: () => null
+			}
+		},
+		Map: {
+			screen: MapScreen,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/map-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "black" }}
+					/>
+				)
+			}
+		},
+		Login: {
+			screen: LoginScreen,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/map-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "black" }}
+					/>
+				)
+			}
 		}
 	},
 	{
