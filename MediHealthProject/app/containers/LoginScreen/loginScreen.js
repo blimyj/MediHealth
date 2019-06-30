@@ -242,21 +242,6 @@ class LoginScreen extends Component {
 
 						<View style={styles.ButtonContainer}>
 							<TouchableOpacity
-								title="Login Button"
-								style={styles.LoginButton}
-								accessibilityLabel="Login Button"
-								onPress={() => {
-									this.login(this.state.email, this.state.password);
-								}}
-							>
-								<Text style={styles.bigButtonText}>Login</Text>
-							</TouchableOpacity>
-						</View>
-
-						<View style={styles.ButtonPadding} />
-
-						<View style={styles.ButtonContainer}>
-							<TouchableOpacity
 								title="Sign Up Button"
 								style={styles.SignUpButton}
 								accessibilityLabel="Sign Up Button"
@@ -269,9 +254,24 @@ class LoginScreen extends Component {
 						</View>
 
 						<View style={styles.ButtonPadding} />
+
+						<View style={styles.ButtonContainer}>
+							<TouchableOpacity
+								title="Login Button"
+								style={styles.LoginButton}
+								accessibilityLabel="Login Button"
+								onPress={() => {
+									this.login(this.state.email, this.state.password);
+								}}
+							>
+								<Text style={styles.bigButtonText}>Login</Text>
+							</TouchableOpacity>
+						</View>
+
+						<View style={styles.ButtonPadding} />
 					</View>
 
-					<View style={styles.ButtonsContainer}>
+					{/* <View style={styles.ButtonsContainer}>
 						<View style={styles.ButtonPadding} />
 
 						<View style={styles.ButtonContainer}>
@@ -303,7 +303,7 @@ class LoginScreen extends Component {
 						</View>
 
 						<View style={styles.ButtonPadding} />
-					</View>
+					</View> */}
 				</Content>
 			</Container>
 		);

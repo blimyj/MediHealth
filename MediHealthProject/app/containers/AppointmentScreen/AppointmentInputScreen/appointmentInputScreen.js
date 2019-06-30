@@ -53,10 +53,10 @@ class AppointmentInputScreen extends Component {
 				.ref("/users_URW/" + uid + "/appointments/list")
 				.child(key)
 				.set({
-					appointment: dataAppt,
-					location: dataLocat,
-					date: dataDate,
-					time: dataTime
+					appointmentName: dataAppt,
+					appointmentLocation: dataLocat,
+					appointmentDate: dataDate,
+					appointmentTime: dataTime
 				});
 		} else {
 			console.log(user);

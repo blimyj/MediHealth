@@ -99,7 +99,7 @@ const CustomDrawerContentComponent = props => (
 							source={require("./assets/images/profile-icon.png")}
 							style={styles.profileIcon}
 						/>
-						<Text style={styles.profileName}>Joel Loong</Text>
+						<Text style={styles.profileName}>Sng Hao Jun</Text>
 					</View>
 				</TouchableOpacity>
 			</Body>
@@ -135,17 +135,6 @@ const MyApp = createDrawerNavigator(
 				drawerIcon: (
 					<Image
 						source={require("./assets/images/map-icon.png")}
-						style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
-					/>
-				)
-			}
-		},
-		Login: {
-			screen: LoginScreen,
-			navigationOptions: {
-				drawerIcon: (
-					<Image
-						source={require("./assets/images/settings-icon.png")}
 						style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
 					/>
 				)
