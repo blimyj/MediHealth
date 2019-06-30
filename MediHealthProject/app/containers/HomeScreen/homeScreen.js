@@ -1,14 +1,32 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { Icon, Button, Container, Content, Left, Right } from "native-base";
-import MyHeader from "../../components/header";
+import { View, Text, TouchableOpacity, Image } from "react-native";
+import { Container, Content } from "native-base";
+import { DrawerActions } from "react-navigation";
 import styles from "../../appStyle";
+import MenuButton from "../../components/menuButton";
+
+console.ignoredYellowBox = ["Setting a timer"];
 
 class HomeScreen extends Component {
+	static navigationOptions = ({ navigation }) => ({
+		headerLeft: (
+			<View>
+				<MenuButton
+					whenPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+				/>
+			</View>
+		),
+		headerTitle: (
+			<View style={{ alignSelf: "center", flex: 1 }}>
+				<Text style={{ textAlign: "center" }}>Home</Text>
+			</View>
+		),
+		headerRight: <View />
+	});
+
 	render() {
 		return (
 			<Container>
-				<MyHeader nav={this.props.navigation} headerTitle="MediHealth" />
 				<Content
 					contentContainerStyle={{
 						flex: 1,
@@ -22,7 +40,13 @@ class HomeScreen extends Component {
 						accessibilityLabel="Medicine"
 						onPress={() => this.props.navigation.navigate("Medicine")}
 					>
-						<Text style={styles.bigButtonText}>Medicine</Text>
+						<View style={styles.bigButtonView}>
+							<Image
+								source={require("../../assets/images/medicine-icon.png")}
+								style={styles.icon}
+							/>
+							<Text style={[styles.bigButtonText, { left: 52 }]}>Medicine</Text>
+						</View>
 					</TouchableOpacity>
 
 					<TouchableOpacity
@@ -31,7 +55,15 @@ class HomeScreen extends Component {
 						accessibilityLabel="Appointment"
 						onPress={() => this.props.navigation.navigate("Appointment")}
 					>
-						<Text style={styles.bigButtonText}>Appointment</Text>
+						<View style={styles.bigButtonView}>
+							<Image
+								source={require("../../assets/images/appointment-icon.png")}
+								style={styles.icon}
+							/>
+							<Text style={[styles.bigButtonText, { left: 40 }]}>
+								Appointment
+							</Text>
+						</View>
 					</TouchableOpacity>
 
 					<TouchableOpacity
@@ -40,7 +72,15 @@ class HomeScreen extends Component {
 						accessibilityLabel="Biomarker"
 						onPress={() => this.props.navigation.navigate("Biomarker")}
 					>
-						<Text style={styles.bigButtonText}>Biomarker</Text>
+						<View style={styles.bigButtonView}>
+							<Image
+								source={require("../../assets/images/biomarker-icon.png")}
+								style={styles.icon}
+							/>
+							<Text style={[styles.bigButtonText, { left: 48 }]}>
+								Biomarker
+							</Text>
+						</View>
 					</TouchableOpacity>
 
 					<TouchableOpacity
@@ -49,7 +89,15 @@ class HomeScreen extends Component {
 						accessibilityLabel="Rehabilitation"
 						onPress={() => this.props.navigation.navigate("Rehabilitation")}
 					>
-						<Text style={styles.bigButtonText}>Rehabilitation</Text>
+						<View style={styles.bigButtonView}>
+							<Image
+								source={require("../../assets/images/rehabilitation-icon.png")}
+								style={styles.icon}
+							/>
+							<Text style={[styles.bigButtonText, { left: 38 }]}>
+								Rehabilitation
+							</Text>
+						</View>
 					</TouchableOpacity>
 				</Content>
 			</Container>

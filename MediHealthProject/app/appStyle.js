@@ -3,16 +3,27 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
 	bigButton: {
 		alignItems: "flex-start",
-		backgroundColor: "#28DA9A",
+		backgroundColor: "transparent",
 		width: 270,
 		height: 60,
-		borderRadius: 8,
+		borderRadius: 5,
 		padding: 15,
-		marginTop: 10
+		marginTop: 10,
+		borderColor: "#28DA9A",
+		borderWidth: 2
 	},
 	bigButtonText: {
 		fontSize: 20,
 		fontWeight: "400",
-		color: "#FFFFFF"
+		color: "black",
+		alignSelf: "center"
+	},
+	bigButtonView: {
+		flexDirection: "row"
+	},
+	icon: {
+		height: 24,
+		width: 24,
+		tintColor: "#28DA9A"
 	}
 });

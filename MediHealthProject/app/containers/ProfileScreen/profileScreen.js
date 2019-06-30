@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { Container } from "native-base";
+import { NavigationEvents } from "react-navigation";
 import MyHeader from "../../components/header";
 
-import * as firebase from 'firebase';
+import * as firebase from "firebase";
 
 class ProfileScreen extends Component {
 	constructor(props) {
@@ -27,7 +28,7 @@ class ProfileScreen extends Component {
 
 	readUserData = () => {
 		var user = firebase.auth().currentUser;
-		if(user != null){
+		if (user != null) {
 			const uid = user.uid;
 
 			firebase
@@ -35,8 +36,8 @@ class ProfileScreen extends Component {
 				.ref("/users_PR_URW/" + uid + "/Profile")
 				.once("value", snapshot => {
 					const fbObject = snapshot.val();
-					console.log(fbObject);
-					this.setState({ 
+					console.log("Here: ", fbObject);
+					this.setState({
 						profilePic: fbObject.profilePic,
 						displayName: fbObject.displayName,
 						age: fbObject.age,
@@ -49,8 +50,6 @@ class ProfileScreen extends Component {
 			console.log(user);
 		}
 	};
-
-
 
 	render() {
 		return (
@@ -69,10 +68,14 @@ class ProfileScreen extends Component {
 							<Text style={styles.name}>{this.state.displayName}</Text>
 							<Text style={styles.info}>Student //To - Replace</Text>
 							<Text style={styles.description}>
-								{"Age: " + this.state.age 
-									+ "\n Weight: " + this.state.weight 
-									+ "\n Height: " + this.state.height
-									+ "\n Birthday: " + this.state.birthday}
+								{"Age: " +
+									this.state.age +
+									"\n Weight: " +
+									this.state.weight +
+									"\n Height: " +
+									this.state.height +
+									"\n Birthday: " +
+									this.state.birthday}
 							</Text>
 
 							<TouchableOpacity style={styles.buttonContainer}>

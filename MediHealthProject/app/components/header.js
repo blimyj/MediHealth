@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { Icon, Button, Header, Left, Right } from "native-base";
+import MenuButton from "./menuButton";
 
 class MyHeader extends Component {
 	render() {
 		return (
 			<Header style={styles.headerStyle}>
 				<Left style={styles.leftStyle}>
-					<Button transparent onPress={() => this.props.nav.openDrawer()}>
-						<Icon ios="ios-menu" android="md-menu" style={{ color: "black" }} />
-					</Button>
+					<MenuButton whenPress={() => this.props.nav.openDrawer()} />
 				</Left>
 				<View style={styles.viewStyle}>
 					<Text>{this.props.headerTitle}</Text>

@@ -1,14 +1,30 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, ListView } from "react-native";
-import { Form, Input, Item, Label, Container, Content } from "native-base";
-import MyHeader from "../../../components/header";
+import { View, Text, TouchableOpacity, ListView, Image } from "react-native";
+import {
+	Form,
+	Input,
+	Item,
+	Label,
+	Container,
+	Content,
+	Button
+} from "native-base";
 import styles from "./appStyle";
 
-import * as firebase from 'firebase'
+import * as firebase from "firebase";
 
-var data = []
+var data = [];
 
 class AppointmentInputScreen extends Component {
+	static navigationOptions = ({ navigation }) => ({
+		headerTitle: (
+			<View style={{ alignSelf: "center", flex: 1 }}>
+				<Text style={{ textAlign: "center" }}>Appointment</Text>
+			</View>
+		),
+		headerRight: <View />
+	});
+
 	constructor(props) {
 		super(props);
 
@@ -24,27 +40,32 @@ class AppointmentInputScreen extends Component {
 	}
 
 	addAppointment(dataAppt, dataLocat, dataDate, dataTime) {
-		var key = firebase
-			.database()
-			.ref("/users/" + uid)
-			.push().key;
+		var user = firebase.auth().currentUser;
+		if (user != null) {
+			const uid = user.uid;
+			var key = firebase
+				.database()
+				.ref("/users_URW/" + uid + "/appointments/list")
+				.push().key;
 
-		firebase
-			.database()
-			.ref("/users/" + uid)
-			.child(key)
-			.set({
-				appointment: dataAppt,
-				location: dataLocat,
-				date: dataDate,
-				time: dataTime
-			});
+			firebase
+				.database()
+				.ref("/users_URW/" + uid + "/appointments/list")
+				.child(key)
+				.set({
+					appointment: dataAppt,
+					location: dataLocat,
+					date: dataDate,
+					time: dataTime
+				});
+		} else {
+			console.log(user);
+		}
 	}
 
 	render() {
 		return (
 			<Container>
-				<MyHeader nav={this.props.navigation} headerTitle="Appointment" />
 				<Content
 					contentContainerStyle={{
 						flex: 1
@@ -73,9 +94,9 @@ class AppointmentInputScreen extends Component {
 						</Item>
 					</Form>
 
-					<TouchableOpacity
+					<Button
+						transparent
 						title="AppointmentInput"
-						style={styles.appointmentInputButton}
 						accessibilityLabel="Appointment Input Button"
 						onPress={() => {
 							this.addAppointment(
@@ -86,9 +107,13 @@ class AppointmentInputScreen extends Component {
 							);
 							this.props.navigation.navigate("Appointment");
 						}}
+						style={{ alignSelf: "flex-end", bottom: 15, right: 15 }}
 					>
-						<Text style={styles.bigButtonText}>+</Text>
-					</TouchableOpacity>
+						<Image
+							source={require("../../../assets/images/plus-icon.png")}
+							style={styles.appointmentInputButton}
+						/>
+					</Button>
 				</Content>
 			</Container>
 		);
