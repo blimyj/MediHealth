@@ -37,6 +37,20 @@ export default StyleSheet.create({
         padding: 15,
         marginTop:10
     },
+    LogoutButton: {
+        backgroundColor: '#28DA9A',
+        height: 60,
+        borderRadius: 8,
+        padding: 15,
+        marginTop:10
+    },
+    DisplayUserButton: {
+        backgroundColor: '#28DA9A',
+        height: 60,
+        borderRadius: 8,
+        padding: 15,
+        marginTop:10
+    },
     ButtonPadding: {
         flex: 1
     }

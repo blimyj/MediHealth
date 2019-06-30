@@ -3,7 +3,55 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { Container } from "native-base";
 import MyHeader from "../../components/header";
 
+import * as firebase from 'firebase';
+
 class ProfileScreen extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			profilePic: "",
+			displayName: "",
+			age: 0,
+			weight: 0,
+			height: 0,
+			birthday: "01-01-2011"
+		};
+
+		this.readUserData = this.readUserData.bind(this);
+	}
+
+	componentDidMount() {
+		this.readUserData();
+	}
+
+	readUserData = () => {
+		var user = firebase.auth().currentUser;
+		if(user != null){
+			const uid = user.uid;
+
+			firebase
+				.database()
+				.ref("/users_PR_URW/" + uid + "/Profile")
+				.once("value", snapshot => {
+					const fbObject = snapshot.val();
+					console.log(fbObject);
+					this.setState({ 
+						profilePic: fbObject.profilePic,
+						displayName: fbObject.displayName,
+						age: fbObject.age,
+						weight: fbObject.weight,
+						height: fbObject.height,
+						birthday: fbObject.birthday
+					});
+				});
+		} else {
+			console.log(user);
+		}
+	};
+
+
+
 	render() {
 		return (
 			<Container>
@@ -13,17 +61,18 @@ class ProfileScreen extends Component {
 					<Image
 						style={styles.avatar}
 						source={{
-							uri:
-								"https://media.licdn.com/dms/image/C5103AQEiJL0AgWj5KQ/profile-displayphoto-shrink_800_800/0?e=1566432000&v=beta&t=MaAA-eyV5MXKmgj4rRqSfKE8fwGDtjkkVn-EMruGzKA"
+							uri: this.state.profilePic
 						}}
 					/>
 					<View style={styles.body}>
 						<View style={styles.bodyContent}>
-							<Text style={styles.name}>Sng Hao Jun</Text>
-							<Text style={styles.info}>Student</Text>
+							<Text style={styles.name}>{this.state.displayName}</Text>
+							<Text style={styles.info}>Student //To - Replace</Text>
 							<Text style={styles.description}>
-								Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum
-								electram expetendis, omittam deseruisse consequuntur ius an,
+								{"Age: " + this.state.age 
+									+ "\n Weight: " + this.state.weight 
+									+ "\n Height: " + this.state.height
+									+ "\n Birthday: " + this.state.birthday}
 							</Text>
 
 							<TouchableOpacity style={styles.buttonContainer}>

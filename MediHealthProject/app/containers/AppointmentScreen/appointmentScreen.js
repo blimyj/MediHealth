@@ -7,10 +7,6 @@ import * as firebase from "firebase";
 
 var data = [];
 
-import * as firebase from 'firebase'
-
-var data = []
-
 class AppointmentScreen extends Component {
 	constructor(props) {
 		super(props);

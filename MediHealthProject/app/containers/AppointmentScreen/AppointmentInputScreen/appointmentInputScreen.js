@@ -26,11 +26,12 @@ class AppointmentInputScreen extends Component {
 	addAppointment(dataAppt, dataLocat, dataDate, dataTime) {
 		var key = firebase
 			.database()
-			.ref("/items")
+			.ref("/users/" + uid)
 			.push().key;
+
 		firebase
 			.database()
-			.ref("/items")
+			.ref("/users/" + uid)
 			.child(key)
 			.set({
 				appointment: dataAppt,
