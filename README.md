@@ -62,9 +62,9 @@ It reminds the user to:
 
 
 ### Features to be completed by the Mid of July
-Calendar View (w/o native integration i.e. cannot sync with Google and Apple Calendar yet)
-Toggleable displays for any of the 4 categories
-Medication / Supplementation Segment:
+* Calendar View (w/o native integration i.e. cannot sync with Google and Apple Calendar yet)
+* Toggleable displays for any of the 4 categories
+* Medication / Supplementation Segment:
 Reminder System
 Pop up screen with drug name and dosage displayed prominently.
 Three options: “Skip, Take, Remind Me Again”
