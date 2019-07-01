@@ -23,16 +23,20 @@ We hope to build a user-friendly medical health tracker mobile application that 
 
 ## User Stories
 As a patient, Squidward needs to take various medicines at various frequencies He needs an easy & efficient method of handling  these schedules flexibly.
+
 As an outpatient, Squidward has many medical appointments that can range from 1 week to 1 year later. He wants an easy way to keep track of them while being able to see all of them at once.
+
 As a patient undergoing rehabilitation, Squidward needs to complete certain exercises on a regular basis. He would like to be reminded of them and track how regularly he completes them.
 
 As a doctor I want better accuracy in tracking the patient’s biomarkers variance over time. (Unverified) 
+
 As a physiotherapist, Sandy wants to be able to track patient rehabilitation adherence in order to assess the patient’s condition and adjust treatment plans appropriately. (Unverified) 
 
 As a forgetful person, Patrick wants to check if he has taken his medication.
 Worried for Patrick, his mother would also like to receive notifications if he hasn’t taken his medication an hour after the scheduled dose. 
 
 As a person with ADHD, Spongebob would like for his reminder notifications to be ambiguous so  that people don’t know what meds he is taking)
+
 As a responsible father, Mr Krabs would like to track his and his daughters medication from his application.
 
 ## Scope of Project
@@ -65,14 +69,13 @@ It reminds the user to:
 * Calendar View (w/o native integration i.e. cannot sync with Google and Apple Calendar yet)
 * Toggleable displays for any of the 4 categories
 * Medication / Supplementation Segment:
-Reminder System
-Pop up screen with drug name and dosage displayed prominently.
-Three options: “Skip, Take, Remind Me Again”
-“Eat now”, “Eaten at” (Or eat now and eaten at together Ask Esther)
-Display of medication adherence history
-Flexible Reminder System (in input form example). This feature is so that the reminder times for the second dose onwards can be scheduled as either a specific time or a time interval after the previous dose has been marked as taken.
-Appointments
-Reschedule Appointments / Set multiple reminders
+* Reminder System
+* Pop up screen with drug name and dosage displayed prominently.
+* Three options: “Skip, Take, Remind Me Again” 
+* “Eat now”, “Eaten at” (Or eat now and eaten at together Ask Esther)
+* Display of medication adherence history
+* Flexible Reminder System (in input form example). This feature is so that the reminder times for the second dose onwards can * be scheduled as either a specific time or a time interval after the previous dose has been marked as taken.
+* Reschedule Appointments / Set multiple reminders
 
 ### Features to be completed by the End of July
 Input form for biomarkers and rehabilitation exercise
