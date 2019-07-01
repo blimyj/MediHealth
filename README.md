@@ -58,10 +58,11 @@ It reminds the user to:
 * Complete rehabilitation exercises
 
 ### Completed Features
-* Input form for Medication & Appointments
+* Medicine Feature
+* Appointment Feature
+* Input form for Medicine & Appointment
 * Login & Profile Page
 * Maps
-* Appointments
 * Set up appointment
 
 
