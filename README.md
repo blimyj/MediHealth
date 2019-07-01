@@ -46,10 +46,10 @@ A cross-platform mobile application that keep tracks and reminds the user about 
 More specifically:
 
 It tracks the users:
-Medicine / Supplementation Consumption
-Medical Appointments
-Biomarker
-Rehabilitation Exercise Adherence
+* Medicine / Supplementation Consumption
+* Medical Appointments
+* Biomarker
+* Rehabilitation Exercise Adherence
 
 It reminds the user to:
 * Eat their medication / supplements
