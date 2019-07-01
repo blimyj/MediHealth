@@ -93,16 +93,16 @@ Buddy (You receive notification if they miss a dose)
 * Maps (React Native Maps, Google's Directions API)
 
 ## How are we different from similar platforms?
-#HealthHub SG
-*It only tracks medical appointments from public hospitals and polyclinics but not private hospitals and clinics. In addition, it does not track blood donation appointments.
-*It only tracks 3 vitals (blood pressure, blood glucose and BMI).
-*There is no reminder functionality for patient’s medicines.
+# HealthHub SG
+* It only tracks medical appointments from public hospitals and polyclinics but not private hospitals and clinics. In addition, it does not track blood donation appointments.
+* It only tracks 3 vitals (blood pressure, blood glucose and BMI).
+* There is no reminder functionality for patient’s medicines.
 
-#MediSafe
-*Calendar is not easily accessible.
-*Does not track or remind about rehabilitation exercises
+# MediSafe
+* Calendar is not easily accessible.
+* Does not track or remind about rehabilitation exercises
 
-#MyTherapy:
-*Tracks & reminds Medication, Measurement, Activity & Symptom Check
-*Does not cover appointments. 
-*Cannot add a Custom Activity (or Rehabilitation Exercise) easily 
+# MyTherapy:
+* Tracks & reminds Medication, Measurement, Activity & Symptom Check
+* Does not cover appointments. 
+* Cannot add a Custom Activity (or Rehabilitation Exercise) easily 
