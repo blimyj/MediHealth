@@ -11,6 +11,7 @@ import {
 	createAppContainer,
 	createDrawerNavigator,
 	createStackNavigator,
+	createSwitchNavigator,
 	DrawerItems
 } from "react-navigation";
 import { Container, Content, Header, Body } from "native-base";
@@ -25,6 +26,7 @@ import RehabilitationScreen from "./containers/RehabilitationScreen/rehabilitati
 import ProfileScreen from "./containers/ProfileScreen/profileScreen";
 import MapScreen from "./containers/MapScreen/mapScreen";
 import LoginScreen from "./containers/LoginScreen/loginScreen";
+import LoadingScreen from "./containers/LoginScreen/loadingScreen";
 
 import Config from "react-native-config";
 import * as firebase from "firebase";
@@ -41,7 +43,6 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-console.ignoredYellowBox = ["Setting a timer"];
 const { width, height } = Dimensions.get("screen");
 
 const MyStackNav = createStackNavigator(
@@ -97,7 +98,7 @@ const CustomDrawerContentComponent = props => (
 							source={require("./assets/images/profile-icon.png")}
 							style={styles.profileIcon}
 						/>
-						<Text style={styles.profileName}>Joel Loong</Text>
+						<Text style={styles.profileName}>Sng Hao Jun</Text>
 					</View>
 				</TouchableOpacity>
 			</Body>
@@ -138,17 +139,6 @@ const MyApp = createDrawerNavigator(
 				)
 			}
 		},
-		Login: {
-			screen: LoginScreen,
-			navigationOptions: {
-				drawerIcon: (
-					<Image
-						source={require("./assets/images/settings-icon.png")}
-						style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
-					/>
-				)
-			}
-		},
 		Settings: {
 			screen: SettingsScreen,
 			navigationOptions: {
@@ -168,7 +158,24 @@ const MyApp = createDrawerNavigator(
 	}
 );
 
-const AppContainer = createAppContainer(MyApp);
+const MySwitch = createSwitchNavigator(
+	{
+		Loading: {
+			screen: LoadingScreen
+		},
+		Login: {
+			screen: LoginScreen
+		},
+		Home: {
+			screen: MyApp
+		}
+	},
+	{
+		initialRouteName: "Loading"
+	}
+);
+
+const AppContainer = createAppContainer(MySwitch);
 
 const styles = StyleSheet.create({
 	sideBarHeader: {
@@ -190,6 +197,11 @@ const styles = StyleSheet.create({
 });
 
 export default class App extends Component {
+	constructor(props) {
+		super(props);
+		console.disableYellowBox = true;
+	}
+
 	render() {
 		return <AppContainer />;
 	}

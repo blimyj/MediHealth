@@ -70,32 +70,28 @@ class AppointmentScreen extends Component {
 		return (
 			<Container>
 				<NavigationEvents onDidFocus={this.readUserData} />
-				<Content
-					contentContainerStyle={{
-						flex: 1
-					}}
-				>
+				<Content contentContainerStyle={{ flex: 1 }}>
 					<FlatList
 						data={this.state.listViewData}
 						renderItem={({ item }) => (
 							<View style={styles.AppointmentButtonContainer}>
 								<View style={styles.AppointmentButtonPadding} />
 								<TouchableOpacity
-									title={item.appointment}
+									title={item.appointmentName}
 									style={styles.AppointmentButton}
-									accessibilityLabel={item.appointment}
+									accessibilityLabel={item.appointmentName}
 									onPress={() => this.props.navigation.navigate("Biomarker")}
 								>
 									<View style={styles.AppointmentButtonRow}>
 										{/*Row 1*/}
 										<View style={styles.AppointmentButtonRowLeftColumn}>
 											<Text style={styles.AppointmentButtonApptText}>
-												{item.appointment}
+												{item.appointmentName}
 											</Text>
 										</View>
 										<View style={styles.AppointmentButtonRowRightColumn}>
 											<Text style={styles.AppointmentButtonDateText}>
-												{item.date}
+												{item.appointmentDate}
 											</Text>
 										</View>
 									</View>
@@ -103,12 +99,12 @@ class AppointmentScreen extends Component {
 										{/*Row 2*/}
 										<View style={styles.AppointmentButtonRowLeftColumn}>
 											<Text style={styles.AppointmentButtonLocationText}>
-												{item.location}
+												{item.appointmentLocation}
 											</Text>
 										</View>
 										<View style={styles.AppointmentButtonRowRightColumn}>
 											<Text style={styles.AppointmentButtonTimeText}>
-												{item.time}
+												{item.appointmentTime}
 											</Text>
 										</View>
 									</View>
@@ -116,6 +112,7 @@ class AppointmentScreen extends Component {
 								<View style={styles.AppointmentButtonPadding} />
 							</View>
 						)}
+						keyExtractor={item => item.appointmentDate}
 					/>
 					<Button
 						transparent

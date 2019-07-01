@@ -87,7 +87,6 @@ class MapScreen extends Component {
 
 	componentDidMount() {
 		this.readUserData();
-		console.ignoredYellowBox = ["Setting a timer"];
 	}
 
 	componentDidUpdate() {

@@ -11,7 +11,7 @@ class ProfileScreen extends Component {
 		super(props);
 
 		this.state = {
-			profilePic: "",
+			profilePic: "https://i.imgur.com/MQHYB.jpg",
 			displayName: "",
 			age: 0,
 			weight: 0,
@@ -30,10 +30,11 @@ class ProfileScreen extends Component {
 		var user = firebase.auth().currentUser;
 		if (user != null) {
 			const uid = user.uid;
+			console.log(uid);
 
 			firebase
 				.database()
-				.ref("/users_PR_URW/" + uid + "/Profile")
+				.ref("users_PR_URW/" + uid + "/Profile")
 				.once("value", snapshot => {
 					const fbObject = snapshot.val();
 					console.log("Here: ", fbObject);
@@ -66,7 +67,7 @@ class ProfileScreen extends Component {
 					<View style={styles.body}>
 						<View style={styles.bodyContent}>
 							<Text style={styles.name}>{this.state.displayName}</Text>
-							<Text style={styles.info}>Student //To - Replace</Text>
+							<Text style={styles.info}>Student</Text>
 							<Text style={styles.description}>
 								{"Age: " +
 									this.state.age +
