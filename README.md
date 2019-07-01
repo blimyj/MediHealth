@@ -48,17 +48,17 @@ Biomarker
 Rehabilitation Exercise Adherence
 
 It reminds the user to:
-*Eat their medication / supplements
-*Attend upcoming medical appointments
-*Assess biomarker
-*Complete rehabilitation exercises
+* Eat their medication / supplements
+* Attend upcoming medical appointments
+* Assess biomarker
+* Complete rehabilitation exercises
 
 ### Completed Features
-Input form for Medication & Appointments
-Login & Profile Page
-Maps
-Appointments
-Set up appointment
+* Input form for Medication & Appointments
+* Login & Profile Page
+* Maps
+* Appointments
+* Set up appointment
 
 
 ### Features to be completed by the Mid of July
