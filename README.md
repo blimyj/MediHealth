@@ -69,26 +69,26 @@ It reminds the user to:
 * Calendar View (w/o native integration i.e. cannot sync with Google and Apple Calendar yet)
 * Toggleable displays for any of the 4 categories
 * Medication / Supplementation Segment:
-* Reminder System
-* Pop up screen with drug name and dosage displayed prominently.
-* Three options: “Skip, Take, Remind Me Again” 
-* “Eat now”, “Eaten at” (Or eat now and eaten at together Ask Esther)
-* Display of medication adherence history
-* Flexible Reminder System (in input form example). This feature is so that the reminder times for the second dose onwards can * be scheduled as either a specific time or a time interval after the previous dose has been marked as taken.
+  * Reminder System
+    * Pop up screen with drug name and dosage displayed prominently.
+    * Three options: “Skip, Take, Remind Me Again” 
+      * “Eat now”, “Eaten at” (Or eat now and eaten at together Ask Esther)
+  * Display of medication adherence history
+  * Flexible Reminder System (in input form example). This feature is so that the reminder times for the second dose onwards can * be scheduled as either a specific time or a time interval after the previous dose has been marked as taken.
 * Reschedule Appointments / Set multiple reminders
 
 ### Features to be completed by the End of July
-Input form for biomarkers and rehabilitation exercise
-Medication & Supplementation
-Database of medication (Not exhaustive)
-Biomarkers
-Display of biomarker history
-Graph (Bar chart) of biomarker change over time
-Rehabilitation Exercise
-Display of Exercise adherence history
- Managing other people
-Dependent (You track for them)
-Buddy (You receive notification if they miss a dose)
+* Input form for biomarkers and rehabilitation exercise
+* Medication & Supplementation
+  * Database of medication (Not exhaustive)
+* Biomarkers
+  * Display of biomarker history
+  * Graph (Bar chart) of biomarker change over time
+* Rehabilitation Exercise
+  * Display of Exercise adherence history
+* Managing other people
+  * Dependent (You track for them)
+  * Buddy (You receive notification if they miss a dose)
 
 #### Frameworks:
 * ReactNative- (NativeBase, Config, Elements, Gesture-Handler,  Navigation, Notifications, Searchable Dropdown)
