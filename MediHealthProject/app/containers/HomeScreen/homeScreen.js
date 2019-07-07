@@ -4,8 +4,7 @@ import { Container, Content } from "native-base";
 import { DrawerActions } from "react-navigation";
 import styles from "../../appStyle";
 import MenuButton from "../../components/menuButton";
-
-console.ignoredYellowBox = ["Setting a timer"];
+import PushNotification from "react-native-push-notification";
 
 class HomeScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
@@ -23,6 +22,20 @@ class HomeScreen extends Component {
 		),
 		headerRight: <View />
 	});
+
+	constructor(props) {
+		super(props);
+
+		PushNotification.configure({
+			onNotification: function(notification) {
+				console.log("NOTIFICATION:", notification);
+
+				// process the notification
+			},
+			popInitialNotification: true,
+			requestPermissions: true
+		});
+	}
 
 	render() {
 		return (
@@ -98,6 +111,14 @@ class HomeScreen extends Component {
 								Rehabilitation
 							</Text>
 						</View>
+					</TouchableOpacity>
+
+					<TouchableOpacity
+						onPress={() =>
+							PushNotification.localNotification({ message: "My Message" })
+						}
+					>
+						<Text>Notif</Text>
 					</TouchableOpacity>
 				</Content>
 			</Container>

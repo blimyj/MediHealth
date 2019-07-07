@@ -52,7 +52,6 @@ class MedicineScreen extends Component {
 				.ref("/users_URW/" + uid + "/medications/list")
 				.once("value", snapshot => {
 					const fbObject = snapshot.val();
-					console.log("Here: ", fbObject);
 					const newArr = Object.keys(fbObject).map(key => {
 						fbObject[key].id = key;
 						return fbObject[key];
