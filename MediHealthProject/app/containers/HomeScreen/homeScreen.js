@@ -112,14 +112,6 @@ class HomeScreen extends Component {
 							</Text>
 						</View>
 					</TouchableOpacity>
-
-					<TouchableOpacity
-						onPress={() =>
-							PushNotification.localNotification({ message: "My Message" })
-						}
-					>
-						<Text>Notif</Text>
-					</TouchableOpacity>
 				</Content>
 			</Container>
 		);

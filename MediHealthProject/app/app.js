@@ -27,6 +27,7 @@ import ProfileScreen from "./containers/ProfileScreen/profileScreen";
 import MapScreen from "./containers/MapScreen/mapScreen";
 import LoginScreen from "./containers/LoginScreen/loginScreen";
 import LoadingScreen from "./containers/LoginScreen/loadingScreen";
+import SignUpScreen from "./containers/LoginScreen/signUpScreen";
 
 import Config from "react-native-config";
 import * as firebase from "firebase";
@@ -165,6 +166,9 @@ const MySwitch = createSwitchNavigator(
 		},
 		Login: {
 			screen: LoginScreen
+		},
+		SignUp: {
+			screen: SignUpScreen
 		},
 		Home: {
 			screen: MyApp

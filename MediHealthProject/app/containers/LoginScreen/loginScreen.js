@@ -221,14 +221,14 @@ class LoginScreen extends Component {
 					}}
 				>
 					<Form>
-						<Item stackedLabel>
+						<Item stackedLabel style={{ borderColor: "#53e1ae" }}>
 							<Label>Email</Label>
 							<Input
 								onChangeText={text => this.setState({ email: text })}
 								value={this.state.email}
 							/>
 						</Item>
-						<Item stackedLabel num1>
+						<Item stackedLabel style={{ borderColor: "#53e1ae" }}>
 							<Label>Password</Label>
 							<Input
 								secureTextEntry={true}
@@ -240,22 +240,23 @@ class LoginScreen extends Component {
 					<View style={styles.ButtonsContainer}>
 						<View style={styles.ButtonPadding} />
 
-						<View style={styles.ButtonContainer}>
+						{/* <View style={styles.ButtonContainer}>
 							<TouchableOpacity
 								title="Sign Up Button"
 								style={styles.SignUpButton}
 								accessibilityLabel="Sign Up Button"
-								onPress={() => {
-									this.signUp(this.state.email, this.state.password);
-								}}
+								// onPress={() => {
+								// 	this.signUp(this.state.email, this.state.password);
+								// }}
+								onPress={() => this.props.navigation.navigate("SignUp")}
 							>
 								<Text style={styles.bigButtonText}>Sign Up</Text>
 							</TouchableOpacity>
-						</View>
+						</View> */}
 
-						<View style={styles.ButtonPadding} />
+						{/* <View style={styles.ButtonPadding} /> */}
 
-						<View style={styles.ButtonContainer}>
+						<View style={[styles.ButtonContainer, { top: 40 }]}>
 							<TouchableOpacity
 								title="Login Button"
 								style={styles.LoginButton}
@@ -271,39 +272,17 @@ class LoginScreen extends Component {
 						<View style={styles.ButtonPadding} />
 					</View>
 
-					{/* <View style={styles.ButtonsContainer}>
-						<View style={styles.ButtonPadding} />
-
-						<View style={styles.ButtonContainer}>
-							<TouchableOpacity
-								title="Logout Button"
-								style={styles.LogoutButton}
-								accessibilityLabel="Logout Button"
-								onPress={() => {
-									this.logout();
-								}}
-							>
-								<Text style={styles.bigButtonText}>Logout</Text>
-							</TouchableOpacity>
-						</View>
-
-						<View style={styles.ButtonPadding} />
-
-						<View style={styles.ButtonContainer}>
-							<TouchableOpacity
-								title="Display User Button"
-								style={styles.DisplayUserButton}
-								accessibilityLabel="Display User Button"
-								onPress={() => {
-									this.displayUser();
-								}}
-							>
-								<Text style={styles.bigButtonText}>Display</Text>
-							</TouchableOpacity>
-						</View>
-
-						<View style={styles.ButtonPadding} />
-					</View> */}
+					<View style={styles.textRow}>
+						<Text style={{ color: "#484848", marginTop: 8 }}>
+							Do not have an account?
+						</Text>
+						<TouchableOpacity
+							onPress={() => this.props.navigation.navigate("SignUp")}
+							style={{ marginTop: 8 }}
+						>
+							<Text style={{ color: "#28DA9A" }}> Create now.</Text>
+						</TouchableOpacity>
+					</View>
 				</Content>
 			</Container>
 		);

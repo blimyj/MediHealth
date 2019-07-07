@@ -14,7 +14,7 @@ export default StyleSheet.create({
 	bigButtonText: {
 		fontSize: 20,
 		fontWeight: "400",
-		color: "black",
+		color: "white",
 		alignSelf: "center"
 	},
 	ButtonsContainer: {
@@ -25,13 +25,11 @@ export default StyleSheet.create({
 		flex: 3
 	},
 	LoginButton: {
-		backgroundColor: "transparent",
-		height: 60,
-		borderRadius: 5,
-		padding: 15,
-		marginTop: 10,
-		borderColor: "#28DA9A",
-		borderWidth: 2
+		backgroundColor: "#53e1ae",
+		height: 40,
+		borderRadius: 50,
+		padding: 8,
+		marginTop: 10
 	},
 	SignUpButton: {
 		backgroundColor: "transparent",
@@ -62,5 +60,11 @@ export default StyleSheet.create({
 	},
 	ButtonPadding: {
 		flex: 1
+	},
+	textRow: {
+		flexDirection: "row",
+		justifyContent: "center",
+		paddingHorizontal: 8,
+		top: 50
 	}
 });
