@@ -94,18 +94,19 @@ class AppointmentScreen extends Component {
 						data={this.state.listViewData}
 						renderItem={({ item }) => (
 							<SwipeRow
-								rightOpenValue={-150}
+								rightOpenValue={-190}
 								leftOpenValue={75}
 								disableRightSwipe={true}
 							>
+								{/* Underlay */}
 								<View
 									style={{
-										backgroundColor: "#1eb17c",
+										backgroundColor: "transparent",
 										height: 60,
 										width: 225,
 										alignSelf: "center",
 										borderRadius: 5,
-										padding: 15,
+										padding: 0,
 										marginTop: 10,
 										borderColor: "white",
 										borderWidth: 2,
@@ -115,48 +116,75 @@ class AppointmentScreen extends Component {
 									}}
 								>
 									<TouchableOpacity
-										style={{
-											backgroundColor: "#1eb17c",
-											alignSelf: "center"
-										}}
+										style={{ alignSelf: "center" }}
 										onPress={() => {
 											console.log(item);
-											this.deleteAppointment(item.id);
+											// this.deleteAppointment(item.id);
 										}}
 									>
-										<Image
-											source={require("../../assets/images/delete-icon.png")}
+										<View
 											style={{
-												tintColor: "red",
-												alignSelf: "center",
-												height: 24,
-												width: 24
+												backgroundColor: "#b0413e",
+												height: 60,
+												width: 60,
+												flexDirection: "column",
+												justifyContent: "center",
+												borderTopWidth: 2,
+												borderBottomWidth: 2,
+												borderColor: "white"
 											}}
-										/>
+										>
+											<Image
+												source={require("../../assets/images/delete-icon.png")}
+												style={{
+													tintColor: "white",
+													alignSelf: "center",
+													height: 24,
+													width: 24
+												}}
+											/>
+											<Text style={{ color: "white", alignSelf: "center" }}>
+												Delete
+											</Text>
+										</View>
 									</TouchableOpacity>
-									<View style={{ width: 10 }} />
 									<TouchableOpacity
-										style={{
-											backgroundColor: "#1eb17c",
-											alignSelf: "center"
-										}}
+										style={{ alignSelf: "center" }}
 										onPress={() => {
 											console.log(item);
 										}}
 									>
-										<Image
-											source={require("../../assets/images/update-icon.png")}
+										<View
 											style={{
-												tintColor: "white",
-												alignSelf: "center",
-												height: 24,
-												width: 24
+												backgroundColor: "#fcaa67",
+												height: 60,
+												width: 60,
+												flexDirection: "column",
+												justifyContent: "center",
+												borderTopWidth: 2,
+												borderBottomWidth: 2,
+												borderRightWidth: 2,
+												borderColor: "white"
 											}}
-										/>
+										>
+											<Image
+												source={require("../../assets/images/update-icon.png")}
+												style={{
+													tintColor: "white",
+													alignSelf: "center",
+													height: 24,
+													width: 24
+												}}
+											/>
+											<Text style={{ color: "white", alignSelf: "center" }}>
+												Edit
+											</Text>
+										</View>
 									</TouchableOpacity>
 								</View>
 
-								<TouchableOpacity
+								{/* Overlay */}
+								<TouchableHighlight
 									style={{
 										backgroundColor: "white",
 										flexDirection: "column",
@@ -171,34 +199,38 @@ class AppointmentScreen extends Component {
 										alignSelf: "center"
 									}}
 									onPress={() => this.props.navigation.navigate("Biomarker")}
+									underlayColor="#aaf0d7"
+									activeOpacity={0.2}
 								>
-									<View style={styles.AppointmentButtonRow}>
-										{/*Row 1*/}
-										<View style={styles.AppointmentButtonRowLeftColumn}>
-											<Text style={styles.AppointmentButtonApptText}>
-												{item.appointmentName}
-											</Text>
+									<View style={{ flex: 1 }}>
+										<View style={styles.AppointmentButtonRow}>
+											{/*Row 1*/}
+											<View style={styles.AppointmentButtonRowLeftColumn}>
+												<Text style={styles.AppointmentButtonApptText}>
+													{item.appointmentName}
+												</Text>
+											</View>
+											<View style={styles.AppointmentButtonRowRightColumn}>
+												<Text style={styles.AppointmentButtonDateText}>
+													{item.appointmentDate}
+												</Text>
+											</View>
 										</View>
-										<View style={styles.AppointmentButtonRowRightColumn}>
-											<Text style={styles.AppointmentButtonDateText}>
-												{item.appointmentDate}
-											</Text>
+										<View style={styles.AppointmentButtonRow}>
+											{/*Row 2*/}
+											<View style={styles.AppointmentButtonRowLeftColumn}>
+												<Text style={styles.AppointmentButtonLocationText}>
+													{item.appointmentLocation}
+												</Text>
+											</View>
+											<View style={styles.AppointmentButtonRowRightColumn}>
+												<Text style={styles.AppointmentButtonTimeText}>
+													{item.appointmentTime}
+												</Text>
+											</View>
 										</View>
 									</View>
-									<View style={styles.AppointmentButtonRow}>
-										{/*Row 2*/}
-										<View style={styles.AppointmentButtonRowLeftColumn}>
-											<Text style={styles.AppointmentButtonLocationText}>
-												{item.appointmentLocation}
-											</Text>
-										</View>
-										<View style={styles.AppointmentButtonRowRightColumn}>
-											<Text style={styles.AppointmentButtonTimeText}>
-												{item.appointmentTime}
-											</Text>
-										</View>
-									</View>
-								</TouchableOpacity>
+								</TouchableHighlight>
 							</SwipeRow>
 						)}
 						keyExtractor={item => item.appointmentDate}
