@@ -64,7 +64,6 @@ export default StyleSheet.create({
 	textRow: {
 		flexDirection: "row",
 		justifyContent: "center",
-		paddingHorizontal: 8,
-		top: 50
+		paddingVertical: 15
 	}
 });

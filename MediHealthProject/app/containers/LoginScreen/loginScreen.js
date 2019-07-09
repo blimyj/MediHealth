@@ -107,9 +107,7 @@ class LoginScreen extends Component {
 	}
 
 	signUp(email, password) {
-		alert(
-			"Creating your account! Please wait for the next alert. //This to be changed to a modal screen popup with loading animation."
-		);
+		alert("Creating your account! Please wait for the next alert.");
 		firebase
 			.auth()
 			.createUserWithEmailAndPassword(email, password)
@@ -124,9 +122,7 @@ class LoginScreen extends Component {
 
 					this.setState({ password: "" }, () => {
 						this.setState({ email: "" }, () =>
-							alert(
-								"Your account has been created and you've been signed in! \n//To be replaced with navigate away from login screen"
-							)
+							alert("Your account has been created and you've been signed in!")
 						);
 					});
 				},
@@ -149,9 +145,7 @@ class LoginScreen extends Component {
 	}
 
 	login(email, password) {
-		alert(
-			"Logging you in! Please wait for the next alert. //This to be changed to a modal screen popup with loading animation."
-		);
+		alert("Logging you in! Please wait for the next alert.");
 		firebase
 			.auth()
 			.signInWithEmailAndPassword(email, password)
@@ -163,7 +157,7 @@ class LoginScreen extends Component {
 					this.setState({ email: "" });
 				},
 				() => {
-					alert("User / Password Combination does not exist.");
+					alert("Incorrect email or password.");
 					this.setState({ password: "" });
 				}
 			)
@@ -174,9 +168,7 @@ class LoginScreen extends Component {
 	}
 
 	logout() {
-		alert(
-			"Logging you out! Please wait for the next alert. //This to be changed to a modal screen popup with loading animation."
-		);
+		alert("Logging you out! Please wait for the next alert.");
 		firebase
 			.auth()
 			.signOut()
@@ -271,19 +263,18 @@ class LoginScreen extends Component {
 
 						<View style={styles.ButtonPadding} />
 					</View>
-
-					<View style={styles.textRow}>
-						<Text style={{ color: "#484848", marginTop: 8 }}>
-							Do not have an account?
-						</Text>
-						<TouchableOpacity
-							onPress={() => this.props.navigation.navigate("SignUp")}
-							style={{ marginTop: 8 }}
-						>
-							<Text style={{ color: "#28DA9A" }}> Create now.</Text>
-						</TouchableOpacity>
-					</View>
 				</Content>
+				<View style={styles.textRow}>
+					<Text style={{ color: "#484848", marginTop: 8 }}>
+						Do not have an account?
+					</Text>
+					<TouchableOpacity
+						onPress={() => this.props.navigation.navigate("SignUp")}
+						style={{ marginTop: 8 }}
+					>
+						<Text style={{ color: "#28DA9A" }}> Create now.</Text>
+					</TouchableOpacity>
+				</View>
 			</Container>
 		);
 	}

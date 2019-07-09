@@ -25,7 +25,7 @@ export default StyleSheet.create({
 	},
 	AppointmentButton: {
 		flexDirection: "column",
-		backgroundColor: "transparent",
+		backgroundColor: "white",
 		flex: 3,
 		height: 60,
 		borderRadius: 5,

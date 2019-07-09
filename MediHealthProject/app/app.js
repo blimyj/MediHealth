@@ -83,6 +83,28 @@ const MyStackNav = createStackNavigator(
 	}
 );
 
+var myDisplayName = "";
+
+const readUserData = () => {
+	var user = firebase.auth().currentUser;
+	if (user != null) {
+		const uid = user.uid;
+
+		firebase
+			.database()
+			.ref("users_PR_URW/" + uid + "/Profile")
+			.once("value", snapshot => {
+				const fbObject = snapshot.val();
+				console.log(fbObject.displayName);
+				myDisplayName = fbObject.displayName;
+			});
+
+		return <Text style={styles.profileName}>{myDisplayName}</Text>;
+	} else {
+		return <Text style={styles.profileName}>User</Text>;
+	}
+};
+
 const CustomDrawerContentComponent = props => (
 	<Container>
 		<Header style={styles.sideBarHeader}>
@@ -99,7 +121,7 @@ const CustomDrawerContentComponent = props => (
 							source={require("./assets/images/profile-icon.png")}
 							style={styles.profileIcon}
 						/>
-						<Text style={styles.profileName}>Sng Hao Jun</Text>
+						{readUserData()}
 					</View>
 				</TouchableOpacity>
 			</Body>
