@@ -95,7 +95,6 @@ const readUserData = () => {
 			.ref("users_PR_URW/" + uid + "/Profile")
 			.once("value", snapshot => {
 				const fbObject = snapshot.val();
-				console.log(fbObject.displayName);
 				myDisplayName = fbObject.displayName;
 			});
 

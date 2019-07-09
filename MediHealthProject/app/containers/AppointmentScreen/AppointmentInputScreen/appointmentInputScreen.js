@@ -71,8 +71,6 @@ class AppointmentInputScreen extends Component {
 						flex: 1
 					}}
 				>
-					<Text>AppointmentInputScreen</Text>
-
 					<Form>
 						<Item stackedLabel>
 							<Label>Appointment</Label>

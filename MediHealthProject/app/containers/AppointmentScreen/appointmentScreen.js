@@ -4,6 +4,7 @@ import {
 	Text,
 	FlatList,
 	TouchableOpacity,
+	TouchableHighlight,
 	ListView,
 	Image
 } from "react-native";
@@ -67,58 +68,108 @@ class AppointmentScreen extends Component {
 		}
 	};
 
+	deleteAppointment(key) {
+		var user = firebase.auth().currentUser;
+		if (user != null) {
+			const uid = user.uid;
+			firebase
+				.database()
+				.ref("/users_URW/" + uid + "/appointments/list")
+				.child(key)
+				.remove();
+
+			this.readUserData();
+		} else {
+			console.log(user);
+		}
+	}
+
 	render() {
 		return (
 			<Container>
 				<NavigationEvents onDidFocus={this.readUserData} />
 				<Content contentContainerStyle={{ flex: 1 }}>
-					<View
-						style={{
-							marginTop: 30,
-							marginBottom: 30
-						}}
-					>
-						<SwipeRow leftOpenValue={75} rightOpenValue={-75}>
-							<View
-								style={{
-									alignItems: "center",
-									backgroundColor: "#8BC645",
-									flex: 1,
-									flexDirection: "row",
-									justifyContent: "space-between",
-									padding: 15
-								}}
-							>
-								<TouchableOpacity>
-									<Text style={{ color: "#FFF" }}>Left</Text>
-								</TouchableOpacity>
-								<TouchableOpacity>
-									<Text style={{ color: "#FFF" }}>Right</Text>
-								</TouchableOpacity>
-							</View>
-							<View
-								style={{
-									alignItems: "center",
-									backgroundColor: "#CCC",
-									justifyContent: "center",
-									height: 50
-								}}
-							>
-								<Text>I am a standalone SwipeRow</Text>
-							</View>
-						</SwipeRow>
-					</View>
-
 					<SwipeListView
 						useFlatList
 						data={this.state.listViewData}
 						renderItem={({ item }) => (
-							<View style={styles.AppointmentButtonContainer}>
-								<View style={styles.AppointmentButtonPadding} />
+							<SwipeRow
+								rightOpenValue={-150}
+								leftOpenValue={75}
+								disableRightSwipe={true}
+							>
+								<View
+									style={{
+										backgroundColor: "#1eb17c",
+										height: 60,
+										width: 225,
+										alignSelf: "center",
+										borderRadius: 5,
+										padding: 15,
+										marginTop: 10,
+										borderColor: "white",
+										borderWidth: 2,
+										flex: 1,
+										flexDirection: "row",
+										justifyContent: "flex-end"
+									}}
+								>
+									<TouchableOpacity
+										style={{
+											backgroundColor: "#1eb17c",
+											alignSelf: "center"
+										}}
+										onPress={() => {
+											console.log(item);
+											this.deleteAppointment(item.id);
+										}}
+									>
+										<Image
+											source={require("../../assets/images/delete-icon.png")}
+											style={{
+												tintColor: "red",
+												alignSelf: "center",
+												height: 24,
+												width: 24
+											}}
+										/>
+									</TouchableOpacity>
+									<View style={{ width: 10 }} />
+									<TouchableOpacity
+										style={{
+											backgroundColor: "#1eb17c",
+											alignSelf: "center"
+										}}
+										onPress={() => {
+											console.log(item);
+										}}
+									>
+										<Image
+											source={require("../../assets/images/update-icon.png")}
+											style={{
+												tintColor: "white",
+												alignSelf: "center",
+												height: 24,
+												width: 24
+											}}
+										/>
+									</TouchableOpacity>
+								</View>
+
 								<TouchableOpacity
-									title={item.appointmentName}
-									style={styles.AppointmentButton}
-									accessibilityLabel={item.appointmentName}
+									style={{
+										backgroundColor: "white",
+										flexDirection: "column",
+										flex: 1,
+										height: 60,
+										width: 225,
+										borderRadius: 5,
+										padding: 15,
+										marginTop: 10,
+										borderColor: "#28DA9A",
+										borderWidth: 2,
+										alignSelf: "center"
+									}}
 									onPress={() => this.props.navigation.navigate("Biomarker")}
 								>
 									<View style={styles.AppointmentButtonRow}>
@@ -148,85 +199,11 @@ class AppointmentScreen extends Component {
 										</View>
 									</View>
 								</TouchableOpacity>
-								<View style={styles.AppointmentButtonPadding} />
-							</View>
+							</SwipeRow>
 						)}
-						renderHiddenItem={({ item }) => (
-							<View style={styles.AppointmentButtonContainer}>
-								<View style={styles.AppointmentButtonPadding} />
-								<View
-									style={{
-										alignItems: "center",
-										backgroundColor: "#62e4b5",
-										flex: 3,
-										flexDirection: "row",
-										justifyContent: "space-between",
-										padding: 15,
-										marginTop: 10,
-										height: 60,
-										borderWidth: 2,
-										borderColor: "transparent",
-										borderRadius: 5
-									}}
-								>
-									<TouchableOpacity style={{ backgroundColor: "red" }}>
-										<Text style={{ color: "#FFF" }}>Left</Text>
-									</TouchableOpacity>
-									<View style={{ flex: 1, backgroundColor: "black" }} />
-									<TouchableOpacity style={{ backgroundColor: "red" }}>
-										<Text style={{ color: "#FFF" }}>Right</Text>
-									</TouchableOpacity>
-								</View>
-								<View style={styles.AppointmentButtonPadding} />
-							</View>
-						)}
-						leftOpenValue={75}
-						rightOpenValue={-75}
 						keyExtractor={item => item.appointmentDate}
+						disableRightSwipe={true}
 					/>
-
-					{/* <FlatList
-						data={this.state.listViewData}
-						renderItem={({ item }) => (
-							<View style={styles.AppointmentButtonContainer}>
-								<View style={styles.AppointmentButtonPadding} />
-								<TouchableOpacity
-									title={item.appointmentName}
-									style={styles.AppointmentButton}
-									accessibilityLabel={item.appointmentName}
-									onPress={() => this.props.navigation.navigate("Biomarker")}
-								>
-									<View style={styles.AppointmentButtonRow}>
-										<View style={styles.AppointmentButtonRowLeftColumn}>
-											<Text style={styles.AppointmentButtonApptText}>
-												{item.appointmentName}
-											</Text>
-										</View>
-										<View style={styles.AppointmentButtonRowRightColumn}>
-											<Text style={styles.AppointmentButtonDateText}>
-												{item.appointmentDate}
-											</Text>
-										</View>
-									</View>
-
-									<View style={styles.AppointmentButtonRow}>
-										<View style={styles.AppointmentButtonRowLeftColumn}>
-											<Text style={styles.AppointmentButtonLocationText}>
-												{item.appointmentLocation}
-											</Text>
-										</View>
-										<View style={styles.AppointmentButtonRowRightColumn}>
-											<Text style={styles.AppointmentButtonTimeText}>
-												{item.appointmentTime}
-											</Text>
-										</View>
-									</View>
-								</TouchableOpacity>
-								<View style={styles.AppointmentButtonPadding} />
-							</View>
-						)}
-						keyExtractor={item => item.appointmentDate}
-					/> */}
 					<Button
 						transparent
 						title="AppointmentInput"
