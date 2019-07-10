@@ -66,8 +66,8 @@ export default StyleSheet.create({
 		color: "#FFFFFF"
 	},
 	appointmentInputButton: {
-		height: 50,
-		width: 50,
+		height: 52,
+		width: 52,
 		tintColor: "#28DA9A"
 	}
 });

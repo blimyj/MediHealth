@@ -2,28 +2,50 @@ import React, { Component } from "react";
 import {
 	View,
 	Text,
-	FlatList,
+	Dimensions,
 	TouchableOpacity,
 	TouchableHighlight,
 	ListView,
 	Image
 } from "react-native";
-import { Container, Content, Button } from "native-base";
+import { Container, Content } from "native-base";
 import { NavigationEvents } from "react-navigation";
 import styles from "./appStyle";
 import * as firebase from "firebase";
 import { SwipeListView, SwipeRow } from "react-native-swipe-list-view";
 
 var data = [];
+const { width, height } = Dimensions.get("screen");
 
 class AppointmentScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
 		headerTitle: (
 			<View style={{ alignSelf: "center", flex: 1 }}>
-				<Text style={{ textAlign: "center" }}>Appointment</Text>
+				<Text
+					style={{
+						textAlign: "center",
+						fontWeight: "bold",
+						fontSize: 18,
+						color: "black"
+					}}
+				>
+					Appointment
+				</Text>
 			</View>
 		),
-		headerRight: <View />
+		headerRight: (
+			<TouchableOpacity
+				accessibilityLabel="Appointment Input Button"
+				onPress={() => navigation.navigate("AppointmentInput")}
+				style={{ alignSelf: "center" }}
+			>
+				<Image
+					source={require("../../assets/images/plus-icon.png")}
+					style={styles.appointmentInputButton}
+				/>
+			</TouchableOpacity>
+		),
+		headerRightContainerStyle: { right: 20 }
 	});
 
 	constructor(props) {
@@ -103,7 +125,7 @@ class AppointmentScreen extends Component {
 									style={{
 										backgroundColor: "transparent",
 										height: 60,
-										width: 225,
+										width: Math.min(height, width) * 0.68,
 										alignSelf: "center",
 										borderRadius: 5,
 										padding: 0,
@@ -152,6 +174,9 @@ class AppointmentScreen extends Component {
 										style={{ alignSelf: "center" }}
 										onPress={() => {
 											console.log(item);
+											this.props.navigation.navigate("AppointmentInput", {
+												key: item.id
+											});
 										}}
 									>
 										<View
@@ -187,10 +212,9 @@ class AppointmentScreen extends Component {
 								<TouchableHighlight
 									style={{
 										backgroundColor: "white",
-										flexDirection: "column",
 										flex: 1,
 										height: 60,
-										width: 225,
+										width: Math.min(height, width) * 0.68,
 										borderRadius: 5,
 										padding: 15,
 										marginTop: 10,
@@ -202,52 +226,32 @@ class AppointmentScreen extends Component {
 									underlayColor="#aaf0d7"
 									activeOpacity={0.2}
 								>
-									<View style={{ flex: 1 }}>
+									<View style={{ height: 50, bottom: 10 }}>
+										{/*Row 1*/}
 										<View style={styles.AppointmentButtonRow}>
-											{/*Row 1*/}
-											<View style={styles.AppointmentButtonRowLeftColumn}>
-												<Text style={styles.AppointmentButtonApptText}>
-													{item.appointmentName}
-												</Text>
-											</View>
-											<View style={styles.AppointmentButtonRowRightColumn}>
-												<Text style={styles.AppointmentButtonDateText}>
-													{item.appointmentDate}
-												</Text>
-											</View>
+											<Text style={styles.AppointmentButtonApptText}>
+												{item.appointmentName}
+											</Text>
+											<Text style={styles.AppointmentButtonDateText}>
+												{item.appointmentDate}
+											</Text>
 										</View>
+										{/*Row 2*/}
 										<View style={styles.AppointmentButtonRow}>
-											{/*Row 2*/}
-											<View style={styles.AppointmentButtonRowLeftColumn}>
-												<Text style={styles.AppointmentButtonLocationText}>
-													{item.appointmentLocation}
-												</Text>
-											</View>
-											<View style={styles.AppointmentButtonRowRightColumn}>
-												<Text style={styles.AppointmentButtonTimeText}>
-													{item.appointmentTime}
-												</Text>
-											</View>
+											<Text style={styles.AppointmentButtonLocationText}>
+												{item.appointmentLocation}
+											</Text>
+											<Text style={styles.AppointmentButtonTimeText}>
+												{item.appointmentTime}
+											</Text>
 										</View>
 									</View>
 								</TouchableHighlight>
 							</SwipeRow>
 						)}
-						keyExtractor={item => item.appointmentDate}
+						keyExtractor={item => item.id}
 						disableRightSwipe={true}
 					/>
-					<Button
-						transparent
-						title="AppointmentInput"
-						accessibilityLabel="Appointment Input Button"
-						onPress={() => this.props.navigation.navigate("AppointmentInput")}
-						style={{ alignSelf: "flex-end", bottom: 15, right: 15 }}
-					>
-						<Image
-							source={require("../../assets/images/plus-icon.png")}
-							style={styles.appointmentInputButton}
-						/>
-					</Button>
 				</Content>
 			</Container>
 		);

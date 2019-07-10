@@ -17,7 +17,16 @@ class HomeScreen extends Component {
 		),
 		headerTitle: (
 			<View style={{ alignSelf: "center", flex: 1 }}>
-				<Text style={{ textAlign: "center" }}>Home</Text>
+				<Text
+					style={{
+						textAlign: "center",
+						fontWeight: "bold",
+						fontSize: 18,
+						color: "black"
+					}}
+				>
+					Home
+				</Text>
 			</View>
 		),
 		headerRight: <View />

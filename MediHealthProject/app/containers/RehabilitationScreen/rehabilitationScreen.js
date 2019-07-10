@@ -6,7 +6,16 @@ class RehabilitationScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
 		headerTitle: (
 			<View style={{ alignSelf: "center", flex: 1 }}>
-				<Text style={{ textAlign: "center" }}>Rehabilitation</Text>
+				<Text
+					style={{
+						textAlign: "center",
+						fontWeight: "bold",
+						fontSize: 18,
+						color: "black"
+					}}
+				>
+					Rehabilitation
+				</Text>
 			</View>
 		),
 		headerRight: <View />

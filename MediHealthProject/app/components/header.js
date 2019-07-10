@@ -11,7 +11,7 @@ class MyHeader extends Component {
 					<MenuButton whenPress={() => this.props.nav.openDrawer()} />
 				</Left>
 				<View style={styles.viewStyle}>
-					<Text>{this.props.headerTitle}</Text>
+					<Text style={styles.text}>{this.props.headerTitle}</Text>
 				</View>
 				<Right />
 			</Header>
@@ -32,6 +32,11 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		flexDirection: "row",
 		alignItems: "center"
+	},
+	text: {
+		fontWeight: "bold",
+		fontSize: 18,
+		color: "black"
 	}
 });
 

@@ -16,10 +16,31 @@ class MedicineScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
 		headerTitle: (
 			<View style={{ alignSelf: "center", flex: 1 }}>
-				<Text style={{ textAlign: "center" }}>Medicine</Text>
+				<Text
+					style={{
+						textAlign: "center",
+						fontWeight: "bold",
+						fontSize: 18,
+						color: "black"
+					}}
+				>
+					Medicine
+				</Text>
 			</View>
 		),
-		headerRight: <View />
+		headerRight: (
+			<TouchableOpacity
+				accessibilityLabel="Medicine Input Button"
+				onPress={() => navigation.navigate("Rehabilitation")}
+				style={{ alignSelf: "center" }}
+			>
+				<Image
+					source={require("../../assets/images/plus-icon.png")}
+					style={styles.medicineInputButton}
+				/>
+			</TouchableOpacity>
+		),
+		headerRightContainerStyle: { right: 20 }
 	});
 
 	constructor(props) {
@@ -85,18 +106,6 @@ class MedicineScreen extends Component {
 							</View>
 						)}
 					/>
-					<Button
-						transparent
-						title="MedicineInput"
-						accessibilityLabel="Medicine Input Button"
-						onPress={() => this.props.navigation.navigate("Rehabilitation")}
-						style={{ alignSelf: "flex-end", bottom: 15, right: 15 }}
-					>
-						<Image
-							source={require("../../assets/images/plus-icon.png")}
-							style={styles.medicineInputButton}
-						/>
-					</Button>
 				</Content>
 			</Container>
 		);
