@@ -48,10 +48,10 @@ class AppointmentInputScreen extends Component {
 			time: ""
 		};
 
-		this.updateAppointment = this.updateAppointment.bind(this);
+		this.loadAppointment = this.loadAppointment.bind(this);
 	}
 
-	updateAppointment() {
+	loadAppointment() {
 		const key = this.props.navigation.getParam("key", null);
 		if (key != null) {
 			this.setState({ toUpdate: true }, () => {
@@ -77,6 +77,26 @@ class AppointmentInputScreen extends Component {
 			} else {
 				console.log(user);
 			}
+		}
+	}
+
+	updateAppointment(dataAppt, dataLocat, dataDate, dataTime) {
+		var user = firebase.auth().currentUser;
+		const key = this.props.navigation.getParam("key", null);
+		if (user != null) {
+			const uid = user.uid;
+			firebase
+				.database()
+				.ref("/users_URW/" + uid + "/appointments/list")
+				.child(key)
+				.set({
+					appointmentName: dataAppt,
+					appointmentLocation: dataLocat,
+					appointmentDate: dataDate,
+					appointmentTime: dataTime
+				});
+		} else {
+			console.log(user);
 		}
 	}
 
@@ -107,7 +127,7 @@ class AppointmentInputScreen extends Component {
 	render() {
 		return (
 			<Container>
-				<NavigationEvents onDidFocus={this.updateAppointment} />
+				<NavigationEvents onDidFocus={this.loadAppointment} />
 				<Content
 					contentContainerStyle={{
 						flex: 1,
@@ -149,12 +169,21 @@ class AppointmentInputScreen extends Component {
 					<TouchableOpacity
 						accessibilityLabel="Appointment Input Button"
 						onPress={() => {
-							this.addAppointment(
-								this.state.appointment,
-								this.state.location,
-								this.state.date,
-								this.state.time
-							);
+							if (this.state.toUpdate) {
+								this.updateAppointment(
+									this.state.appointment,
+									this.state.location,
+									this.state.date,
+									this.state.time
+								);
+							} else {
+								this.addAppointment(
+									this.state.appointment,
+									this.state.location,
+									this.state.date,
+									this.state.time
+								);
+							}
 							this.props.navigation.navigate("Appointment");
 						}}
 						style={{ alignSelf: "flex-end", right: 16, top: 16 }}

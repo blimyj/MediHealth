@@ -129,7 +129,8 @@ class AppointmentScreen extends Component {
 										alignSelf: "center",
 										borderRadius: 5,
 										padding: 0,
-										marginTop: 10,
+										marginTop: 5,
+										marginBottom: 5,
 										borderColor: "white",
 										borderWidth: 2,
 										flex: 1,
@@ -146,7 +147,7 @@ class AppointmentScreen extends Component {
 									>
 										<View
 											style={{
-												backgroundColor: "#b0413e",
+												backgroundColor: "#FE2F34",
 												height: 60,
 												width: 60,
 												flexDirection: "column",
@@ -181,7 +182,7 @@ class AppointmentScreen extends Component {
 									>
 										<View
 											style={{
-												backgroundColor: "#fcaa67",
+												backgroundColor: "#FF9A2F",
 												height: 60,
 												width: 60,
 												flexDirection: "column",
@@ -217,7 +218,8 @@ class AppointmentScreen extends Component {
 										width: Math.min(height, width) * 0.68,
 										borderRadius: 5,
 										padding: 15,
-										marginTop: 10,
+										marginTop: 5,
+										marginBottom: 5,
 										borderColor: "#28DA9A",
 										borderWidth: 2,
 										alignSelf: "center"
