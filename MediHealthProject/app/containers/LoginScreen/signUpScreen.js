@@ -80,7 +80,9 @@ class SignUpScreen extends Component {
 						count: 0
 					},
 					list: {
-						initMedicine: "Empty"
+						firstMedicineEntry: {
+							medName: "Empty"
+						}
 					}
 				},
 
@@ -90,11 +92,12 @@ class SignUpScreen extends Component {
 						count: 0
 					},
 					list: {
-						appointmentNum: -1,
-						apppointmentName: "InitApptName",
-						appointmentLocation: "InitApptLocation",
-						appointmentDate: initDate,
-						appointmentTime: initTime
+						firstAppointmentEntry: {
+							appointmentName: "InitApptName",
+							appointmentLocation: "InitApptLocation",
+							appointmentDate: initDate,
+							appointmentTime: initTime
+						}
 					}
 				}
 			});
