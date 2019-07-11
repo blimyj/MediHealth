@@ -1,12 +1,39 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { Container } from "native-base";
-import { NavigationEvents } from "react-navigation";
-import MyHeader from "../../components/header";
+import { NavigationEvents, DrawerActions } from "react-navigation";
+import MenuButton from "../../components/menuButton";
 
 import * as firebase from "firebase";
 
 class ProfileScreen extends Component {
+	static navigationOptions = ({ navigation }) => ({
+		headerLeft: (
+			<View>
+				<MenuButton
+					whenPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+				/>
+			</View>
+		),
+		headerRight: (
+			<TouchableOpacity
+				style={{ alignSelf: "center" }}
+				accessibilityLabel="Profile Edit Button"
+				onPress={() => navigation.navigate("EditProfile")}
+			>
+				<Image
+					source={require("../../assets/images/update-icon.png")}
+					style={{
+						height: 28,
+						width: 28,
+						tintColor: "#28DA9A"
+					}}
+				/>
+			</TouchableOpacity>
+		),
+		headerRightContainerStyle: { right: 20 }
+	});
+
 	constructor(props) {
 		super(props);
 
@@ -55,7 +82,6 @@ class ProfileScreen extends Component {
 	render() {
 		return (
 			<Container>
-				<MyHeader nav={this.props.navigation} headerTitle="MediHealth" />
 				<View style={styles.container}>
 					<View style={styles.header} />
 					<Image
@@ -95,7 +121,7 @@ class ProfileScreen extends Component {
 
 const styles = StyleSheet.create({
 	header: {
-		backgroundColor: "#28DA9A",
+		backgroundColor: "#62e4b5",
 		height: 200
 	},
 	avatar: {
@@ -129,7 +155,7 @@ const styles = StyleSheet.create({
 	},
 	info: {
 		fontSize: 16,
-		color: "#28DA9A",
+		color: "#62e4b5",
 		marginTop: 10
 	},
 	description: {
@@ -147,7 +173,7 @@ const styles = StyleSheet.create({
 		marginBottom: 20,
 		width: 250,
 		borderRadius: 30,
-		backgroundColor: "#28DA9A"
+		backgroundColor: "#62e4b5"
 	}
 });
 

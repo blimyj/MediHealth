@@ -12,7 +12,8 @@ import {
 	createDrawerNavigator,
 	createStackNavigator,
 	createSwitchNavigator,
-	DrawerItems
+	DrawerItems,
+	DrawerActions
 } from "react-navigation";
 import { Container, Content, Header, Body } from "native-base";
 
@@ -24,6 +25,7 @@ import AppointmentInputScreen from "./containers/AppointmentScreen/AppointmentIn
 import BiomarkerScreen from "./containers/BiomarkerScreen/biomarkerScreen";
 import RehabilitationScreen from "./containers/RehabilitationScreen/rehabilitationScreen";
 import ProfileScreen from "./containers/ProfileScreen/profileScreen";
+import EditProfileScreen from "./containers/ProfileScreen/editProfileScreen";
 import MapScreen from "./containers/MapScreen/mapScreen";
 import LoginScreen from "./containers/LoginScreen/loginScreen";
 import LoadingScreen from "./containers/LoginScreen/loadingScreen";
@@ -83,6 +85,45 @@ const MyStackNav = createStackNavigator(
 	}
 );
 
+const MyProfileStackNav = createStackNavigator(
+	{
+		Profile: {
+			screen: ProfileScreen
+		},
+		EditProfile: {
+			screen: EditProfileScreen
+		}
+	},
+	{
+		initialRouteName: "Profile",
+		defaultNavigationOptions: {
+			headerLeftContainerStyle: { left: 3 },
+			headerBackImage: (
+				<Image
+					source={require("./assets/images/back-icon.png")}
+					style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
+				/>
+			),
+			headerStyle: { height: 60 },
+			headerTitle: (
+				<View style={{ alignSelf: "center", flex: 1 }}>
+					<Text
+						style={{
+							textAlign: "center",
+							fontWeight: "bold",
+							fontSize: 18,
+							color: "black"
+						}}
+					>
+						MediHealth
+					</Text>
+				</View>
+			)
+		},
+		headerMode: "float"
+	}
+);
+
 var myDisplayName = "";
 
 const readUserData = () => {
@@ -109,7 +150,10 @@ const CustomDrawerContentComponent = props => (
 		<Header style={styles.sideBarHeader}>
 			<Body>
 				<TouchableOpacity
-					onPress={() => props.navigation.navigate("Profile")}
+					onPress={() => {
+						props.navigation.navigate("Profile");
+						props.navigation.dispatch(DrawerActions.closeDrawer());
+					}}
 					hitSlop={{
 						right: Math.min(height, width) * 0.75,
 						left: Math.min(height, width) * 0.05
@@ -145,7 +189,7 @@ const MyApp = createDrawerNavigator(
 			}
 		},
 		Profile: {
-			screen: ProfileScreen,
+			screen: MyProfileStackNav,
 			navigationOptions: {
 				drawerLabel: () => null
 			}
