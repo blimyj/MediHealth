@@ -113,12 +113,17 @@ class AppointmentScreen extends Component {
 				<Content contentContainerStyle={{ flex: 1 }}>
 					<SwipeListView
 						useFlatList
+						swipeRowStyle={{ width: Math.min(height, width) * 0.68 }}
 						data={this.state.listViewData}
 						renderItem={({ item }) => (
 							<SwipeRow
-								rightOpenValue={-190}
+								rightOpenValue={-122}
 								leftOpenValue={75}
 								disableRightSwipe={true}
+								style={{
+									width: Math.min(height, width) * 0.68,
+									alignSelf: "center"
+								}}
 							>
 								{/* Underlay */}
 								<View
