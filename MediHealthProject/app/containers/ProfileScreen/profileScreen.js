@@ -82,36 +82,34 @@ class ProfileScreen extends Component {
 	render() {
 		return (
 			<Container>
-				<View style={styles.container}>
-					<View style={styles.header} />
+				<NavigationEvents onDidFocus={this.readUserData} />
+				<View>
 					<Image
 						style={styles.avatar}
 						source={{
 							uri: this.state.profilePic
 						}}
 					/>
-					<View style={styles.body}>
-						<View style={styles.bodyContent}>
-							<Text style={styles.name}>{this.state.displayName}</Text>
-							<Text style={styles.info}>Student</Text>
-							<Text style={styles.description}>
-								{"Age: " +
-									this.state.age +
-									"\n Weight: " +
-									this.state.weight +
-									"\n Height: " +
-									this.state.height +
-									"\n Birthday: " +
-									this.state.birthday}
-							</Text>
+					<View style={styles.bodyContent}>
+						<Text style={styles.name}>{this.state.displayName}</Text>
+						<Text style={styles.info}>Student</Text>
+						<Text style={styles.description}>
+							{"Age: " +
+								this.state.age +
+								"\n Weight: " +
+								this.state.weight +
+								"\n Height: " +
+								this.state.height +
+								"\n Birthday: " +
+								this.state.birthday}
+						</Text>
 
-							<TouchableOpacity style={styles.buttonContainer}>
-								<Text>Opcion 1</Text>
-							</TouchableOpacity>
-							<TouchableOpacity style={styles.buttonContainer}>
-								<Text>Opcion 2</Text>
-							</TouchableOpacity>
-						</View>
+						<TouchableOpacity style={styles.buttonContainer}>
+							<Text>Opcion 1</Text>
+						</TouchableOpacity>
+						<TouchableOpacity style={styles.buttonContainer}>
+							<Text>Opcion 2</Text>
+						</TouchableOpacity>
 					</View>
 				</View>
 			</Container>
@@ -120,20 +118,13 @@ class ProfileScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-	header: {
-		backgroundColor: "#62e4b5",
-		height: 200
-	},
 	avatar: {
-		width: 130,
-		height: 130,
+		width: 132,
+		height: 132,
 		borderRadius: 63,
-		borderWidth: 4,
 		borderColor: "white",
-		marginBottom: 10,
 		alignSelf: "center",
-		position: "absolute",
-		marginTop: 130
+		marginTop: 24
 	},
 	name: {
 		fontSize: 22,
@@ -141,12 +132,12 @@ const styles = StyleSheet.create({
 		fontWeight: "600"
 	},
 	body: {
-		marginTop: 40
+		marginTop: 0
 	},
 	bodyContent: {
 		flex: 1,
 		alignItems: "center",
-		padding: 30
+		padding: 12
 	},
 	name: {
 		fontSize: 28,

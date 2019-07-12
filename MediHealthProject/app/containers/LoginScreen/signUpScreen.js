@@ -11,6 +11,22 @@ import { Container, Content, Form, Item, Label, Input } from "native-base";
 import * as firebase from "firebase";
 
 class SignUpScreen extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			name: "",
+			age: "",
+			height: "",
+			weight: "",
+			birthday: "",
+			job: "",
+			email: "",
+			password: "",
+			uid: ""
+		};
+	}
+
 	state = {
 		name: "",
 		age: "",
