@@ -135,7 +135,8 @@ class MapScreen extends Component {
 						position: "absolute",
 						width: width * 0.8,
 						borderRadius: 16,
-						top: 8
+						top: 8,
+						elevation: 2
 					}}
 				>
 					<MenuButton whenPress={() => this.props.navigation.openDrawer()} />
