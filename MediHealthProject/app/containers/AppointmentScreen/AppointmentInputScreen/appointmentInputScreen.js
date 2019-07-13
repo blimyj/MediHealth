@@ -1,20 +1,17 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, ListView, Image } from "react-native";
 import {
-	Form,
-	Input,
-	Item,
-	Label,
-	Container,
-	Content,
-	Button
-} from "native-base";
+	View,
+	Text,
+	TouchableOpacity,
+	ListView,
+	Image,
+	Keyboard
+} from "react-native";
+import { Form, Input, Item, Label, Container, Content } from "native-base";
 import { NavigationEvents } from "react-navigation";
 import styles from "./appStyle";
-
+import DateTimePicker from "react-native-modal-datetime-picker";
 import * as firebase from "firebase";
-
-var data = [];
 
 class AppointmentInputScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
@@ -45,11 +42,28 @@ class AppointmentInputScreen extends Component {
 			appointment: "",
 			location: "",
 			date: "",
-			time: ""
+			time: "",
+			isDateTimePickerVisible: false
 		};
 
 		this.loadAppointment = this.loadAppointment.bind(this);
 	}
+
+	showDateTimePicker = () => {
+		this.setState({ isDateTimePickerVisible: true });
+	};
+
+	hideDateTimePicker = () => {
+		this.setState({ isDateTimePickerVisible: false });
+	};
+
+	handleDatePicked = date => {
+		const appointmentDate =
+			date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+		this.setState({ date: appointmentDate });
+		this.hideDateTimePicker();
+		Keyboard.dismiss();
+	};
 
 	loadAppointment() {
 		const key = this.props.navigation.getParam("key", null);
@@ -155,6 +169,7 @@ class AppointmentInputScreen extends Component {
 							<Input
 								value={this.state.date}
 								onChangeText={text => this.setState({ date: text })}
+								onFocus={this.showDateTimePicker}
 							/>
 						</Item>
 						<Item stackedLabel num3 style={{ borderColor: "#53e1ae" }}>
@@ -165,7 +180,11 @@ class AppointmentInputScreen extends Component {
 							/>
 						</Item>
 					</Form>
-
+					<DateTimePicker
+						isVisible={this.state.isDateTimePickerVisible}
+						onCancel={this.hideDateTimePicker}
+						onConfirm={this.handleDatePicked}
+					/>
 					<TouchableOpacity
 						accessibilityLabel="Appointment Input Button"
 						onPress={() => {

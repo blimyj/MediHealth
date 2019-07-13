@@ -233,7 +233,14 @@ class AppointmentScreen extends Component {
 									underlayColor="#aaf0d7"
 									activeOpacity={0.2}
 								>
-									<View style={{ height: 50, bottom: 10 }}>
+									<View
+										style={{
+											height: 50,
+											bottom: 10,
+											flexDirection: "column",
+											justifyContent: "space-between"
+										}}
+									>
 										{/*Row 1*/}
 										<View style={styles.AppointmentButtonRow}>
 											<Text style={styles.AppointmentButtonApptText}>

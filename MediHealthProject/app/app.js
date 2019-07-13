@@ -175,6 +175,27 @@ const CustomDrawerContentComponent = props => (
 	</Container>
 );
 
+const MySettingsNav = createStackNavigator(
+	{
+		Settings: {
+			screen: SettingsScreen
+		}
+	},
+	{
+		initialRouteName: "Settings",
+		defaultNavigationOptions: {
+			headerStyle: { height: 60 },
+			headerLeftContainerStyle: { left: 3 },
+			headerBackImage: (
+				<Image
+					source={require("./assets/images/back-icon.png")}
+					style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
+				/>
+			)
+		}
+	}
+);
+
 const MyApp = createDrawerNavigator(
 	{
 		Home: {
@@ -206,7 +227,7 @@ const MyApp = createDrawerNavigator(
 			}
 		},
 		Settings: {
-			screen: SettingsScreen,
+			screen: MySettingsNav,
 			navigationOptions: {
 				drawerIcon: (
 					<Image

@@ -40,9 +40,10 @@ export default StyleSheet.create({
 		justifyContent: "space-between"
 	},
 	AppointmentButtonApptText: {
-		fontSize: 15,
-		fontWeight: "400",
-		color: "black"
+		fontSize: 20,
+		fontWeight: "bold",
+		color: "black",
+		bottom: 2
 	},
 	AppointmentButtonDateText: {
 		fontSize: 15,
@@ -50,9 +51,10 @@ export default StyleSheet.create({
 		color: "black"
 	},
 	AppointmentButtonLocationText: {
-		fontSize: 15,
+		fontSize: 12,
 		fontWeight: "400",
-		color: "black"
+		color: "black",
+		top: 2
 	},
 	AppointmentButtonTimeText: {
 		fontSize: 15,

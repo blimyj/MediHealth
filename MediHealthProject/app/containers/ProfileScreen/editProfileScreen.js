@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import {
 	View,
 	TouchableOpacity,
-	TextInput,
+	Keyboard,
 	StyleSheet,
-	Text,
-	Button
+	Text
 } from "react-native";
 import { Container, Content, Form, Item, Label, Input } from "native-base";
-import { DrawerActions, NavigationEvents } from "react-navigation";
+import { NavigationEvents } from "react-navigation";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import * as firebase from "firebase";
 
@@ -49,6 +48,7 @@ class EditProfileScreen extends Component {
 			date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
 		this.setState({ birthday: birthday });
 		this.hideDateTimePicker();
+		Keyboard.dismiss();
 	};
 
 	confirmChanges(birthday) {
@@ -111,6 +111,7 @@ class EditProfileScreen extends Component {
 							<Input
 								onChangeText={text => this.setState({ birthday: text })}
 								value={this.state.birthday}
+								onFocus={this.showDateTimePicker}
 							/>
 						</Item>
 						<Item stackedLabel style={styles.itemUnderline}>
@@ -129,11 +130,12 @@ class EditProfileScreen extends Component {
 							/>
 						</Item>
 					</Form>
-					<Button title="Show DatePicker" onPress={this.showDateTimePicker} />
 					<DateTimePicker
 						isVisible={this.state.isDateTimePickerVisible}
 						onCancel={this.hideDateTimePicker}
 						onConfirm={this.handleDatePicked}
+						minimumDate={new Date(1997, 0, 1)}
+						maximumDate={new Date(1997, 11, 31)}
 					/>
 					<View style={{ flexDirection: "row" }}>
 						<View style={styles.ButtonPadding} />
