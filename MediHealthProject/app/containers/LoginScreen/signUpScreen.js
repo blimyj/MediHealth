@@ -185,6 +185,7 @@ class SignUpScreen extends Component {
 							<Input
 								onChangeText={text => this.setState({ email: text })}
 								value={this.state.email}
+								keyboardType="email-address"
 							/>
 						</Item>
 						<Item stackedLabel style={styles.itemUnderline}>

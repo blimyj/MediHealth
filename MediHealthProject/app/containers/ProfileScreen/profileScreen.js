@@ -40,10 +40,11 @@ class ProfileScreen extends Component {
 		this.state = {
 			profilePic: "https://i.imgur.com/MQHYB.jpg",
 			displayName: "",
-			age: 0,
-			weight: 0,
-			height: 0,
-			birthday: "01-01-2011"
+			age: "0",
+			weight: "0",
+			height: "0",
+			birthday: "01-01-2000",
+			job: "Patient"
 		};
 
 		this.readUserData = this.readUserData.bind(this);
@@ -71,7 +72,8 @@ class ProfileScreen extends Component {
 						age: fbObject.age,
 						weight: fbObject.weight,
 						height: fbObject.height,
-						birthday: fbObject.birthday
+						birthday: fbObject.birthday,
+						job: fbObject.job
 					});
 				});
 		} else {
@@ -92,7 +94,7 @@ class ProfileScreen extends Component {
 					/>
 					<View style={styles.bodyContent}>
 						<Text style={styles.name}>{this.state.displayName}</Text>
-						<Text style={styles.info}>Student</Text>
+						<Text style={styles.info}>{this.state.job}</Text>
 						<Text style={styles.description}>
 							{"Age: " +
 								this.state.age +

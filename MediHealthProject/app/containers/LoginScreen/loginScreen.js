@@ -218,6 +218,7 @@ class LoginScreen extends Component {
 							<Input
 								onChangeText={text => this.setState({ email: text })}
 								value={this.state.email}
+								keyboardType="email-address"
 							/>
 						</Item>
 						<Item stackedLabel style={{ borderColor: "#53e1ae" }}>

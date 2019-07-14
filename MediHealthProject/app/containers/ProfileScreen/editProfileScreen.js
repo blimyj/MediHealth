@@ -22,12 +22,10 @@ class EditProfileScreen extends Component {
 		this.state = {
 			name: "",
 			age: "",
-			height: "",
 			weight: "",
+			height: "",
 			birthday: "",
 			job: "",
-			email: "",
-			password: "",
 			uid: "",
 			isDateTimePickerVisible: false
 		};
@@ -62,11 +60,12 @@ class EditProfileScreen extends Component {
 				.ref("/users_PR_URW/" + uid + "/Profile")
 				.set({
 					displayName: this.state.name,
-					birthday: birthday,
+					birthday: this.state.birthday,
 					age: this.state.age,
 					profilePic: profilePic,
-					height: 170,
-					weight: 50
+					height: this.state.height,
+					weight: this.state.weight,
+					job: this.state.job
 				});
 		} else {
 			console.log(user);
@@ -84,7 +83,10 @@ class EditProfileScreen extends Component {
 					const fbObject = snapshot.val();
 					this.setState({
 						name: fbObject.displayName,
+						job: fbObject.job,
 						age: fbObject.age,
+						weight: fbObject.weight,
+						height: fbObject.height,
 						birthday: fbObject.birthday
 					});
 				});
@@ -107,28 +109,56 @@ class EditProfileScreen extends Component {
 							/>
 						</Item>
 						<Item stackedLabel style={styles.itemUnderline}>
-							<Label>Birthday</Label>
+							<Label>Job</Label>
 							<Input
-								onChangeText={text => this.setState({ birthday: text })}
-								value={this.state.birthday}
-								onFocus={this.showDateTimePicker}
+								onChangeText={text => this.setState({ job: text })}
+								value={this.state.job}
 							/>
 						</Item>
-						<Item stackedLabel style={styles.itemUnderline}>
-							<Label>Age</Label>
-							<Input
-								onChangeText={text => this.setState({ age: text })}
-								value={this.state.age}
-							/>
-						</Item>
-						<Item stackedLabel style={styles.itemUnderline}>
-							<Label>Password</Label>
-							<Input
-								secureTextEntry={true}
-								onChangeText={text => this.setState({ password: text })}
-								value={this.state.password}
-							/>
-						</Item>
+						<View style={{ flexDirection: "row" }}>
+							<View style={{ flex: 1 }}>
+								<Item stackedLabel style={styles.itemUnderline}>
+									<Label>Age</Label>
+									<Input
+										onChangeText={text => this.setState({ age: text })}
+										value={this.state.age}
+										keyboardType="number-pad"
+									/>
+								</Item>
+							</View>
+							<View style={{ flex: 1 }}>
+								<Item stackedLabel style={styles.itemUnderline}>
+									<Label>Birthday</Label>
+									<Input
+										onChangeText={text => this.setState({ birthday: text })}
+										value={this.state.birthday}
+										onFocus={this.showDateTimePicker}
+									/>
+								</Item>
+							</View>
+						</View>
+						<View style={{ flexDirection: "row" }}>
+							<View style={{ flex: 1 }}>
+								<Item stackedLabel style={styles.itemUnderline}>
+									<Label>Weight</Label>
+									<Input
+										onChangeText={text => this.setState({ weight: text })}
+										value={this.state.weight}
+										keyboardType="number-pad"
+									/>
+								</Item>
+							</View>
+							<View style={{ flex: 1 }}>
+								<Item stackedLabel style={styles.itemUnderline}>
+									<Label>Height</Label>
+									<Input
+										onChangeText={text => this.setState({ height: text })}
+										value={this.state.height}
+										keyboardType="number-pad"
+									/>
+								</Item>
+							</View>
+						</View>
 					</Form>
 					<DateTimePicker
 						isVisible={this.state.isDateTimePickerVisible}
@@ -137,24 +167,16 @@ class EditProfileScreen extends Component {
 						minimumDate={new Date(1997, 0, 1)}
 						maximumDate={new Date(1997, 11, 31)}
 					/>
-					<View style={{ flexDirection: "row" }}>
-						<View style={styles.ButtonPadding} />
-
-						<View style={{ top: 40, flex: 3 }}>
-							<TouchableOpacity
-								style={styles.confirmButton}
-								accessibilityLabel="Confirm Button"
-								onPress={() => {
-									this.confirmChanges(this.state.birthday);
-									this.props.navigation.navigate("Profile");
-								}}
-							>
-								<Text style={styles.bigButtonText}>Confirm</Text>
-							</TouchableOpacity>
-						</View>
-
-						<View style={styles.ButtonPadding} />
-					</View>
+					<TouchableOpacity
+						style={styles.confirmButton}
+						accessibilityLabel="Confirm Button"
+						onPress={() => {
+							this.confirmChanges(this.state.birthday);
+							this.props.navigation.navigate("Profile");
+						}}
+					>
+						<Text style={styles.bigButtonText}>Confirm</Text>
+					</TouchableOpacity>
 				</Content>
 			</Container>
 		);
@@ -167,26 +189,21 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center"
 	},
-	textRow: {
-		flexDirection: "row",
-		justifyContent: "center",
-		paddingVertical: 15
-	},
 	confirmButton: {
 		backgroundColor: "#53e1ae",
 		height: 40,
 		borderRadius: 50,
 		padding: 8,
-		marginTop: 10
+		marginTop: 16,
+		alignSelf: "center",
+		alignItems: "center",
+		width: 200
 	},
 	bigButtonText: {
 		fontSize: 20,
 		fontWeight: "400",
 		color: "white",
 		alignSelf: "center"
-	},
-	ButtonPadding: {
-		flex: 1
 	},
 	itemUnderline: {
 		borderColor: "#53e1ae"
