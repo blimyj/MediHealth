@@ -133,7 +133,7 @@ class MapScreen extends Component {
 						alignSelf: "center",
 						backgroundColor: "white",
 						position: "absolute",
-						width: width * 0.8,
+						width: width * 0.92,
 						borderRadius: 16,
 						top: 8,
 						elevation: 2
@@ -163,7 +163,8 @@ class MapScreen extends Component {
 
 const styles = StyleSheet.create({
 	searchTextInput: {
-		padding: 12
+		paddingTop: 12,
+		paddingBottom: 12
 	},
 	searchItem: {
 		padding: 10,
