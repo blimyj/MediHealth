@@ -43,14 +43,18 @@ class AppointmentInputScreen extends Component {
 			location: "",
 			date: "",
 			time: "",
-			isDateTimePickerVisible: false
+			isDateTimePickerVisible: false,
+			dateTimeMode: "date"
 		};
 
 		this.loadAppointment = this.loadAppointment.bind(this);
 	}
 
-	showDateTimePicker = () => {
-		this.setState({ isDateTimePickerVisible: true });
+	showDateTimePicker = mode => {
+		this.setState({
+			dateTimeMode: mode,
+			isDateTimePickerVisible: true
+		});
 	};
 
 	hideDateTimePicker = () => {
@@ -58,9 +62,23 @@ class AppointmentInputScreen extends Component {
 	};
 
 	handleDatePicked = date => {
-		const appointmentDate =
-			date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
-		this.setState({ date: appointmentDate });
+		if (this.state.dateTimeMode == "date") {
+			const appointmentDate =
+				date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+			this.setState({ date: appointmentDate });
+		} else if (this.state.dateTimeMode == "time") {
+			var appointmentTimeHours = date.getHours() + "";
+			var appointmentTimeMinutes = date.getMinutes() + "";
+			if (appointmentTimeHours.length == 1) {
+				appointmentTimeHours = "0" + appointmentTimeHours;
+			}
+			if (appointmentTimeMinutes.length == 1) {
+				appointmentTimeMinutes = "0" + appointmentTimeMinutes;
+			}
+			const appointmentTime = appointmentTimeHours + appointmentTimeMinutes;
+			this.setState({ time: appointmentTime });
+		}
+
 		this.hideDateTimePicker();
 		Keyboard.dismiss();
 	};
@@ -169,7 +187,7 @@ class AppointmentInputScreen extends Component {
 							<Input
 								value={this.state.date}
 								onChangeText={text => this.setState({ date: text })}
-								onFocus={this.showDateTimePicker}
+								onFocus={() => this.showDateTimePicker("date")}
 							/>
 						</Item>
 						<Item stackedLabel num3 style={{ borderColor: "#53e1ae" }}>
@@ -177,6 +195,7 @@ class AppointmentInputScreen extends Component {
 							<Input
 								value={this.state.time}
 								onChangeText={text => this.setState({ time: text })}
+								onFocus={() => this.showDateTimePicker("time")}
 							/>
 						</Item>
 					</Form>
@@ -184,6 +203,7 @@ class AppointmentInputScreen extends Component {
 						isVisible={this.state.isDateTimePickerVisible}
 						onCancel={this.hideDateTimePicker}
 						onConfirm={this.handleDatePicked}
+						mode={this.state.dateTimeMode}
 					/>
 					<TouchableOpacity
 						accessibilityLabel="Appointment Input Button"
