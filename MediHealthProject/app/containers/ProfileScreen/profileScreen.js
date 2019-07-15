@@ -85,33 +85,100 @@ class ProfileScreen extends Component {
 		return (
 			<Container>
 				<NavigationEvents onDidFocus={this.readUserData} />
-				<View>
+				<View style={{ backgroundColor: "#F9F9F9", flex: 1 }}>
 					<Image
 						style={styles.avatar}
 						source={{
 							uri: this.state.profilePic
 						}}
 					/>
-					<View style={styles.bodyContent}>
+					<View style={{ alignItems: "center" }}>
 						<Text style={styles.name}>{this.state.displayName}</Text>
+					</View>
+					<View style={{ alignItems: "center" }}>
 						<Text style={styles.info}>{this.state.job}</Text>
-						<Text style={styles.description}>
-							{"Age: " +
-								this.state.age +
-								"\n Weight: " +
-								this.state.weight +
-								"\n Height: " +
-								this.state.height +
-								"\n Birthday: " +
-								this.state.birthday}
-						</Text>
-
-						<TouchableOpacity style={styles.buttonContainer}>
-							<Text>Opcion 1</Text>
-						</TouchableOpacity>
-						<TouchableOpacity style={styles.buttonContainer}>
-							<Text>Opcion 2</Text>
-						</TouchableOpacity>
+					</View>
+					<View style={{ backgroundColor: "white" }}>
+						<View
+							style={{
+								flexDirection: "row",
+								justifyContent: "space-between",
+								paddingLeft: 16,
+								paddingRight: 16,
+								paddingTop: 8,
+								paddingBottom: 8,
+								borderTopWidth: 0.3,
+								borderBottomWidth: 0.1,
+								borderColor: "#62e4b5"
+							}}
+						>
+							<Text
+								style={{ color: "black", fontWeight: "bold", fontSize: 16 }}
+							>
+								Age
+							</Text>
+							<Text style={styles.details}>{this.state.age}</Text>
+						</View>
+						<View
+							style={{
+								flexDirection: "row",
+								justifyContent: "space-between",
+								paddingLeft: 16,
+								paddingRight: 16,
+								paddingTop: 8,
+								paddingBottom: 8,
+								borderTopWidth: 0.2,
+								borderBottomWidth: 0.1,
+								borderColor: "#62e4b5"
+							}}
+						>
+							<Text
+								style={{ color: "black", fontWeight: "bold", fontSize: 16 }}
+							>
+								Birthday
+							</Text>
+							<Text style={styles.details}>{this.state.birthday}</Text>
+						</View>
+						<View
+							style={{
+								flexDirection: "row",
+								justifyContent: "space-between",
+								paddingLeft: 16,
+								paddingRight: 16,
+								paddingTop: 8,
+								paddingBottom: 8,
+								borderTopWidth: 0.2,
+								borderBottomWidth: 0.1,
+								borderColor: "#62e4b5"
+							}}
+						>
+							<Text
+								style={{ color: "black", fontWeight: "bold", fontSize: 16 }}
+							>
+								Height
+							</Text>
+							<Text style={styles.details}>{this.state.height}</Text>
+						</View>
+						<View
+							style={{
+								flexDirection: "row",
+								justifyContent: "space-between",
+								paddingLeft: 16,
+								paddingRight: 16,
+								paddingTop: 8,
+								paddingBottom: 8,
+								borderTopWidth: 0.2,
+								borderBottomWidth: 0.3,
+								borderColor: "#62e4b5"
+							}}
+						>
+							<Text
+								style={{ color: "black", fontWeight: "bold", fontSize: 16 }}
+							>
+								Weight
+							</Text>
+							<Text style={styles.details}>{this.state.weight}</Text>
+						</View>
 					</View>
 				</View>
 			</Container>
@@ -129,44 +196,20 @@ const styles = StyleSheet.create({
 		marginTop: 24
 	},
 	name: {
-		fontSize: 22,
-		color: "#FFFFFF",
-		fontWeight: "600"
-	},
-	body: {
-		marginTop: 0
-	},
-	bodyContent: {
-		flex: 1,
-		alignItems: "center",
-		padding: 12
-	},
-	name: {
 		fontSize: 28,
-		color: "#696969",
-		fontWeight: "600"
+		color: "black",
+		fontWeight: "600",
+		marginTop: 10
 	},
 	info: {
 		fontSize: 16,
-		color: "#62e4b5",
-		marginTop: 10
+		color: "#28DA9A",
+		marginTop: 5,
+		marginBottom: 12
 	},
-	description: {
-		fontSize: 16,
+	details: {
 		color: "#696969",
-		marginTop: 10,
-		textAlign: "center"
-	},
-	buttonContainer: {
-		marginTop: 10,
-		height: 45,
-		flexDirection: "row",
-		justifyContent: "center",
-		alignItems: "center",
-		marginBottom: 20,
-		width: 250,
-		borderRadius: 30,
-		backgroundColor: "#62e4b5"
+		fontSize: 16
 	}
 });
 
