@@ -29,6 +29,7 @@ export default class Article extends React.Component {
 					image={{
 						uri: urlToImage || defaultImg
 					}}
+					containerStyle={{ borderColor: "#28DA9A" }}
 				>
 					<Text style={{ marginBottom: 10 }}>
 						{description || "Read More.."}

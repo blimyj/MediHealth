@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { View, Text, FlatList } from "react-native";
-import { Container, Content } from "native-base";
+import { View, Text, FlatList, RefreshControl } from "react-native";
+import { Container } from "native-base";
 import { DrawerActions } from "react-navigation";
 
 import MenuButton from "../../components/menuButton";
@@ -65,8 +65,15 @@ class NewsScreen extends Component {
 					data={this.state.articles}
 					renderItem={({ item }) => <Article article={item} />}
 					keyExtractor={item => item.url}
-					refreshing={this.state.refreshing}
-					onRefresh={this.handleRefresh.bind(this)}
+					// refreshing={this.state.refreshing}
+					// onRefresh={this.handleRefresh.bind(this)}
+					refreshControl={
+						<RefreshControl
+							colors={["#28DA9A"]}
+							refreshing={this.state.refreshing}
+							onRefresh={this.handleRefresh.bind(this)}
+						/>
+					}
 				/>
 			</Container>
 		);
