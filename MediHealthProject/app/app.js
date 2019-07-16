@@ -30,6 +30,7 @@ import MapScreen from "./containers/MapScreen/mapScreen";
 import LoginScreen from "./containers/LoginScreen/loginScreen";
 import LoadingScreen from "./containers/LoginScreen/loadingScreen";
 import SignUpScreen from "./containers/LoginScreen/signUpScreen";
+import NewsScreen from "./containers/NewsScreen/newsScreen";
 
 import Config from "react-native-config";
 import * as firebase from "firebase";
@@ -175,6 +176,27 @@ const CustomDrawerContentComponent = props => (
 	</Container>
 );
 
+const MyNewsNav = createStackNavigator(
+	{
+		News: {
+			screen: NewsScreen
+		}
+	},
+	{
+		initialRouteName: "News",
+		defaultNavigationOptions: {
+			headerStyle: { height: 60 },
+			headerLeftContainerStyle: { left: 3 },
+			headerBackImage: (
+				<Image
+					source={require("./assets/images/back-icon.png")}
+					style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
+				/>
+			)
+		}
+	}
+);
+
 const MySettingsNav = createStackNavigator(
 	{
 		Settings: {
@@ -221,6 +243,17 @@ const MyApp = createDrawerNavigator(
 				drawerIcon: (
 					<Image
 						source={require("./assets/images/map-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
+					/>
+				)
+			}
+		},
+		News: {
+			screen: MyNewsNav,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/news-icon.png")}
 						style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
 					/>
 				)
