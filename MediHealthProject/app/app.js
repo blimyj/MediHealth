@@ -12,7 +12,8 @@ import {
 	createDrawerNavigator,
 	createStackNavigator,
 	createSwitchNavigator,
-	DrawerItems
+	DrawerItems,
+	DrawerActions
 } from "react-navigation";
 import { Container, Content, Header, Body } from "native-base";
 
@@ -24,9 +25,14 @@ import AppointmentInputScreen from "./containers/AppointmentScreen/AppointmentIn
 import BiomarkerScreen from "./containers/BiomarkerScreen/biomarkerScreen";
 import RehabilitationScreen from "./containers/RehabilitationScreen/rehabilitationScreen";
 import ProfileScreen from "./containers/ProfileScreen/profileScreen";
+import EditProfileScreen from "./containers/ProfileScreen/editProfileScreen";
 import MapScreen from "./containers/MapScreen/mapScreen";
 import LoginScreen from "./containers/LoginScreen/loginScreen";
 import LoadingScreen from "./containers/LoginScreen/loadingScreen";
+import NotificationScreen from "./containers/NotificationScreen/notificationScreen";
+import MedicineInputScreen from "./containers/MedicineScreen/MedicineInputScreen/medicineInputScreen"
+import SignUpScreen from "./containers/LoginScreen/signUpScreen";
+import NewsScreen from "./containers/NewsScreen/newsScreen";
 
 import Config from "react-native-config";
 import * as firebase from "firebase";
@@ -53,6 +59,9 @@ const MyStackNav = createStackNavigator(
 		Medicine: {
 			screen: MedicineScreen
 		},
+		MedicineInput: {
+			screen: MedicineInputScreen
+		},
 		Appointment: {
 			screen: AppointmentScreen
 		},
@@ -64,6 +73,9 @@ const MyStackNav = createStackNavigator(
 		},
 		Rehabilitation: {
 			screen: RehabilitationScreen
+		},
+		Notification: {
+			screen: NotificationScreen
 		}
 	},
 	{
@@ -82,12 +94,75 @@ const MyStackNav = createStackNavigator(
 	}
 );
 
+const MyProfileStackNav = createStackNavigator(
+	{
+		Profile: {
+			screen: ProfileScreen
+		},
+		EditProfile: {
+			screen: EditProfileScreen
+		}
+	},
+	{
+		initialRouteName: "Profile",
+		defaultNavigationOptions: {
+			headerLeftContainerStyle: { left: 3 },
+			headerBackImage: (
+				<Image
+					source={require("./assets/images/back-icon.png")}
+					style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
+				/>
+			),
+			headerStyle: { height: 60 },
+			headerTitle: (
+				<View style={{ alignSelf: "center", flex: 1 }}>
+					<Text
+						style={{
+							textAlign: "center",
+							fontWeight: "bold",
+							fontSize: 18,
+							color: "black"
+						}}
+					>
+						MediHealth
+					</Text>
+				</View>
+			)
+		},
+		headerMode: "float"
+	}
+);
+
+var myDisplayName = "";
+
+const readUserData = () => {
+	var user = firebase.auth().currentUser;
+	if (user != null) {
+		const uid = user.uid;
+
+		firebase
+			.database()
+			.ref("users_PR_URW/" + uid + "/Profile")
+			.once("value", snapshot => {
+				const fbObject = snapshot.val();
+				myDisplayName = fbObject.displayName;
+			});
+
+		return <Text style={styles.profileName}>{myDisplayName}</Text>;
+	} else {
+		return <Text style={styles.profileName}>User</Text>;
+	}
+};
+
 const CustomDrawerContentComponent = props => (
 	<Container>
 		<Header style={styles.sideBarHeader}>
 			<Body>
 				<TouchableOpacity
-					onPress={() => props.navigation.navigate("Profile")}
+					onPress={() => {
+						props.navigation.navigate("Profile");
+						props.navigation.dispatch(DrawerActions.closeDrawer());
+					}}
 					hitSlop={{
 						right: Math.min(height, width) * 0.75,
 						left: Math.min(height, width) * 0.05
@@ -98,7 +173,7 @@ const CustomDrawerContentComponent = props => (
 							source={require("./assets/images/profile-icon.png")}
 							style={styles.profileIcon}
 						/>
-						<Text style={styles.profileName}>Sng Hao Jun</Text>
+						{readUserData()}
 					</View>
 				</TouchableOpacity>
 			</Body>
@@ -107,6 +182,48 @@ const CustomDrawerContentComponent = props => (
 			<DrawerItems {...props} />
 		</Content>
 	</Container>
+);
+
+const MyNewsNav = createStackNavigator(
+	{
+		News: {
+			screen: NewsScreen
+		}
+	},
+	{
+		initialRouteName: "News",
+		defaultNavigationOptions: {
+			headerStyle: { height: 60 },
+			headerLeftContainerStyle: { left: 3 },
+			headerBackImage: (
+				<Image
+					source={require("./assets/images/back-icon.png")}
+					style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
+				/>
+			)
+		}
+	}
+);
+
+const MySettingsNav = createStackNavigator(
+	{
+		Settings: {
+			screen: SettingsScreen
+		}
+	},
+	{
+		initialRouteName: "Settings",
+		defaultNavigationOptions: {
+			headerStyle: { height: 60 },
+			headerLeftContainerStyle: { left: 3 },
+			headerBackImage: (
+				<Image
+					source={require("./assets/images/back-icon.png")}
+					style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
+				/>
+			)
+		}
+	}
 );
 
 const MyApp = createDrawerNavigator(
@@ -123,7 +240,7 @@ const MyApp = createDrawerNavigator(
 			}
 		},
 		Profile: {
-			screen: ProfileScreen,
+			screen: MyProfileStackNav,
 			navigationOptions: {
 				drawerLabel: () => null
 			}
@@ -139,8 +256,19 @@ const MyApp = createDrawerNavigator(
 				)
 			}
 		},
+		News: {
+			screen: MyNewsNav,
+			navigationOptions: {
+				drawerIcon: (
+					<Image
+						source={require("./assets/images/news-icon.png")}
+						style={{ height: 24, width: 24, tintColor: "#28DA9A" }}
+					/>
+				)
+			}
+		},
 		Settings: {
-			screen: SettingsScreen,
+			screen: MySettingsNav,
 			navigationOptions: {
 				drawerIcon: (
 					<Image
@@ -165,6 +293,9 @@ const MySwitch = createSwitchNavigator(
 		},
 		Login: {
 			screen: LoginScreen
+		},
+		SignUp: {
+			screen: SignUpScreen
 		},
 		Home: {
 			screen: MyApp

@@ -39,9 +39,21 @@ export default StyleSheet.create({
 		color: "black",
 		alignSelf: "center"
 	},
-	medicineInputButton: {
-		height: 36,
-		width: 36,
+	takenButton: {
+		height: 50,
+		width: 50,
 		tintColor: "#28DA9A"
+	},
+	skipButton: {
+		height: 50,
+		width: 50,
+		tintColor: "#e32d2d"
+	},
+	snoozeButton: {
+		height: 50,
+		width: 50,
+		tintColor: "#000000"
 	}
+
+	
 });

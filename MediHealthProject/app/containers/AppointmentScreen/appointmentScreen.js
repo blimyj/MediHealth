@@ -2,26 +2,50 @@ import React, { Component } from "react";
 import {
 	View,
 	Text,
-	FlatList,
+	Dimensions,
 	TouchableOpacity,
+	TouchableHighlight,
 	ListView,
 	Image
 } from "react-native";
-import { Container, Content, Button } from "native-base";
+import { Container, Content } from "native-base";
 import { NavigationEvents } from "react-navigation";
 import styles from "./appStyle";
 import * as firebase from "firebase";
+import { SwipeListView, SwipeRow } from "react-native-swipe-list-view";
 
 var data = [];
+const { width, height } = Dimensions.get("screen");
 
 class AppointmentScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
 		headerTitle: (
 			<View style={{ alignSelf: "center", flex: 1 }}>
-				<Text style={{ textAlign: "center" }}>Appointment</Text>
+				<Text
+					style={{
+						textAlign: "center",
+						fontWeight: "bold",
+						fontSize: 18,
+						color: "black"
+					}}
+				>
+					Appointment
+				</Text>
 			</View>
 		),
-		headerRight: <View />
+		headerRight: (
+			<TouchableOpacity
+				accessibilityLabel="Appointment Input Button"
+				onPress={() => navigation.navigate("AppointmentInput")}
+				style={{ alignSelf: "center" }}
+			>
+				<Image
+					source={require("../../assets/images/plus-icon.png")}
+					style={styles.appointmentInputButton}
+				/>
+			</TouchableOpacity>
+		),
+		headerRightContainerStyle: { right: 20 }
 	});
 
 	constructor(props) {
@@ -66,66 +90,182 @@ class AppointmentScreen extends Component {
 		}
 	};
 
+	deleteAppointment(key) {
+		var user = firebase.auth().currentUser;
+		if (user != null) {
+			const uid = user.uid;
+			firebase
+				.database()
+				.ref("/users_URW/" + uid + "/appointments/list")
+				.child(key)
+				.remove();
+
+			this.readUserData();
+		} else {
+			console.log(user);
+		}
+	}
+
 	render() {
 		return (
 			<Container>
 				<NavigationEvents onDidFocus={this.readUserData} />
 				<Content contentContainerStyle={{ flex: 1 }}>
-					<FlatList
+					<SwipeListView
+						useFlatList
+						swipeRowStyle={{ width: Math.min(height, width) * 0.68 }}
 						data={this.state.listViewData}
 						renderItem={({ item }) => (
-							<View style={styles.AppointmentButtonContainer}>
-								<View style={styles.AppointmentButtonPadding} />
-								<TouchableOpacity
-									title={item.appointmentName}
-									style={styles.AppointmentButton}
-									accessibilityLabel={item.appointmentName}
-									onPress={() => this.props.navigation.navigate("Biomarker")}
+							<SwipeRow
+								rightOpenValue={-122}
+								leftOpenValue={75}
+								disableRightSwipe={true}
+								style={{
+									width: Math.min(height, width) * 0.68,
+									alignSelf: "center"
+								}}
+							>
+								{/* Underlay */}
+								<View
+									style={{
+										backgroundColor: "transparent",
+										height: 60,
+										width: Math.min(height, width) * 0.68,
+										alignSelf: "center",
+										borderRadius: 5,
+										padding: 0,
+										marginTop: 5,
+										marginBottom: 5,
+										borderColor: "white",
+										borderWidth: 2,
+										flex: 1,
+										flexDirection: "row",
+										justifyContent: "flex-end"
+									}}
 								>
-									<View style={styles.AppointmentButtonRow}>
+									<TouchableOpacity
+										style={{ alignSelf: "center" }}
+										onPress={() => {
+											console.log(item);
+											// this.deleteAppointment(item.id);
+										}}
+									>
+										<View
+											style={{
+												backgroundColor: "#FE2F34",
+												height: 60,
+												width: 60,
+												flexDirection: "column",
+												justifyContent: "center",
+												borderTopWidth: 2,
+												borderBottomWidth: 2,
+												borderColor: "white"
+											}}
+										>
+											<Image
+												source={require("../../assets/images/delete-icon.png")}
+												style={{
+													tintColor: "white",
+													alignSelf: "center",
+													height: 24,
+													width: 24
+												}}
+											/>
+											<Text style={{ color: "white", alignSelf: "center" }}>
+												Delete
+											</Text>
+										</View>
+									</TouchableOpacity>
+									<TouchableOpacity
+										style={{ alignSelf: "center" }}
+										onPress={() => {
+											console.log(item);
+											this.props.navigation.navigate("AppointmentInput", {
+												key: item.id
+											});
+										}}
+									>
+										<View
+											style={{
+												backgroundColor: "#FF9A2F",
+												height: 60,
+												width: 60,
+												flexDirection: "column",
+												justifyContent: "center",
+												borderTopWidth: 2,
+												borderBottomWidth: 2,
+												borderRightWidth: 2,
+												borderColor: "white"
+											}}
+										>
+											<Image
+												source={require("../../assets/images/update-icon.png")}
+												style={{
+													tintColor: "white",
+													alignSelf: "center",
+													height: 24,
+													width: 24
+												}}
+											/>
+											<Text style={{ color: "white", alignSelf: "center" }}>
+												Edit
+											</Text>
+										</View>
+									</TouchableOpacity>
+								</View>
+
+								{/* Overlay */}
+								<TouchableHighlight
+									style={{
+										backgroundColor: "white",
+										flex: 1,
+										height: 60,
+										width: Math.min(height, width) * 0.68,
+										borderRadius: 5,
+										padding: 15,
+										marginTop: 5,
+										marginBottom: 5,
+										borderColor: "#28DA9A",
+										borderWidth: 2,
+										alignSelf: "center"
+									}}
+									onPress={() => this.props.navigation.navigate("Biomarker")}
+									underlayColor="#aaf0d7"
+									activeOpacity={0.2}
+								>
+									<View
+										style={{
+											height: 50,
+											bottom: 10,
+											flexDirection: "column",
+											justifyContent: "space-between"
+										}}
+									>
 										{/*Row 1*/}
-										<View style={styles.AppointmentButtonRowLeftColumn}>
+										<View style={styles.AppointmentButtonRow}>
 											<Text style={styles.AppointmentButtonApptText}>
 												{item.appointmentName}
 											</Text>
-										</View>
-										<View style={styles.AppointmentButtonRowRightColumn}>
 											<Text style={styles.AppointmentButtonDateText}>
 												{item.appointmentDate}
 											</Text>
 										</View>
-									</View>
-									<View style={styles.AppointmentButtonRow}>
 										{/*Row 2*/}
-										<View style={styles.AppointmentButtonRowLeftColumn}>
+										<View style={styles.AppointmentButtonRow}>
 											<Text style={styles.AppointmentButtonLocationText}>
 												{item.appointmentLocation}
 											</Text>
-										</View>
-										<View style={styles.AppointmentButtonRowRightColumn}>
 											<Text style={styles.AppointmentButtonTimeText}>
 												{item.appointmentTime}
 											</Text>
 										</View>
 									</View>
-								</TouchableOpacity>
-								<View style={styles.AppointmentButtonPadding} />
-							</View>
+								</TouchableHighlight>
+							</SwipeRow>
 						)}
-						keyExtractor={item => item.appointmentDate}
+						keyExtractor={item => item.id}
+						disableRightSwipe={true}
 					/>
-					<Button
-						transparent
-						title="AppointmentInput"
-						accessibilityLabel="Appointment Input Button"
-						onPress={() => this.props.navigation.navigate("AppointmentInput")}
-						style={{ alignSelf: "flex-end", bottom: 15, right: 15 }}
-					>
-						<Image
-							source={require("../../assets/images/plus-icon.png")}
-							style={styles.appointmentInputButton}
-						/>
-					</Button>
 				</Content>
 			</Container>
 		);
