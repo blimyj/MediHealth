@@ -89,7 +89,7 @@ class MedicineScreen extends Component {
 						transparent
 						title="MedicineInput"
 						accessibilityLabel="Medicine Input Button"
-						onPress={() => this.props.navigation.navigate("Rehabilitation")}
+						onPress={() => this.props.navigation.navigate("MedicineInput")}
 						style={{ alignSelf: "flex-end", bottom: 15, right: 15 }}
 					>
 						<Image

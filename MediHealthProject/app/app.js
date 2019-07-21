@@ -27,6 +27,8 @@ import ProfileScreen from "./containers/ProfileScreen/profileScreen";
 import MapScreen from "./containers/MapScreen/mapScreen";
 import LoginScreen from "./containers/LoginScreen/loginScreen";
 import LoadingScreen from "./containers/LoginScreen/loadingScreen";
+import NotificationScreen from "./containers/NotificationScreen/notificationScreen";
+import MedicineInputScreen from "./containers/MedicineScreen/MedicineInputScreen/medicineInputScreen"
 
 import Config from "react-native-config";
 import * as firebase from "firebase";
@@ -53,6 +55,9 @@ const MyStackNav = createStackNavigator(
 		Medicine: {
 			screen: MedicineScreen
 		},
+		MedicineInput: {
+			screen: MedicineInputScreen
+		},
 		Appointment: {
 			screen: AppointmentScreen
 		},
@@ -64,6 +69,9 @@ const MyStackNav = createStackNavigator(
 		},
 		Rehabilitation: {
 			screen: RehabilitationScreen
+		},
+		Notification: {
+			screen: NotificationScreen
 		}
 	},
 	{
