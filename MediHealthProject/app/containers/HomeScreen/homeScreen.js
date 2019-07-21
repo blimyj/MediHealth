@@ -88,7 +88,7 @@ class HomeScreen extends Component {
 						</View>
 					</TouchableOpacity>
 
-					<TouchableOpacity
+					{/* <TouchableOpacity
 						title="Biomarker"
 						style={styles.bigButton}
 						accessibilityLabel="Biomarker"
@@ -120,7 +120,7 @@ class HomeScreen extends Component {
 								Rehabilitation
 							</Text>
 						</View>
-					</TouchableOpacity>
+					</TouchableOpacity> */}
 				</Content>
 			</Container>
 		);
