@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { Container } from "native-base";
 import { NavigationEvents, DrawerActions } from "react-navigation";
 import MenuButton from "../../components/menuButton";
-
+import { Avatar } from "react-native-elements";
 import * as firebase from "firebase";
 
 class ProfileScreen extends Component {
@@ -86,11 +86,14 @@ class ProfileScreen extends Component {
 			<Container>
 				<NavigationEvents onDidFocus={this.readUserData} />
 				<View style={{ backgroundColor: "#F9F9F9", flex: 1 }}>
-					<Image
-						style={styles.avatar}
+					<Avatar
+						rounded
+						title={this.state.displayName[0]}
 						source={{
 							uri: this.state.profilePic
 						}}
+						size="xlarge"
+						containerStyle={styles.avatar}
 					/>
 					<View style={{ alignItems: "center" }}>
 						<Text style={styles.name}>{this.state.displayName}</Text>
@@ -188,10 +191,6 @@ class ProfileScreen extends Component {
 
 const styles = StyleSheet.create({
 	avatar: {
-		width: 132,
-		height: 132,
-		borderRadius: 63,
-		borderColor: "white",
 		alignSelf: "center",
 		marginTop: 24
 	},
