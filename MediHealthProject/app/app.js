@@ -29,13 +29,10 @@ import EditProfileScreen from "./containers/ProfileScreen/editProfileScreen";
 import MapScreen from "./containers/MapScreen/mapScreen";
 import LoginScreen from "./containers/LoginScreen/loginScreen";
 import LoadingScreen from "./containers/LoginScreen/loadingScreen";
-<<<<<<< HEAD
 import NotificationScreen from "./containers/NotificationScreen/notificationScreen";
 import MedicineInputScreen from "./containers/MedicineScreen/MedicineInputScreen/medicineInputScreen"
-=======
 import SignUpScreen from "./containers/LoginScreen/signUpScreen";
 import NewsScreen from "./containers/NewsScreen/newsScreen";
->>>>>>> 6f95453a66e294891acfc6981bac8bbc7563864c
 
 import Config from "react-native-config";
 import * as firebase from "firebase";

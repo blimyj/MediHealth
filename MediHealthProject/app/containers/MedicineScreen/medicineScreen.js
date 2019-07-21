@@ -31,7 +31,7 @@ class MedicineScreen extends Component {
 		headerRight: (
 			<TouchableOpacity
 				accessibilityLabel="Medicine Input Button"
-				onPress={() => navigation.navigate("Rehabilitation")}
+				onPress={() => navigation.navigate("MedicineInput")}
 				style={{ alignSelf: "center" }}
 			>
 				<Image
@@ -106,21 +106,6 @@ class MedicineScreen extends Component {
 							</View>
 						)}
 					/>
-<<<<<<< HEAD
-					<Button
-						transparent
-						title="MedicineInput"
-						accessibilityLabel="Medicine Input Button"
-						onPress={() => this.props.navigation.navigate("MedicineInput")}
-						style={{ alignSelf: "flex-end", bottom: 15, right: 15 }}
-					>
-						<Image
-							source={require("../../assets/images/plus-icon.png")}
-							style={styles.medicineInputButton}
-						/>
-					</Button>
-=======
->>>>>>> 6f95453a66e294891acfc6981bac8bbc7563864c
 				</Content>
 			</Container>
 		);
