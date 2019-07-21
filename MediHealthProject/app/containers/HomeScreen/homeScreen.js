@@ -17,7 +17,16 @@ class HomeScreen extends Component {
 		),
 		headerTitle: (
 			<View style={{ alignSelf: "center", flex: 1 }}>
-				<Text style={{ textAlign: "center" }}>Home</Text>
+				<Text
+					style={{
+						textAlign: "center",
+						fontWeight: "bold",
+						fontSize: 18,
+						color: "black"
+					}}
+				>
+					Home
+				</Text>
 			</View>
 		),
 		headerRight: <View />
@@ -86,7 +95,7 @@ class HomeScreen extends Component {
 						</View>
 					</TouchableOpacity>
 
-					<TouchableOpacity
+					{/* <TouchableOpacity
 						title="Biomarker"
 						style={styles.bigButton}
 						accessibilityLabel="Biomarker"
@@ -129,7 +138,7 @@ class HomeScreen extends Component {
 								}
 							}
 							); 
-							/*
+							
 							this.state.info = 1;
 							PushNotification.localNotificationSchedule({ 
 								//For Android (Must test if works on iOS emulator)
@@ -142,11 +151,12 @@ class HomeScreen extends Component {
 								date: new Date(Date.now() + (3 * 1000)) // in 60 secs})
 							
 							})
-							*/
+							
 						}}
 					>
 						<Text>Notif</Text>
 					</TouchableOpacity>
+					*/}
 				</Content>
 			</Container>
 		);

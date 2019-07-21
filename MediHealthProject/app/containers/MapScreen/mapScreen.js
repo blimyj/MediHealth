@@ -8,10 +8,9 @@ import {
 	Keyboard
 } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
-import { Container, Left, Right, Icon, Button } from "native-base";
+import { Container } from "native-base";
 import * as firebase from "firebase";
 import Config from "react-native-config";
-import MapViewDirections from "react-native-maps-directions";
 import SearchableDropdown from "react-native-searchable-dropdown";
 import MenuButton from "../../components/menuButton";
 
@@ -89,33 +88,9 @@ class MapScreen extends Component {
 		this.readUserData();
 	}
 
-	componentDidUpdate() {
-		// this.map.fitToElements(true);
-	}
-
 	render() {
 		return (
 			<Container>
-				<View style={{ flexDirection: "row", alignItems: "center" }}>
-					<View>
-						<MenuButton whenPress={() => this.props.navigation.openDrawer()} />
-					</View>
-					<SearchableDropdown
-						onItemSelect={item => {
-							this.changeSelectedRegion(item);
-						}}
-						containerStyle={{ flex: 1, padding: 3 }}
-						textInputStyle={styles.searchTextInput}
-						itemStyle={styles.searchItem}
-						itemTextStyle={{ color: "black" }}
-						itemsContainerStyle={{ maxHeight: 140 }}
-						items={this.state.markerData}
-						defaultIndex={2}
-						placeholder="Search Address"
-						resetValue={false}
-						underlineColorAndroid="transparent"
-					/>
-				</View>
 				<MapView
 					ref={ref => {
 						this.map = ref;
@@ -128,6 +103,7 @@ class MapScreen extends Component {
 					onMapReady={this.setMargin}
 					region={this.state.region}
 					onPress={Keyboard.dismiss}
+					mapPadding={{ top: 64 }}
 				>
 					<Marker
 						coordinate={{
@@ -150,16 +126,36 @@ class MapScreen extends Component {
 							/>
 						);
 					})}
-					{/* <MapViewDirections
-						origin={{ latitude: 1.279597, longitude: 103.835886 }} // Daily Limit: 1
-						destination={{
-							latitude: 1.37624319753702,
-							longitude: 103.75640094280243
-						}}
-						apikey={MAPS_API_KEY}
-						mode="WALKING"
-					/> */}
 				</MapView>
+				<View
+					style={{
+						flexDirection: "row",
+						alignSelf: "center",
+						backgroundColor: "white",
+						position: "absolute",
+						width: width * 0.92,
+						borderRadius: 16,
+						top: 8,
+						elevation: 2
+					}}
+				>
+					<MenuButton whenPress={() => this.props.navigation.openDrawer()} />
+					<SearchableDropdown
+						onItemSelect={item => {
+							this.changeSelectedRegion(item);
+						}}
+						containerStyle={{ flex: 1, padding: 3 }}
+						textInputStyle={styles.searchTextInput}
+						itemStyle={styles.searchItem}
+						itemTextStyle={{ color: "black" }}
+						itemsContainerStyle={{ maxHeight: 140 }}
+						items={this.state.markerData}
+						defaultIndex={2}
+						placeholder="Search Address"
+						resetValue={false}
+						underlineColorAndroid="#28DA9A"
+					/>
+				</View>
 			</Container>
 		);
 	}
@@ -167,10 +163,8 @@ class MapScreen extends Component {
 
 const styles = StyleSheet.create({
 	searchTextInput: {
-		padding: 12,
-		borderWidth: 1,
-		borderColor: "#28DA9A",
-		borderRadius: 5
+		paddingTop: 12,
+		paddingBottom: 12
 	},
 	searchItem: {
 		padding: 10,

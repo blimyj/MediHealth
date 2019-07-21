@@ -1,33 +1,43 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import {
-	Icon,
-	Button,
-	Container,
-	Content,
-	Form,
-	Item,
-	Label,
-	Input
-} from "native-base";
-import MyHeader from "../../components/header";
-import styles from "./appStyle";
-
+	View,
+	TouchableOpacity,
+	TextInput,
+	StyleSheet,
+	Text,
+	Button
+} from "react-native";
+import { Container, Content, Form, Item, Label, Input } from "native-base";
 import * as firebase from "firebase";
 
-class LoginScreen extends Component {
+class SignUpScreen extends Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
+			name: "",
+			age: "",
+			height: "",
+			weight: "",
+			birthday: "",
+			job: "",
 			email: "",
-			currEmail: "",
 			password: "",
-			error: "",
 			uid: ""
 		};
-
-		//this.displayUser = this.displayUser.bind(this);
 	}
+
+	state = {
+		name: "",
+		age: "",
+		height: "",
+		weight: "",
+		birthday: "",
+		job: "",
+		email: "",
+		password: "",
+		uid: ""
+	};
 
 	writeUserData(uid_no) {
 		this.setState({ uid: uid_no });
@@ -68,11 +78,11 @@ class LoginScreen extends Component {
 				Profile: {
 					profilePic:
 						"https://media.licdn.com/dms/image/C5103AQEiJL0AgWj5KQ/profile-displayphoto-shrink_800_800/0?e=1566432000&v=beta&t=MaAA-eyV5MXKmgj4rRqSfKE8fwGDtjkkVn-EMruGzKA",
-					displayName: "Hao Jun",
-					age: 22,
-					weight: 20,
-					height: 190,
-					birthday: "30-06-2019"
+					displayName: this.state.name,
+					age: this.state.age,
+					weight: this.state.weight,
+					height: this.state.height,
+					birthday: this.state.birthday
 				}
 			});
 
@@ -86,7 +96,9 @@ class LoginScreen extends Component {
 						count: 0
 					},
 					list: {
-						initMedicine: "Empty"
+						firstMedicineEntry: {
+							medName: "Empty"
+						}
 					}
 				},
 
@@ -96,11 +108,12 @@ class LoginScreen extends Component {
 						count: 0
 					},
 					list: {
-						appointmentNum: -1,
-						apppointmentName: "InitApptName",
-						appointmentLocation: "InitApptLocation",
-						appointmentDate: initDate,
-						appointmentTime: initTime
+						firstAppointmentEntry: {
+							appointmentName: "InitApptName",
+							appointmentLocation: "InitApptLocation",
+							appointmentDate: initDate,
+							appointmentTime: initTime
+						}
 					}
 				}
 			});
@@ -144,76 +157,30 @@ class LoginScreen extends Component {
 			});
 	}
 
-	login(email, password) {
-		alert("Logging you in! Please wait for the next alert.");
-		firebase
-			.auth()
-			.signInWithEmailAndPassword(email, password)
-			.then(
-				() => {
-					alert("Login Successful!");
-
-					this.setState({ password: "" });
-					this.setState({ email: "" });
-				},
-				() => {
-					alert("Incorrect email or password.");
-					this.setState({ password: "" });
-				}
-			)
-			.catch(error => {
-				alert("Unknown Login Error.");
-				this.setState({ password: "" });
-			});
-	}
-
-	logout() {
-		alert("Logging you out! Please wait for the next alert.");
-		firebase
-			.auth()
-			.signOut()
-			.then(
-				() => {
-					alert("You've been logged out!");
-				},
-				() => {
-					alert(
-						"Unknown Logout Error. \n Beware: You may not have been logged out."
-					);
-				}
-			);
-		this.setState({ password: "" });
-		this.setState({ email: "" });
-	}
-
-	displayUser() {
-		function alertCallback() {
-			alert(this.state.currEmail);
-		}
-
-		console.log("displayUser");
-		var user = firebase.auth().currentUser;
-		console.log(user);
-
-		if (user != null) {
-			this.setState({ currEmail: user.email }, alertCallback);
-		} else {
-			this.setState({ currEmail: "No current user" }, alertCallback);
-		}
-	}
+	onChangeText = (key, val) => {
+		this.setState({ [key]: val });
+	};
 
 	render() {
 		return (
 			<Container>
-				<Content
-					contentContainerStyle={{
-						flex: 1,
-						alignItems: "center",
-						justifyContent: "center"
-					}}
-				>
+				<Content contentContainerStyle={styles.container}>
 					<Form>
-						<Item stackedLabel style={{ borderColor: "#53e1ae" }}>
+						<Item stackedLabel style={styles.itemUnderline}>
+							<Label>Name</Label>
+							<Input
+								onChangeText={text => this.setState({ name: text })}
+								value={this.state.name}
+							/>
+						</Item>
+						<Item stackedLabel style={styles.itemUnderline}>
+							<Label>Birthday</Label>
+							<Input
+								onChangeText={text => this.setState({ birthday: text })}
+								value={this.state.birthday}
+							/>
+						</Item>
+						<Item stackedLabel style={styles.itemUnderline}>
 							<Label>Email</Label>
 							<Input
 								onChangeText={text => this.setState({ email: text })}
@@ -221,7 +188,7 @@ class LoginScreen extends Component {
 								keyboardType="email-address"
 							/>
 						</Item>
-						<Item stackedLabel style={{ borderColor: "#53e1ae" }}>
+						<Item stackedLabel style={styles.itemUnderline}>
 							<Label>Password</Label>
 							<Input
 								secureTextEntry={true}
@@ -230,50 +197,35 @@ class LoginScreen extends Component {
 							/>
 						</Item>
 					</Form>
-					<View style={styles.ButtonsContainer}>
+					<View style={{ flexDirection: "row" }}>
 						<View style={styles.ButtonPadding} />
 
-						{/* <View style={styles.ButtonContainer}>
+						<View style={{ top: 40, flex: 3 }}>
 							<TouchableOpacity
-								title="Sign Up Button"
-								style={styles.SignUpButton}
-								accessibilityLabel="Sign Up Button"
-								// onPress={() => {
-								// 	this.signUp(this.state.email, this.state.password);
-								// }}
-								onPress={() => this.props.navigation.navigate("SignUp")}
-							>
-								<Text style={styles.bigButtonText}>Sign Up</Text>
-							</TouchableOpacity>
-						</View> */}
-
-						{/* <View style={styles.ButtonPadding} /> */}
-
-						<View style={[styles.ButtonContainer, { top: 40 }]}>
-							<TouchableOpacity
-								title="Login Button"
-								style={styles.LoginButton}
-								accessibilityLabel="Login Button"
+								title="SignUp Button"
+								style={styles.signUpButton}
+								accessibilityLabel="SignUp Button"
 								onPress={() => {
-									this.login(this.state.email, this.state.password);
+									this.signUp(this.state.email, this.state.password);
 								}}
 							>
-								<Text style={styles.bigButtonText}>Login</Text>
+								<Text style={styles.bigButtonText}>Sign Up</Text>
 							</TouchableOpacity>
 						</View>
 
 						<View style={styles.ButtonPadding} />
 					</View>
 				</Content>
+
 				<View style={styles.textRow}>
 					<Text style={{ color: "#484848", marginTop: 8 }}>
-						Do not have an account?
+						Already have an account?
 					</Text>
 					<TouchableOpacity
-						onPress={() => this.props.navigation.navigate("SignUp")}
+						onPress={() => this.props.navigation.navigate("Login")}
 						style={{ marginTop: 8 }}
 					>
-						<Text style={{ color: "#28DA9A" }}> Create now.</Text>
+						<Text style={{ color: "#28DA9A" }}> Log in now.</Text>
 					</TouchableOpacity>
 				</View>
 			</Container>
@@ -281,4 +233,36 @@ class LoginScreen extends Component {
 	}
 }
 
-export default LoginScreen;
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center"
+	},
+	textRow: {
+		flexDirection: "row",
+		justifyContent: "center",
+		paddingVertical: 15
+	},
+	signUpButton: {
+		backgroundColor: "#53e1ae",
+		height: 40,
+		borderRadius: 50,
+		padding: 8,
+		marginTop: 10
+	},
+	bigButtonText: {
+		fontSize: 20,
+		fontWeight: "400",
+		color: "white",
+		alignSelf: "center"
+	},
+	ButtonPadding: {
+		flex: 1
+	},
+	itemUnderline: {
+		borderColor: "#53e1ae"
+	}
+});
+
+export default SignUpScreen;

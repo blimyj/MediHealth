@@ -25,7 +25,7 @@ export default StyleSheet.create({
 	},
 	AppointmentButton: {
 		flexDirection: "column",
-		backgroundColor: "transparent",
+		backgroundColor: "white",
 		flex: 3,
 		height: 60,
 		borderRadius: 5,
@@ -36,40 +36,34 @@ export default StyleSheet.create({
 	},
 	AppointmentButtonRow: {
 		flexDirection: "row",
-		flex: 1
-	},
-	AppointmentButtonRowLeftColumn: {
-		textAlign: "left",
-		flex: 1
-	},
-	AppointmentButtonRowRightColumn: {
-		alignItems: "flex-end",
-		textAlign: "right",
-		flex: 1
+		flex: 1,
+		justifyContent: "space-between"
 	},
 	AppointmentButtonApptText: {
-		fontSize: 10,
-		fontWeight: "400",
-		color: "black"
+		fontSize: 20,
+		fontWeight: "bold",
+		color: "black",
+		bottom: 2
 	},
 	AppointmentButtonDateText: {
-		fontSize: 10,
+		fontSize: 15,
 		fontWeight: "400",
 		color: "black"
 	},
 	AppointmentButtonLocationText: {
-		fontSize: 10,
+		fontSize: 12,
 		fontWeight: "400",
-		color: "black"
+		color: "black",
+		top: 2
 	},
 	AppointmentButtonTimeText: {
-		fontSize: 10,
+		fontSize: 15,
 		fontWeight: "400",
 		color: "black"
 	},
 	appointmentInputButton: {
-		height: 50,
-		width: 50,
+		height: 36,
+		width: 36,
 		tintColor: "#28DA9A"
 	}
 });

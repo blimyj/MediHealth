@@ -1,10 +1,36 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { Icon, Button, Container, Content, Left } from "native-base";
-import MyHeader from "../../components/header";
+import { Container, Content } from "native-base";
+import { DrawerActions } from "react-navigation";
+import MenuButton from "../../components/menuButton";
 import * as firebase from "firebase";
 
 class SettingsScreen extends Component {
+	static navigationOptions = ({ navigation }) => ({
+		headerLeft: (
+			<View>
+				<MenuButton
+					whenPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+				/>
+			</View>
+		),
+		headerTitle: (
+			<View style={{ alignSelf: "center", flex: 1 }}>
+				<Text
+					style={{
+						textAlign: "center",
+						fontWeight: "bold",
+						fontSize: 18,
+						color: "black"
+					}}
+				>
+					Settings
+				</Text>
+			</View>
+		),
+		headerRight: <View />
+	});
+
 	logout() {
 		firebase
 			.auth()
@@ -24,7 +50,6 @@ class SettingsScreen extends Component {
 	render() {
 		return (
 			<Container>
-				<MyHeader nav={this.props.navigation} headerTitle="Settings" />
 				<Content contentContainerStyle={styles.contentContainer}>
 					<TouchableOpacity
 						title="Logout Button"

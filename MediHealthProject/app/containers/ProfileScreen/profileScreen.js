@@ -1,22 +1,50 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { Container } from "native-base";
-import { NavigationEvents } from "react-navigation";
-import MyHeader from "../../components/header";
-
+import { NavigationEvents, DrawerActions } from "react-navigation";
+import MenuButton from "../../components/menuButton";
+import { Avatar } from "react-native-elements";
 import * as firebase from "firebase";
 
 class ProfileScreen extends Component {
+	static navigationOptions = ({ navigation }) => ({
+		headerLeft: (
+			<View>
+				<MenuButton
+					whenPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+				/>
+			</View>
+		),
+		headerRight: (
+			<TouchableOpacity
+				style={{ alignSelf: "center" }}
+				accessibilityLabel="Profile Edit Button"
+				onPress={() => navigation.navigate("EditProfile")}
+			>
+				<Image
+					source={require("../../assets/images/update-icon.png")}
+					style={{
+						height: 28,
+						width: 28,
+						tintColor: "#28DA9A"
+					}}
+				/>
+			</TouchableOpacity>
+		),
+		headerRightContainerStyle: { right: 20 }
+	});
+
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			profilePic: "https://i.imgur.com/MQHYB.jpg",
 			displayName: "",
-			age: 0,
-			weight: 0,
-			height: 0,
-			birthday: "01-01-2011"
+			age: "0",
+			weight: "0",
+			height: "0",
+			birthday: "01-01-2000",
+			job: "Patient"
 		};
 
 		this.readUserData = this.readUserData.bind(this);
@@ -44,7 +72,8 @@ class ProfileScreen extends Component {
 						age: fbObject.age,
 						weight: fbObject.weight,
 						height: fbObject.height,
-						birthday: fbObject.birthday
+						birthday: fbObject.birthday,
+						job: fbObject.job
 					});
 				});
 		} else {
@@ -55,36 +84,103 @@ class ProfileScreen extends Component {
 	render() {
 		return (
 			<Container>
-				<MyHeader nav={this.props.navigation} headerTitle="MediHealth" />
-				<View style={styles.container}>
-					<View style={styles.header} />
-					<Image
-						style={styles.avatar}
+				<NavigationEvents onDidFocus={this.readUserData} />
+				<View style={{ backgroundColor: "#F9F9F9", flex: 1 }}>
+					<Avatar
+						rounded
+						title={this.state.displayName[0]}
 						source={{
 							uri: this.state.profilePic
 						}}
+						size="xlarge"
+						containerStyle={styles.avatar}
 					/>
-					<View style={styles.body}>
-						<View style={styles.bodyContent}>
-							<Text style={styles.name}>{this.state.displayName}</Text>
-							<Text style={styles.info}>Student</Text>
-							<Text style={styles.description}>
-								{"Age: " +
-									this.state.age +
-									"\n Weight: " +
-									this.state.weight +
-									"\n Height: " +
-									this.state.height +
-									"\n Birthday: " +
-									this.state.birthday}
+					<View style={{ alignItems: "center" }}>
+						<Text style={styles.name}>{this.state.displayName}</Text>
+					</View>
+					<View style={{ alignItems: "center" }}>
+						<Text style={styles.info}>{this.state.job}</Text>
+					</View>
+					<View style={{ backgroundColor: "white" }}>
+						<View
+							style={{
+								flexDirection: "row",
+								justifyContent: "space-between",
+								paddingLeft: 16,
+								paddingRight: 16,
+								paddingTop: 8,
+								paddingBottom: 8,
+								borderTopWidth: 0.3,
+								borderBottomWidth: 0.1,
+								borderColor: "#62e4b5"
+							}}
+						>
+							<Text
+								style={{ color: "black", fontWeight: "bold", fontSize: 16 }}
+							>
+								Age
 							</Text>
-
-							<TouchableOpacity style={styles.buttonContainer}>
-								<Text>Opcion 1</Text>
-							</TouchableOpacity>
-							<TouchableOpacity style={styles.buttonContainer}>
-								<Text>Opcion 2</Text>
-							</TouchableOpacity>
+							<Text style={styles.details}>{this.state.age}</Text>
+						</View>
+						<View
+							style={{
+								flexDirection: "row",
+								justifyContent: "space-between",
+								paddingLeft: 16,
+								paddingRight: 16,
+								paddingTop: 8,
+								paddingBottom: 8,
+								borderTopWidth: 0.2,
+								borderBottomWidth: 0.1,
+								borderColor: "#62e4b5"
+							}}
+						>
+							<Text
+								style={{ color: "black", fontWeight: "bold", fontSize: 16 }}
+							>
+								Birthday
+							</Text>
+							<Text style={styles.details}>{this.state.birthday}</Text>
+						</View>
+						<View
+							style={{
+								flexDirection: "row",
+								justifyContent: "space-between",
+								paddingLeft: 16,
+								paddingRight: 16,
+								paddingTop: 8,
+								paddingBottom: 8,
+								borderTopWidth: 0.2,
+								borderBottomWidth: 0.1,
+								borderColor: "#62e4b5"
+							}}
+						>
+							<Text
+								style={{ color: "black", fontWeight: "bold", fontSize: 16 }}
+							>
+								Height
+							</Text>
+							<Text style={styles.details}>{this.state.height}</Text>
+						</View>
+						<View
+							style={{
+								flexDirection: "row",
+								justifyContent: "space-between",
+								paddingLeft: 16,
+								paddingRight: 16,
+								paddingTop: 8,
+								paddingBottom: 8,
+								borderTopWidth: 0.2,
+								borderBottomWidth: 0.3,
+								borderColor: "#62e4b5"
+							}}
+						>
+							<Text
+								style={{ color: "black", fontWeight: "bold", fontSize: 16 }}
+							>
+								Weight
+							</Text>
+							<Text style={styles.details}>{this.state.weight}</Text>
 						</View>
 					</View>
 				</View>
@@ -94,60 +190,25 @@ class ProfileScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-	header: {
-		backgroundColor: "#28DA9A",
-		height: 200
-	},
 	avatar: {
-		width: 130,
-		height: 130,
-		borderRadius: 63,
-		borderWidth: 4,
-		borderColor: "white",
-		marginBottom: 10,
 		alignSelf: "center",
-		position: "absolute",
-		marginTop: 130
-	},
-	name: {
-		fontSize: 22,
-		color: "#FFFFFF",
-		fontWeight: "600"
-	},
-	body: {
-		marginTop: 40
-	},
-	bodyContent: {
-		flex: 1,
-		alignItems: "center",
-		padding: 30
+		marginTop: 24
 	},
 	name: {
 		fontSize: 28,
-		color: "#696969",
-		fontWeight: "600"
+		color: "black",
+		fontWeight: "600",
+		marginTop: 10
 	},
 	info: {
 		fontSize: 16,
 		color: "#28DA9A",
-		marginTop: 10
+		marginTop: 5,
+		marginBottom: 12
 	},
-	description: {
-		fontSize: 16,
+	details: {
 		color: "#696969",
-		marginTop: 10,
-		textAlign: "center"
-	},
-	buttonContainer: {
-		marginTop: 10,
-		height: 45,
-		flexDirection: "row",
-		justifyContent: "center",
-		alignItems: "center",
-		marginBottom: 20,
-		width: 250,
-		borderRadius: 30,
-		backgroundColor: "#28DA9A"
+		fontSize: 16
 	}
 });
 

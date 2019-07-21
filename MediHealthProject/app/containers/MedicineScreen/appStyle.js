@@ -40,8 +40,8 @@ export default StyleSheet.create({
 		alignSelf: "center"
 	},
 	medicineInputButton: {
-		height: 50,
-		width: 50,
+		height: 36,
+		width: 36,
 		tintColor: "#28DA9A"
 	}
 });
