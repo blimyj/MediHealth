@@ -76,20 +76,20 @@ class MedicineInputScreen extends Component {
 
 	handleDatePicked = date => {
 		if (this.state.dateTimeMode == "date") {
-			const appointmentDate =
+			const medDate =
 				date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
-			this.setState({ date: appointmentDate });
+			this.setState({ date: medDate });
 		} else if (this.state.dateTimeMode == "time") {
-			var appointmentTimeHours = date.getHours() + "";
-			var appointmentTimeMinutes = date.getMinutes() + "";
-			if (appointmentTimeHours.length == 1) {
-				appointmentTimeHours = "0" + appointmentTimeHours;
+			var medTimeHours = date.getHours() + "";
+			var medTimeMinutes = date.getMinutes() + "";
+			if (medTimeHours.length == 1) {
+				medTimeHours = "0" + medTimeHours;
 			}
-			if (appointmentTimeMinutes.length == 1) {
-				appointmentTimeMinutes = "0" + appointmentTimeMinutes;
+			if (medTimeMinutes.length == 1) {
+				medTimeMinutes = "0" + medTimeMinutes;
 			}
-			const appointmentTime = appointmentTimeHours + appointmentTimeMinutes;
-			this.setState({ time: appointmentTime });
+			const medTime = medTimeHours + medTimeMinutes;
+			this.setState({ time: medTime });
 		}
 
 		this.hideDateTimePicker();
