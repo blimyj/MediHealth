@@ -131,4 +131,37 @@ $ react-native run-ios
 ```
 
 #  :wrench: Development
-Contributors can send pull requests which will be reviewed by the developers.
+###  :fire: Contribution
+
+Your contributions are always welcome and appreciated. Following are the things you can do to contribute to this project.
+
+1. **Report a bug** <br>
+If you think you have encountered a bug, and I should know about it, feel free to report it [here](https://github.com/blimyj/MediHealth/issues) and I will take care of it.
+
+2. **Request a feature** <br>
+You can also request for a feature [here](https://github.com/blimyj/MediHealth/issues), and if it will viable, it will be picked for development.  
+
+3. **Create a pull request** <br>
+It can't get better then this, your pull request will be appreciated by the community. You can get started by picking up any open issues from [here](https://github.com/blimyj/MediHealth/issues) and make a pull request.
+
+> If you are new to open-source, make sure to check read more about it [here](https://www.digitalocean.com/community/tutorial_series/an-introduction-to-open-source) and learn more about creating a pull request [here](https://www.digitalocean.com/community/tutorials/how-to-create-a-pull-request-on-github).
+
+###  :hammer: Build
+- React Native v0.59.9
+- React Navigation v3.11.0
+- Native Base v2.12.1
+- Firebase v6.2.3
+- React Native Config v0.11.7
+- React Native Elements v1.1.0
+- React Native Gesture Handler v1.3.0
+- React Native Maps v0.24.2
+- React Native Modal DateTime Picker v7.5.0
+- React Native Push Notifications v3.1.3
+- React Native Searchable Dropdown v1.0.6
+- React Native Swipe List View v1.5.8
+- React Native Vector Icons v6.5.0
+- Moment v2.24.0
+
+# :star2: Credit/Acknowledgment
+[Author 1](https://github.com/blimyj)
+[Author 2](https://github.com/joloong)
