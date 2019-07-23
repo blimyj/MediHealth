@@ -110,3 +110,25 @@ It reminds the user to:
 * Tracks & reminds Medication, Measurement, Activity & Symptom Check
 * Does not cover appointments. 
 * Cannot add a Custom Activity (or Rehabilitation Exercise) easily 
+
+
+# :sunny: Usage
+###  :electric_plug: Installation
+```
+$ git clone https://github.com/blimyj/MediHealth.git
+$ cd MediHealth
+$ npm install
+```
+
+###  :package: Commands
+For Android,
+```
+$ react-native run-android
+```
+For iOS,
+```
+$ react-native run-ios
+```
+
+#  :wrench: Development
+Contributors can send pull requests which will be reviewed by the developers.
