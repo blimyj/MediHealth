@@ -2,7 +2,7 @@
 
 MediHealth a cross-platform mobile application that keep tracks and reminds the user about the medicine intake, medical appointments, rehabilitation exercises and other important medical biomarkers. 
 
-## Site Map
+# :ledger: Index
 * [Motivation](#motivation)
 
 * [Aim](#aim)
