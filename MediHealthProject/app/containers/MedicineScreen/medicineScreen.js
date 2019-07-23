@@ -231,7 +231,33 @@ class MedicineScreen extends Component {
 									underlayColor="#aaf0d7"
 									activeOpacity={0.2}
 								>
-									<Text style={styles.MedicineButtonText}>{item.medName}</Text>
+									<View
+										style={{
+											height: 50,
+											bottom: 10,
+											flexDirection: "column",
+											justifyContent: "space-between"
+										}}
+									>
+										{/*Row 1*/}
+										<View style={styles.MedicineButtonRow}>
+											<Text style={styles.MedicineButtonNameText}>
+												{item.medName}
+											</Text>
+											<Text style={styles.MedicineButtonDateText}>
+												{item.medDate}
+											</Text>
+										</View>
+										{/*Row 2*/}
+										<View style={styles.MedicineButtonRow}>
+											<Text style={styles.MedicineButtonLocationText}>
+												{item.medFreq}
+											</Text>
+											<Text style={styles.MedicineButtonTimeText}>
+												{item.medTime}
+											</Text>
+										</View>
+									</View>
 								</TouchableHighlight>
 							</SwipeRow>
 						)}
