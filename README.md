@@ -9,7 +9,7 @@ MediHealth an Android mobile application that keep tracks and reminds the user a
 
 * [User Stories](#user-stories)
 
-* [Scope of Project](#scope-of-project)
+* [Features](#features)
 
 * [Comparison to Existing/Related Apps](#how-are-we-different-from-similar-platforms)
 
@@ -22,16 +22,16 @@ People often go about their busy lives and have little room in their mind to rem
 We hope to build a user-friendly medical health tracker mobile application that tracks and reminds you of your medicinal intake and medical appointments.
 
 ## :book: User Stories
-As a patient, Squidward needs to take various medicines at various frequencies. He needs an easy and efficient method of handling these schedules flexibly.
+As a patient, Squidward needs to take various medications at differing frequencies. He needs an easy and efficient method of handling these schedules flexibly.
 
 As an outpatient, Squidward has many medical appointments that can range from 1 week to 1 year later. He wants an easy way to keep track of them while being able to see all of them at once.
 
-As a forgetful person, Patrick wants to check if he has taken his medication.
-Worried for Patrick, his mother would also like to receive notifications if he hasn’t taken his medication an hour after the scheduled time. 
+As a forgetful person, Patrick wants to be reminded to take his medications and check if he has taken his medication.
 
-As a person with ADHD, Spongebob would like for his reminder notifications to be ambiguous so  that people don’t know what meds he is taking)
+As a patient who has run out of medication, Patrick wants to be able to find the nearest pharmacy so he can restock his supply. Whether it’s from his workplace or home.
 
-As a responsible father, Mr Krabs would like to track his and his daughters medication from his application.
+While waiting for his turn at the doctor, Spongebob would like to read some medical news to pass his time.
+
 
 ## :pill: Features
 - Medicine Feature
@@ -58,7 +58,7 @@ As a responsible father, Mr Krabs would like to track his and his daughters medi
 [Prevent weak passwords from being set via firebase password authentication]
 - Spam prevention and 
 
-## How are we different from similar platforms?
+## :syringe: How are we different from similar platforms?
 - **HealthHub SG**
   - It only tracks medical appointments from public hospitals and polyclinics but not private hospitals and clinics. In addition, it does not track appointments for blood donations.
   - There is no reminder functionality for patient’s medicines.
@@ -83,10 +83,6 @@ $ npm install
 For Android,
 ```
 $ react-native run-android
-```
-For iOS,
-```
-$ react-native run-ios
 ```
 
 ##  :wrench: Development
