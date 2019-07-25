@@ -34,29 +34,32 @@ While waiting for his turn at the doctor, Spongebob would like to read some medi
 
 
 ## :pill: Features
-- Medicine Feature
+- **Medicine Feature**
   - A form to input the name, date, time and frequency of the medication for tracking.
   - Notifications will be sent at the specified date and time.
   - Able to update and/or delete the medicine from the database.
-- Appointment Feature
+- **Appointment Feature**
   - A form to input the name, date, time and location of the appointment for tracking.
   - Notifications will be sent before the specified date and time.
   - Able to update and/or delete the appointment from the database.
-- Profile
+- **Profile**
   - User will be able to input their details (e.g. Name, Birthday, Height and Weight) upon signing up.
   - Able to edit and update their details at anytime. 
   - Toggle weight to kilogram or pounds.
   - Toggle height to feet or centimetres.
-- Maps
+- **Maps**
   - Able to see user’s current location.
   - In-built maps feature that shows pharmacy locations in Singapore.
   - Search bar for users to find their desired pharmacy.
   - Users will be redirected to Google Maps for directions to the desired pharmacy.
-- Medical News
+- **Medical News**
   - We used News API, a simple HTTP REST API for searching and retrieving live articles from all over the web. In particular we searched for medical news and prioritised medical news from Singapore.
-- Security (Email verification, hidden API keys from source code, 1 account per email address [Preventing users from creating multiple accounts using the same email address with different authentication providers.])
-[Prevent weak passwords from being set via firebase password authentication]
-- Spam prevention and 
+  - Listed from latest to oldest medical news.
+- **Security**
+  - Email verification for every new sign up to prevent fake accounts and spam.
+  - 1 account per email address to prevent users from creating multiple accounts.
+  - Minimum password requirement to prevent weak passwords and increase account security.
+  - Hidden API keys from source code to prevent exploitation of the API keys. 
 
 ## :syringe: How are we different from similar platforms?
 - **HealthHub SG**
