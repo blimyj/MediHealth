@@ -3,15 +3,15 @@
 MediHealth an Android mobile application that keep tracks and reminds the user about their medicinal intake and medical appointments.
 
 ## :ledger: Index
-* [Motivation](#-motivation)
+* [Motivation](#muscle-motivation)
 
-* [Aim](#-aim)
+* [Aim](#mag-aim)
 
-* [User Stories](#user-stories)
+* [User Stories](#book-user-stories)
 
-* [Features](#features)
+* [Features](#pill-features)
 
-* [Comparison to Existing/Related Apps](#how-are-we-different-from-similar-platforms)
+* [Comparison to Existing/Related Apps](#syringe-how-are-we-different-from-similar-platforms)
 
 ## :muscle: Motivation
 
