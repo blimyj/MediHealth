@@ -3,9 +3,9 @@
 MediHealth an Android mobile application that keep tracks and reminds the user about their medicinal intake and medical appointments.
 
 ## :ledger: Index
-* [Motivation](#motivation)
+* [Motivation](#-motivation)
 
-* [Aim](#aim)
+* [Aim](#-aim)
 
 * [User Stories](#user-stories)
 
@@ -13,11 +13,11 @@ MediHealth an Android mobile application that keep tracks and reminds the user a
 
 * [Comparison to Existing/Related Apps](#how-are-we-different-from-similar-platforms)
 
-:muscle: ## Motivation
+## :muscle: Motivation
 
 People often go about their busy lives and have little room in their mind to remember the little things they have to do in order to stay healthy. This includes attending appointments, adhering to medication, supplementation or rehabilitation regimes. Attending an appointment, swallowing a pill or doing your daily wrist exercises seem simple in isolation. However, stack them together  and many people are so busy they will simply forget one of them. For example, many medications need to be taken with food or on an empty stomach. Some patients are on multiple medications that cannot be taken at the same time as others. This can result in a very careful scheduling balancing act every day. 
 
-:mag: ## Aim
+## :mag: Aim
 
 We hope to build a user-friendly medical health tracker mobile application that tracks and reminds you of your medicinal intake and medical appointments.
 
