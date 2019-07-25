@@ -1,6 +1,6 @@
 # MediHealth
 
-MediHealth a cross-platform mobile application that keep tracks and reminds the user about the medicine intake, medical appointments, rehabilitation exercises and other important medical biomarkers. 
+MediHealth an Android mobile application that keep tracks and reminds the user about their medicinal intake and medical appointments.
 
 ## :ledger: Index
 * [Motivation](#motivation)
@@ -19,56 +19,57 @@ People often go about their busy lives and have little room in their mind to rem
 
 ## :mag: Aim
 
-We hope to build a user-friendly medical health tracker mobile application that tracks and reminds you of your medicinal intake, medical appointments and other important medical biomarkers.
+We hope to build a user-friendly medical health tracker mobile application that tracks and reminds you of your medicinal intake and medical appointments.
 
 ## :book: User Stories
-As a patient, Squidward needs to take various medicines at various frequencies He needs an easy & efficient method of handling  these schedules flexibly.
+As a patient, Squidward needs to take various medicines at various frequencies. He needs an easy and efficient method of handling these schedules flexibly.
 
 As an outpatient, Squidward has many medical appointments that can range from 1 week to 1 year later. He wants an easy way to keep track of them while being able to see all of them at once.
 
 As a forgetful person, Patrick wants to check if he has taken his medication.
-Worried for Patrick, his mother would also like to receive notifications if he hasn’t taken his medication an hour after the scheduled dose. 
+Worried for Patrick, his mother would also like to receive notifications if he hasn’t taken his medication an hour after the scheduled time. 
 
 As a person with ADHD, Spongebob would like for his reminder notifications to be ambiguous so  that people don’t know what meds he is taking)
 
 As a responsible father, Mr Krabs would like to track his and his daughters medication from his application.
 
-## :telescope: Scope of Project
-
-A cross-platform mobile application that keep tracks and reminds the user about the medicine intake, medical appointments, rehabilitation exercises and other important medical biomarkers. 
-
-More specifically:
-
-It tracks the users:
-* Medicine / Supplementation Consumption
-* Medical Appointments
-
-
-It reminds the user to:
-* Eat their medication / supplements
-* Attend upcoming medical appointments
-
 ## :pill: Features
 - Medicine Feature
+  - A form to input the name, date, time and frequency of the medication for tracking.
+  - Notifications will be sent at the specified date and time.
+  - Able to update and/or delete the medicine from the database.
 - Appointment Feature
-- Input form for Medicine & Appointment
-- Login & Profile Page
+  - A form to input the name, date, time and location of the appointment for tracking.
+  - Notifications will be sent before the specified date and time.
+  - Able to update and/or delete the appointment from the database.
+- Profile
+  - User will be able to input their details (e.g. Name, Birthday, Height and Weight) upon signing up.
+  - Able to edit and update their details at anytime. 
+  - Toggle weight to kilogram or pounds.
+  - Toggle height to feet or centimetres.
 - Maps
+  - Able to see user’s current location.
+  - In-built maps feature that shows pharmacy locations in Singapore.
+  - Search bar for users to find their desired pharmacy.
+  - Users will be redirected to Google Maps for directions to the desired pharmacy.
 - Medical News
   - We used News API, a simple HTTP REST API for searching and retrieving live articles from all over the web. In particular we searched for medical news and prioritised medical news from Singapore.
-- Notifications 
 - Security (Email verification, hidden API keys from source code, 1 account per email address [Preventing users from creating multiple accounts using the same email address with different authentication providers.])
 [Prevent weak passwords from being set via firebase password authentication]
 - Spam prevention and 
 
 ## How are we different from similar platforms?
 - **HealthHub SG**
-  - It only tracks medical appointments from public hospitals and polyclinics but not private hospitals and clinics. In addition, it does not track blood donation appointments.
+  - It only tracks medical appointments from public hospitals and polyclinics but not private hospitals and clinics. In addition, it does not track appointments for blood donations.
   - There is no reminder functionality for patient’s medicines.
+  - It does not have a Maps feature.
+  - It does not have a News feature.
 
 - **MyTherapy**
-  - Tracks and reminds medication
-  - Does not cover appointments 
+  - It only tracks medication and provides reminders.
+  - It does not track appointments nor provide reminders.
+  - It does not have a Maps feature.
+  - It does not have a News feature.
 
 ## :sunny: Usage
 ###  :electric_plug: Installation
