@@ -1,43 +1,32 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-	bigButton: {
-		alignItems: "flex-start",
-		backgroundColor: "#28DA9A",
-		width: 270,
-		height: 60,
-		borderRadius: 8,
-		padding: 15,
-		marginTop: 10
+	MedicineButtonRow: {
+		flexDirection: "row",
+		flex: 1,
+		justifyContent: "space-between"
 	},
-	bigButtonText: {
+	MedicineButtonNameText: {
 		fontSize: 20,
+		fontWeight: "bold",
+		color: "black",
+		bottom: 2
+	},
+	MedicineButtonDateText: {
+		fontSize: 15,
 		fontWeight: "400",
-		color: "#FFFFFF"
+		color: "black"
 	},
-	MedicineButtonContainer: {
-		flexDirection: "row"
-		//alignItems: "center"
-	},
-	MedicineButtonPadding: {
-		flex: 1
-	},
-	MedicineButton: {
-		alignItems: "flex-start",
-		backgroundColor: "transparent",
-		flex: 3,
-		height: 60,
-		borderRadius: 5,
-		padding: 15,
-		marginTop: 10,
-		borderColor: "#28DA9A",
-		borderWidth: 2
-	},
-	MedicineButtonText: {
-		fontSize: 20,
+	MedicineButtonLocationText: {
+		fontSize: 12,
 		fontWeight: "400",
 		color: "black",
-		alignSelf: "center"
+		top: 2
+	},
+	MedicineButtonTimeText: {
+		fontSize: 15,
+		fontWeight: "400",
+		color: "black"
 	},
 	medicineInputButton: {
 		height: 36,

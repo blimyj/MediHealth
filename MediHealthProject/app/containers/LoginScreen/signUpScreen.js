@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import {
 	View,
 	TouchableOpacity,
-	TextInput,
 	StyleSheet,
 	Text,
-	Button
+	Keyboard
 } from "react-native";
 import { Container, Content, Form, Item, Label, Input } from "native-base";
+import DateTimePicker from "react-native-modal-datetime-picker";
 import * as firebase from "firebase";
 
 class SignUpScreen extends Component {
@@ -23,20 +23,25 @@ class SignUpScreen extends Component {
 			job: "",
 			email: "",
 			password: "",
-			uid: ""
+			uid: "",
+			isDateTimePickerVisible: false
 		};
 	}
 
-	state = {
-		name: "",
-		age: "",
-		height: "",
-		weight: "",
-		birthday: "",
-		job: "",
-		email: "",
-		password: "",
-		uid: ""
+	showDateTimePicker = () => {
+		this.setState({ isDateTimePickerVisible: true });
+	};
+
+	hideDateTimePicker = () => {
+		this.setState({ isDateTimePickerVisible: false });
+	};
+
+	handleDatePicked = date => {
+		const birthday =
+			date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+		this.setState({ birthday: birthday });
+		this.hideDateTimePicker();
+		Keyboard.dismiss();
 	};
 
 	writeUserData(uid_no) {
@@ -130,6 +135,7 @@ class SignUpScreen extends Component {
 					console.log(authData.user.uid);
 					this.writeUserData(authData.user.uid);
 					this.initialiseUserData(authData.user.uid);
+					firebase.auth().currentUser.sendEmailVerification();
 
 					//Clears input fields
 
@@ -178,6 +184,7 @@ class SignUpScreen extends Component {
 							<Input
 								onChangeText={text => this.setState({ birthday: text })}
 								value={this.state.birthday}
+								onFocus={this.showDateTimePicker}
 							/>
 						</Item>
 						<Item stackedLabel style={styles.itemUnderline}>
@@ -228,6 +235,14 @@ class SignUpScreen extends Component {
 						<Text style={{ color: "#28DA9A" }}> Log in now.</Text>
 					</TouchableOpacity>
 				</View>
+
+				<DateTimePicker
+					isVisible={this.state.isDateTimePickerVisible}
+					onCancel={this.hideDateTimePicker}
+					onConfirm={this.handleDatePicked}
+					minimumDate={new Date(1997, 0, 1)}
+					maximumDate={new Date(1997, 11, 31)}
+				/>
 			</Container>
 		);
 	}

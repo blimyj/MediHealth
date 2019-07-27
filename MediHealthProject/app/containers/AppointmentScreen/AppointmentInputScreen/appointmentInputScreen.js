@@ -361,6 +361,7 @@ class AppointmentInputScreen extends Component {
 						<Item stackedLabel num3 style={{ borderColor: "#53e1ae" }}>
 							<Label>Time</Label>
 							<Input
+								keyboardType="number-pad"
 								value={this.state.time}
 								onChangeText={text => this.setState({ time: text })}
 								onFocus={() => this.showDateTimePicker("time")}
