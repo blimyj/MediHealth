@@ -24,7 +24,7 @@ We hope to build a user-friendly medical health tracker mobile application that 
 ## :book: User Stories
 ### **_1. Squidward Clarry (Anonymized for privacy)_**
 
-**Background**: 
+**Background**:
 - Age: 47
 - Computer Expertise: Medium
 - Conditions: Diabetes, Scoliosis, Nerve Pinch
@@ -47,7 +47,7 @@ We hope to build a user-friendly medical health tracker mobile application that 
 
 ### **_2. Patrick DeStar (Anonymized for privacy)_**
 
-**Background**: 
+**Background**:
 - Age: 49
 - Computer Expertise: Low
 - Condition: Alzheimer’s Disease
@@ -77,7 +77,7 @@ We hope to build a user-friendly medical health tracker mobile application that 
 
 ### **_3. Spongebob Squarepants (Anonymized for privacy)_**
 
-**Background**: 
+**Background**:
 - Age: 33
 - Computer Expertise: High
 - Condition: Diabetes
@@ -148,9 +148,16 @@ $ npm install
 ###  :package: Commands
 For Android,
 ```
+// Run an Android emulator or plug in an android phone to your computer. (Ensure it is booted.)
 $ react-native run-android
 ```
 
+```
+// If above fails while attempting to run the app on a physical Android device, try running: 
+$ adb reverse tcp:8081 tcp:8081
+// Then:
+$ react-native run-android
+```
 ##  :wrench: Development
 ###  :fire: Contribution
 
