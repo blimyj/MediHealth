@@ -72,6 +72,11 @@ class NotificationScreen extends Component {
 						</Text>
 					</View>
 					<View style={{flex: 1 }}>
+						<Text style={{ textAlign: "center" }}>
+							{this.state.apptName}
+						</Text>
+					</View>
+					<View style={{flex: 1 }}>
 						<View style={{flex: 1 }}></View>
 						<View style={{flexDirection: 'row', justifyContent: 'space-evenly', flex: 1 }}>
 						<Button

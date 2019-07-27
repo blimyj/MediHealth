@@ -75,27 +75,42 @@ class MedicineInputScreen extends Component {
 					medTime: dataTime
 				});
 			
-			//Set local repeating notification
-			
-			PushNotification.localNotificationSchedule({
-				//... You can use all the options from localNotifications
-				message: "Time to eat your medicine!", // (required)
-				date: new Date(dataDate + " " + dataTime),
-				//Format
-				//Date 2019/mm/dd
-				//Time HH:mm
-				//dataInfo: {name: "Encapsulated"},
-				tag: 'Hihi',
-				dataInfo: {
-					notifType: 'medicine',
-					medName: dataName
-					//Work on encapsulating data
-				},
-				
-				repeatType: 'time',
-				repeatTime: dataFreq * 1000 * 60 * 60 // in milliseconds
-			});
-			
+			if (dataFreq > 0) {//Set local repeating notification otherwise set a one off notification
+				PushNotification.localNotificationSchedule({
+					//... You can use all the options from localNotifications
+					message: "Time to eat your medicine!", // (required)
+					date: new Date(dataDate + " " + dataTime),
+					//Format
+					//Date 2019/mm/dd
+					//Time HH:mm
+					//dataInfo: {name: "Encapsulated"},
+					tag: 'Hihi',
+					dataInfo: {
+						notifType: 'medicine',
+						medName: dataName
+						//Work on encapsulating data
+					},
+					
+					repeatType: 'time',
+					repeatTime: dataFreq * 1000 * 60 * 60 // in milliseconds
+				});
+			} else {
+				PushNotification.localNotificationSchedule({
+					//... You can use all the options from localNotifications
+					message: "Time to eat your medicine!", // (required)
+					date: new Date(dataDate + " " + dataTime),
+					//Format
+					//Date 2019/mm/dd
+					//Time HH:mm
+					//dataInfo: {name: "Encapsulated"},
+					tag: 'Hihi',
+					dataInfo: {
+						notifType: 'medicine',
+						medName: dataName
+						//Work on encapsulating data
+					}
+				});
+			}
 		} else {
 			console.log(user);
 		}
