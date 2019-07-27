@@ -22,23 +22,72 @@ People often go about their busy lives and have little room in their mind to rem
 We hope to build a user-friendly medical health tracker mobile application that tracks and reminds you of your medicinal intake and medical appointments.
 
 ## :book: User Stories
+**_Squidward Clarry (Anonymized for privacy)_**
+**Background**: 
+Age: 47
+Computer Expertise: Medium
+Conditions: Diabetes, Scoliosis, Nerve Pinch
+
+**Main Points**:
+- Is currently taking 8 different medications at different times of the week at different times of the day.
+- Can’t keep track of which to take.
+**Goals**:
+- Keep track of medication
+**Pain Points**:
+- Too many medications, dosages and frequencies to remember.
+
 As a patient, Squidward needs to take various medications at differing frequencies. He needs an easy and efficient method of handling these schedules flexibly.
 
 As an outpatient, Squidward has many medical appointments that can range from 1 week to 1 year later. He wants an easy way to keep track of them while being able to see all of them at once.
 
+**_Patrick DeStar (Anonymized for privacy)_**
+**Background**: 
+Age: 49
+Computer Expertise: Low
+Condition: Alzheimer’s Disease
+
+**Main Points**:
+- Inexperienced with user interfaces
+- Experiences memory loss
+**Goals**:
+- Maintain independence
+- Ensure that he doesn’t miss any medication
+- Reduce confusion over interacting with application
+**Pain Points**:
+- Poor eyesight, unable to notice small details
+- Cannot process too many steps at once
+- Often presses the wrong buttons
+- Will forget what he is trying to do
+
 As a forgetful person, Patrick wants to be reminded to take his medications and check if he has taken his medication.
 
+Patrick would prefer that the user interface is clear and simple enough for him to use.
+
 As a patient who has run out of medication, Patrick wants to be able to find the nearest pharmacy so he can restock his supply. Whether it’s from his workplace or home.
+
+**_Spongebob Squarepants (Anonymized for privacy)_**
+**Background**: 
+Age: 33
+Computer Expertise: High
+Condition: Diabetes
+
+**Main Points**:
+- Many doctor appointments
+**Goals**:
+- Wants to occupy time while waiting for the doctor
+**Pain Points**:
+- Wants to spend time productively instead of playing games
+- Wants to be entertained
 
 While waiting for his turn at the doctor, Spongebob would like to read some medical news to pass his time.
 
 
 ## :pill: Features
-- **Medicine Feature**
+- **Medicine**
   - A form to input the name, date, time and frequency of the medication for tracking.
   - Notifications will be sent at the specified date and time.
   - Able to update and/or delete the medicine from the database.
-- **Appointment Feature**
+- **Appointment**
   - A form to input the name, date, time and location of the appointment for tracking.
   - Notifications will be sent before the specified date and time.
   - Able to update and/or delete the appointment from the database.
