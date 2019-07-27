@@ -22,11 +22,14 @@ People often go about their busy lives and have little room in their mind to rem
 We hope to build a user-friendly medical health tracker mobile application that tracks and reminds you of your medicinal intake and medical appointments.
 
 ## :book: User Stories
-**_Squidward Clarry (Anonymized for privacy)_**
+**_1. Squidward Clarry (Anonymized for privacy)_**
 
 **Background**: 
+
 Age: 47
+
 Computer Expertise: Medium
+
 Conditions: Diabetes, Scoliosis, Nerve Pinch
 
 **Main Points**:
@@ -43,11 +46,14 @@ As a patient, Squidward needs to take various medications at differing frequenci
 
 As an outpatient, Squidward has many medical appointments that can range from 1 week to 1 year later. He wants an easy way to keep track of them while being able to see all of them at once.
 
-**_Patrick DeStar (Anonymized for privacy)_**
+**_2. Patrick DeStar (Anonymized for privacy)_**
 
 **Background**: 
+
 Age: 49
+
 Computer Expertise: Low
+
 Condition: Alzheimer’s Disease
 
 **Main Points**:
@@ -71,11 +77,14 @@ Patrick would prefer that the user interface is clear and simple enough for him 
 
 As a patient who has run out of medication, Patrick wants to be able to find the nearest pharmacy so he can restock his supply. Whether it’s from his workplace or home.
 
-**_Spongebob Squarepants (Anonymized for privacy)_**
+**_3. Spongebob Squarepants (Anonymized for privacy)_**
 
 **Background**: 
+
 Age: 33
+
 Computer Expertise: High
+
 Condition: Diabetes
 
 **Main Points**:
