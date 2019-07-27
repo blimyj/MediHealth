@@ -25,12 +25,9 @@ We hope to build a user-friendly medical health tracker mobile application that 
 ### **_1. Squidward Clarry (Anonymized for privacy)_**
 
 **Background**: 
-
-Age: 47
-
-Computer Expertise: Medium
-
-Conditions: Diabetes, Scoliosis, Nerve Pinch
+- Age: 47
+- Computer Expertise: Medium
+- Conditions: Diabetes, Scoliosis, Nerve Pinch
 
 **Main Points**:
 - Is currently taking 8 different medications at different times of the week at different times of the day.
@@ -51,12 +48,9 @@ Conditions: Diabetes, Scoliosis, Nerve Pinch
 ### **_2. Patrick DeStar (Anonymized for privacy)_**
 
 **Background**: 
-
-Age: 49
-
-Computer Expertise: Low
-
-Condition: Alzheimer’s Disease
+- Age: 49
+- Computer Expertise: Low
+- Condition: Alzheimer’s Disease
 
 **Main Points**:
 - Inexperienced with user interfaces
@@ -84,12 +78,9 @@ Condition: Alzheimer’s Disease
 ### **_3. Spongebob Squarepants (Anonymized for privacy)_**
 
 **Background**: 
-
-Age: 33
-
-Computer Expertise: High
-
-Condition: Diabetes
+- Age: 33
+- Computer Expertise: High
+- Condition: Diabetes
 
 **Main Points**:
 - Many doctor appointments
