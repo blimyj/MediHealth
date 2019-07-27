@@ -46,6 +46,8 @@ As a patient, Squidward needs to take various medications at differing frequenci
 
 As an outpatient, Squidward has many medical appointments that can range from 1 week to 1 year later. He wants an easy way to keep track of them while being able to see all of them at once.
 
+---
+
 ### **_2. Patrick DeStar (Anonymized for privacy)_**
 
 **Background**: 
@@ -77,6 +79,8 @@ Patrick would prefer that the user interface is clear and simple enough for him 
 
 As a patient who has run out of medication, Patrick wants to be able to find the nearest pharmacy so he can restock his supply. Whether it’s from his workplace or home.
 
+---
+
 ### **_3. Spongebob Squarepants (Anonymized for privacy)_**
 
 **Background**: 
@@ -99,6 +103,7 @@ Condition: Diabetes
 
 While waiting for his turn at the doctor, Spongebob would like to read some medical news to pass his time.
 
+---
 
 ## :pill: Features
 - **Medicine**
