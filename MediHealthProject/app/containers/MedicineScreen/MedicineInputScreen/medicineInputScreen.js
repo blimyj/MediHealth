@@ -165,7 +165,6 @@ class MedicineInputScreen extends Component {
 					medDate: dataDate,
 					medTime: dataTime
 				});
-<<<<<<< HEAD
 			
 			if (dataFreq > 0) {//Set local repeating notification otherwise set a one off notification
 				PushNotification.localNotificationSchedule({
@@ -203,29 +202,6 @@ class MedicineInputScreen extends Component {
 					}
 				});
 			}
-=======
-
-			//Set local repeating notification
-
-			PushNotification.localNotificationSchedule({
-				//... You can use all the options from localNotifications
-				message: "Time to eat your medicine!", // (required)
-				date: new Date(dataDate + " " + dataTime),
-				//Format
-				//Date 2019/mm/dd
-				//Time HH:mm
-				//dataInfo: {name: "Encapsulated"},
-				tag: "Hihi",
-				dataInfo: {
-					notifType: "medicine",
-					medName: dataName
-					//Work on encapsulating data
-				},
-
-				repeatType: "time",
-				repeatTime: dataFreq * 1000 * 60 * 60 // in milliseconds
-			});
->>>>>>> 721c5c76dd372580af24e7ee45aee89c4bd61b09
 		} else {
 			console.log(user);
 		}
