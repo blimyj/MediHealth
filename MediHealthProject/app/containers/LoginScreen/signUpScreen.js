@@ -82,7 +82,7 @@ class SignUpScreen extends Component {
 				//Profile
 				Profile: {
 					profilePic:
-						"https://media.licdn.com/dms/image/C5103AQEiJL0AgWj5KQ/profile-displayphoto-shrink_800_800/0?e=1566432000&v=beta&t=MaAA-eyV5MXKmgj4rRqSfKE8fwGDtjkkVn-EMruGzKA",
+						"https://i.imgur.com/MQHYB.jpg",
 					displayName: this.state.name,
 					age: this.state.age,
 					weight: this.state.weight,
