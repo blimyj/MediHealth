@@ -53,11 +53,14 @@ class MedicineInputScreen extends Component {
 		this.state = {
 			toUpdate: false,
 			medicine: "",
-			frequency: "",
 			date: "",
 			time: "",
+			remindEvery: "1",
 			isDateTimePickerVisible: false,
-			dateTimeMode: "date"
+			dateTimeMode: "date",
+			notifCount: null,
+			notifID: null
+
 		};
 
 		this.loadMedication = this.loadMedication.bind(this);
@@ -77,7 +80,7 @@ class MedicineInputScreen extends Component {
 	handleDatePicked = date => {
 		if (this.state.dateTimeMode == "date") {
 			const medDate =
-				date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+			date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
 			this.setState({ date: medDate });
 		} else if (this.state.dateTimeMode == "time") {
 			var medTimeHours = date.getHours() + "";
@@ -114,9 +117,10 @@ class MedicineInputScreen extends Component {
 						const fbObject = snapshot.val();
 						this.setState({
 							medicine: fbObject.medName,
-							frequency: fbObject.medFreq,
 							date: fbObject.medDate,
-							time: fbObject.medTime
+							time: fbObject.medTime,
+							remindEvery: fbObject.remindEvery,
+							notifID: fbObject.notifID
 						});
 					});
 			} else {
@@ -125,7 +129,7 @@ class MedicineInputScreen extends Component {
 		}
 	}
 
-	updateMedication(dataName, dataFreq, dataDate, dataTime) {
+	updateMedication(dataName, dataDate, dataTime, dataRemind) {
 		var user = firebase.auth().currentUser;
 		const key = this.props.navigation.getParam("key", null);
 		if (user != null) {
@@ -136,34 +140,180 @@ class MedicineInputScreen extends Component {
 				.child(key)
 				.set({
 					medName: dataName,
-					medFreq: dataFreq,
 					medDate: dataDate,
-					medTime: dataTime
+					medTime: dataTime,
+					notifID: this.state.notifID,
+					remindEvery: dataRemind
 				});
+			//Cancel previous notification
+			PushNotification.cancelLocalNotifications({id: this.state.notifID.toString()});
+			//Write new notification by setting new local notification
+			var remindTime = new Date(dataDate + " " + dataTime);
+	
+			if (Platform.OS === 'android') {
+				PushNotification.localNotificationSchedule({
+					//... You can use all the options from localNotifications
+					message: "Time for your medicine!", // (required)
+					date: remindTime,
+					//Format
+					//Date 2019/mm/dd
+					//Time HH:mm
+					//dataInfo: {name: "Encapsulated"},
+					tag: 'Hihi',
+					dataInfo: {
+						notifType: 'medication',
+						medName: dataName,
+						notifID: this.state.notifID,
+						date: remindTime,
+						//Work on encapsulating data
+					},
+					repeatType: 'day',
+					repeatTime: dataRemind, // in days
+					//for Android notification cancelling
+					id: this.state.notifID.toString()
+				});
+			}
+			
+
+			if (Platform.OS === 'ios') {
+				PushNotification.localNotificationSchedule({
+					//... You can use all the options from localNotifications
+					message: "Time for your medicine!", // (required)
+					date: remindTime,
+					//Format
+					//Date 2019/mm/dd
+					//Time HH:mm
+					//dataInfo: {name: "Encapsulated"},
+					tag: 'Hihi',
+					dataInfo: {
+						notifType: 'medication',
+						apptName: dataAppt,
+						notifID: this.state.notifID,
+						date: remindTime,
+						//Work on encapsulating data
+					},
+					repeatType: 'day',
+					repeatTime: dataRemind, // in days
+					//for iOS notification cancelling
+					userInfo: {
+						id: this.state.notifID.toString()
+					}
+				});
+			}
 		} else {
 			console.log(user);
 		}
 	}
 
-	addMedication(dataName, dataFreq, dataDate, dataTime) {
-		var user = firebase.auth().currentUser;
-		if (user != null) {
-			// Add Medicine
+	addNotification(dataName, dataDate, dataTime, dataRemind, user) {
+		console.log(user);
+		console.log(this.state.notifCount);
+		if (this.state.notifCount > 8000){
+			alert('Notification Limit Reached, please inform developers.');
+		}
+		else if (user != null && this.state.notifCount != null) {
 			const uid = user.uid;
 			var key = firebase
 				.database()
 				.ref("/users_URW/" + uid + "/medications/list")
 				.push().key;
-
+			
+			//0 Appended to front of count to signify its medications repeating type
+			//1 is for medications snooze.
+			var notifID = this.state.notifCount;
 			firebase
 				.database()
 				.ref("/users_URW/" + uid + "/medications/list")
 				.child(key)
 				.set({
 					medName: dataName,
-					medFreq: dataFreq,
 					medDate: dataDate,
-					medTime: dataTime
+					medTime: dataTime,
+					remindEvery: dataRemind,
+					notifID: notifID
+				});
+
+			//Increment notification count
+			firebase
+			.database()
+			.ref("/users_URW/" + uid + "/medications/metaData")
+			.set({
+				count: this.state.notifCount+1
+			});
+
+			//Set local notification
+			var remindTime = new Date(dataDate + " " + dataTime);
+
+			if (Platform.OS === 'android') {
+				PushNotification.localNotificationSchedule({
+					//... You can use all the options from localNotifications
+					message: "Time for your medicine!", // (required)
+					date: remindTime,
+					//Format
+					//Date 2019/mm/dd
+					//Time HH:mm
+					//dataInfo: {name: "Encapsulated"},
+					tag: 'Hihi',
+					dataInfo: {
+						notifType: 'medication',
+						medName: dataName,
+						notifID: notifID,
+						date: remindTime
+						//Work on encapsulating data
+					},
+					repeatType: 'day',
+					repeatTime: dataRemind, // in days
+					//for Android notification cancelling
+					id: notifID.toString()
+				});
+			}
+			
+
+			if (Platform.OS === 'ios') {
+				PushNotification.localNotificationSchedule({
+					//... You can use all the options from localNotifications
+					message: "Time for your medicine!", // (required)
+					date: remindTime,
+					//Format
+					//Date 2019/mm/dd
+					//Time HH:mm
+					//dataInfo: {name: "Encapsulated"},
+					tag: 'Hihi',
+					dataInfo: {
+						notifType: 'medication',
+						medName: dataName,
+						notifID: notifID,
+						date: remindTime,
+						//Work on encapsulating data
+					},
+					repeatType: 'day',
+					repeatTime: dataRemind, // in days
+					//for iOS notification cancelling
+					userInfo: {
+						id: notifID.toString()
+					}
+				});
+			}
+		} else {
+			console.log(user);
+		}
+	}
+
+
+	addMedication(dataName, dataDate, dataTime, dataRemind) {
+		var user = firebase.auth().currentUser;
+		if (user != null) {
+			// Add Medicine
+			const uid = user.uid;
+			firebase
+				.database()
+				.ref("/users_URW/" + uid + "/medications/metaData")
+				.once("value", snapshot => {
+					const fbObject = snapshot.val();
+					this.setState({
+						notifCount: fbObject.count
+					});
+					this.addNotification(dataName, dataDate, dataTime, dataRemind, user)
 				});
 			
 			if (dataFreq > 0) {//Set local repeating notification otherwise set a one off notification
@@ -250,6 +400,14 @@ class MedicineInputScreen extends Component {
 								onFocus={() => this.showDateTimePicker("time")}
 							/>
 						</Item>
+						<Item stackedLabel num4 style={{ borderColor: "#53e1ae" }}>
+							<Label>Remind Every ___ Days:</Label>
+							<Input
+								keyboardType="number-pad"
+								value={this.state.remindEvery}
+								onChangeText={text => this.setState({ remindEvery: text })}
+							/>
+						</Item>
 					</Form>
 					<DateTimePicker
 						isVisible={this.state.isDateTimePickerVisible}
@@ -270,9 +428,9 @@ class MedicineInputScreen extends Component {
 							} else {
 								this.addMedication(
 									this.state.medicine,
-									this.state.frequency,
 									this.state.date,
-									this.state.time
+									this.state.time,
+									this.state.remindEvery
 								);
 							}
 							this.props.navigation.navigate("Medicine");
@@ -281,7 +439,7 @@ class MedicineInputScreen extends Component {
 					>
 						<Image
 							source={require("../../../assets/images/plus-icon.png")}
-							style={styles.appointmentInputButton}
+							style={styles.medicineInputButton}
 						/>
 					</TouchableOpacity>
 				</Content>

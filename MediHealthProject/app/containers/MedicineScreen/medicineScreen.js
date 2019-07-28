@@ -92,17 +92,37 @@ class MedicineScreen extends Component {
 		var user = firebase.auth().currentUser;
 		if (user != null) {
 			const uid = user.uid;
+			//Cancel Notification		
 			firebase
 				.database()
-				.ref("/users_URW/" + uid + "/medications/list")
+				.ref("/users_URW/" + uid + "/appointments/list")
 				.child(key)
-				.remove();
+				.once("value", snapshot => {
+					const fbObject = snapshot.val();
+					try {
+						PushNotification.cancelLocalNotifications({id: fbObject.notifID.toString()});
+					} catch (err){
+					}
+
+					firebase
+						.database()
+						.ref("/users_URW/" + uid + "/medications/list")
+						.child(key)
+						.remove();
+				});
 
 			this.readUserData();
 		} else {
 			console.log(user);
 		}
 	}
+
+	formatDateDisplay = dateObj => {
+		const date = new Date(dateObj);
+		const displayDate = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+		return displayDate;
+	}
+
 
 	render() {
 		return (
@@ -145,7 +165,7 @@ class MedicineScreen extends Component {
 										style={{ alignSelf: "center" }}
 										onPress={() => {
 											console.log(item);
-											// this.deleteMedication(item.id);
+											this.deleteMedication(item.id);
 										}}
 									>
 										<View
@@ -213,7 +233,7 @@ class MedicineScreen extends Component {
 								</View>
 
 								{/* Overlay */}
-								<TouchableHighlight
+								<View
 									style={{
 										backgroundColor: "white",
 										flex: 1,
@@ -227,9 +247,9 @@ class MedicineScreen extends Component {
 										borderWidth: 2,
 										alignSelf: "center"
 									}}
-									onPress={() => this.props.navigation.navigate("Biomarker")}
+									//onPress={() => this.props.navigation.navigate("Biomarker")}
 									underlayColor="#aaf0d7"
-									activeOpacity={0.2}
+									//activeOpacity={0.2}
 								>
 									<View
 										style={{
@@ -245,7 +265,7 @@ class MedicineScreen extends Component {
 												{item.medName}
 											</Text>
 											<Text style={styles.MedicineButtonDateText}>
-												{item.medDate}
+												{this.formatDateDisplay(item.medDate)}
 											</Text>
 										</View>
 										{/*Row 2*/}
@@ -258,7 +278,7 @@ class MedicineScreen extends Component {
 											</Text>
 										</View>
 									</View>
-								</TouchableHighlight>
+								</View>
 							</SwipeRow>
 						)}
 						keyExtractor={item => item.id}

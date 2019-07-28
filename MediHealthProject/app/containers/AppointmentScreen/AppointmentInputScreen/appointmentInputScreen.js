@@ -171,7 +171,9 @@ class AppointmentInputScreen extends Component {
 					dataInfo: {
 						notifType: 'appointment',
 						apptName: dataAppt,
-						notifID: this.state.notifID
+						apptLocation: dataLocat,
+						notifID: this.state.notifID,
+						date: remindTime
 						//Work on encapsulating data
 					},
 					//for Android notification cancelling
@@ -193,7 +195,9 @@ class AppointmentInputScreen extends Component {
 					dataInfo: {
 						notifType: 'appointment',
 						apptName: dataAppt,
-						notifID: this.state.notifID
+						apptLocation: dataLocat,
+						notifID: this.state.notifID,
+						date: remindTime
 						//Work on encapsulating data
 					},
 					//for iOS notification cancelling
@@ -220,10 +224,9 @@ class AppointmentInputScreen extends Component {
 				.ref("/users_URW/" + uid + "/appointments/list")
 				.push().key;
 			
-			//2 Appended to front of count to signify its appointment repeating type
-			//3 is for appointment non-repeating type i.e. snooze.
+			//2 Appended to front of count to signify its appointment reminder
+			//3 is for appointment snooze.
 			var notifID = 20000 + this.state.notifCount;
-			console.log(key);
 			firebase
 				.database()
 				.ref("/users_URW/" + uid + "/appointments/list")
@@ -262,7 +265,9 @@ class AppointmentInputScreen extends Component {
 					dataInfo: {
 						notifType: 'appointment',
 						apptName: dataAppt,
-						notifID: notifID
+						apptLocation: dataLocat,
+						notifID: notifID,
+						date: remindTime
 						//Work on encapsulating data
 					},
 					//for Android notification cancelling
@@ -284,7 +289,9 @@ class AppointmentInputScreen extends Component {
 					dataInfo: {
 						notifType: 'appointment',
 						apptName: dataAppt,
-						notifID: notifID
+						apptLocation: dataLocat,
+						notifID: notifID,
+						date: remindTime
 						//Work on encapsulating data
 					},
 					//for iOS notification cancelling
