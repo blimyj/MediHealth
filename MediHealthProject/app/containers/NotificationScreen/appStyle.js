@@ -47,7 +47,7 @@ export default StyleSheet.create({
 	skipButton: {
 		height: 50,
 		width: 50,
-		tintColor: "#e32d2d"
+		//tintColor: "#e32d2d"
 	},
 	snoozeButton: {
 		height: 50,

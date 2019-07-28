@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import {
 	View,
 	TouchableOpacity,
-	TextInput,
 	StyleSheet,
 	Text,
-	Button
+	Keyboard
 } from "react-native";
 import { Container, Content, Form, Item, Label, Input } from "native-base";
+import DateTimePicker from "react-native-modal-datetime-picker";
 import * as firebase from "firebase";
 
 class SignUpScreen extends Component {
@@ -23,20 +23,25 @@ class SignUpScreen extends Component {
 			job: "",
 			email: "",
 			password: "",
-			uid: ""
+			uid: "",
+			isDateTimePickerVisible: false
 		};
 	}
 
-	state = {
-		name: "",
-		age: "",
-		height: "",
-		weight: "",
-		birthday: "",
-		job: "",
-		email: "",
-		password: "",
-		uid: ""
+	showDateTimePicker = () => {
+		this.setState({ isDateTimePickerVisible: true });
+	};
+
+	hideDateTimePicker = () => {
+		this.setState({ isDateTimePickerVisible: false });
+	};
+
+	handleDatePicked = date => {
+		const birthday =
+			date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+		this.setState({ birthday: birthday });
+		this.hideDateTimePicker();
+		Keyboard.dismiss();
 	};
 
 	writeUserData(uid_no) {
@@ -76,13 +81,13 @@ class SignUpScreen extends Component {
 			.set({
 				//Profile
 				Profile: {
-					profilePic:
-						"https://media.licdn.com/dms/image/C5103AQEiJL0AgWj5KQ/profile-displayphoto-shrink_800_800/0?e=1566432000&v=beta&t=MaAA-eyV5MXKmgj4rRqSfKE8fwGDtjkkVn-EMruGzKA",
+					profilePic: "https://i.imgur.com/MQHYB.jpg",
 					displayName: this.state.name,
 					age: this.state.age,
 					weight: this.state.weight,
 					height: this.state.height,
-					birthday: this.state.birthday
+					birthday: this.state.birthday,
+					job: this.state.job
 				}
 			});
 
@@ -130,6 +135,7 @@ class SignUpScreen extends Component {
 					console.log(authData.user.uid);
 					this.writeUserData(authData.user.uid);
 					this.initialiseUserData(authData.user.uid);
+					firebase.auth().currentUser.sendEmailVerification();
 
 					//Clears input fields
 
@@ -178,6 +184,7 @@ class SignUpScreen extends Component {
 							<Input
 								onChangeText={text => this.setState({ birthday: text })}
 								value={this.state.birthday}
+								onFocus={this.showDateTimePicker}
 							/>
 						</Item>
 						<Item stackedLabel style={styles.itemUnderline}>
@@ -228,6 +235,14 @@ class SignUpScreen extends Component {
 						<Text style={{ color: "#28DA9A" }}> Log in now.</Text>
 					</TouchableOpacity>
 				</View>
+
+				<DateTimePicker
+					isVisible={this.state.isDateTimePickerVisible}
+					onCancel={this.hideDateTimePicker}
+					onConfirm={this.handleDatePicked}
+					minimumDate={new Date(1997, 0, 1)}
+					maximumDate={new Date(1997, 11, 31)}
+				/>
 			</Container>
 		);
 	}

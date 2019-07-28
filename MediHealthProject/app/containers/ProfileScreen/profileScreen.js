@@ -44,10 +44,14 @@ class ProfileScreen extends Component {
 			weight: "0",
 			height: "0",
 			birthday: "01-01-2000",
-			job: "Patient"
+			job: "Patient",
+			heightInCm: true,
+			weightInKg: true
 		};
 
 		this.readUserData = this.readUserData.bind(this);
+		this.displayHeight = this.displayHeight.bind(this);
+		this.displayWeight = this.displayWeight.bind(this);
 	}
 
 	componentDidMount() {
@@ -80,6 +84,40 @@ class ProfileScreen extends Component {
 			console.log(user);
 		}
 	};
+
+	displayHeight() {
+		if (this.state.heightInCm) {
+			return (
+				<TouchableOpacity onPress={() => this.setState({ heightInCm: false })}>
+					<Text style={styles.details}>{this.state.height + " cm"}</Text>
+				</TouchableOpacity>
+			);
+		} else {
+			heightInFt = Math.round((this.state.height / 30.48) * 100) / 100;
+			return (
+				<TouchableOpacity onPress={() => this.setState({ heightInCm: true })}>
+					<Text style={styles.details}>{heightInFt + " ft"}</Text>
+				</TouchableOpacity>
+			);
+		}
+	}
+
+	displayWeight() {
+		if (this.state.weightInKg) {
+			return (
+				<TouchableOpacity onPress={() => this.setState({ weightInKg: false })}>
+					<Text style={styles.details}>{this.state.weight + " kg"}</Text>
+				</TouchableOpacity>
+			);
+		} else {
+			weightInPounds = Math.round(this.state.weight * 2.20462);
+			return (
+				<TouchableOpacity onPress={() => this.setState({ weightInKg: true })}>
+					<Text style={styles.details}>{weightInPounds + " lbs"}</Text>
+				</TouchableOpacity>
+			);
+		}
+	}
 
 	render() {
 		return (
@@ -120,7 +158,9 @@ class ProfileScreen extends Component {
 							>
 								Age
 							</Text>
-							<Text style={styles.details}>{this.state.age}</Text>
+							<Text style={styles.details}>
+								{this.state.age + " years old"}
+							</Text>
 						</View>
 						<View
 							style={{
@@ -160,7 +200,7 @@ class ProfileScreen extends Component {
 							>
 								Height
 							</Text>
-							<Text style={styles.details}>{this.state.height}</Text>
+							{this.displayHeight()}
 						</View>
 						<View
 							style={{
@@ -180,7 +220,7 @@ class ProfileScreen extends Component {
 							>
 								Weight
 							</Text>
-							<Text style={styles.details}>{this.state.weight}</Text>
+							{this.displayWeight()}
 						</View>
 					</View>
 				</View>
