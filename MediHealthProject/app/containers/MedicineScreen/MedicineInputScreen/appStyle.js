@@ -65,9 +65,9 @@ export default StyleSheet.create({
 		fontWeight: "400",
 		color: "#FFFFFF"
 	},
-	appointmentInputButton: {
-		height: 50,
-		width: 50,
+	medicineInputButton: {
+		height: 52,
+		width: 52,
 		tintColor: "#28DA9A"
 	}
 });

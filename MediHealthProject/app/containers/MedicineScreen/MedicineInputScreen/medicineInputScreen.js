@@ -5,7 +5,8 @@ import {
 	TouchableOpacity,
 	ListView,
 	Image,
-	Keyboard
+	Keyboard,
+	Platform
 } from "react-native";
 import { Form, Input, Item, Label, Container, Content } from "native-base";
 import { NavigationEvents } from "react-navigation";
@@ -58,7 +59,7 @@ class MedicineInputScreen extends Component {
 			remindEvery: "1",
 			isDateTimePickerVisible: false,
 			dateTimeMode: "date",
-			notifCount: null,
+			notifCount: 0,
 			notifID: null
 
 		};
@@ -91,7 +92,7 @@ class MedicineInputScreen extends Component {
 			if (medTimeMinutes.length == 1) {
 				medTimeMinutes = "0" + medTimeMinutes;
 			}
-			const medTime = medTimeHours + medTimeMinutes;
+			const medTime = medTimeHours + ":" + medTimeMinutes;
 			this.setState({ time: medTime });
 		}
 
@@ -235,10 +236,10 @@ class MedicineInputScreen extends Component {
 
 			//Increment notification count
 			firebase
-			.database()
-			.ref("/users_URW/" + uid + "/medications/metaData")
-			.set({
-				count: this.state.notifCount+1
+				.database()
+				.ref("/users_URW/" + uid + "/medications/metaData")
+				.set({
+					count: this.state.notifCount+1
 			});
 
 			//Set local notification
@@ -300,7 +301,7 @@ class MedicineInputScreen extends Component {
 	}
 
 
-	addMedication(dataName, dataDate, dataTime, dataRemind) {
+	addMedication = (dataName, dataDate, dataTime, dataRemind) => {
 		var user = firebase.auth().currentUser;
 		if (user != null) {
 			// Add Medicine
@@ -310,13 +311,14 @@ class MedicineInputScreen extends Component {
 				.ref("/users_URW/" + uid + "/medications/metaData")
 				.once("value", snapshot => {
 					const fbObject = snapshot.val();
+					console.log(fbObject);
 					this.setState({
 						notifCount: fbObject.count
 					});
 					this.addNotification(dataName, dataDate, dataTime, dataRemind, user)
 				});
-			
-			if (dataFreq > 0) {//Set local repeating notification otherwise set a one off notification
+			/*
+			if (remindEvery > 0) {//Set local repeating notification otherwise set a one off notification
 				PushNotification.localNotificationSchedule({
 					//... You can use all the options from localNotifications
 					message: "Time to eat your medicine!", // (required)
@@ -352,6 +354,7 @@ class MedicineInputScreen extends Component {
 					}
 				});
 			}
+			*/
 		} else {
 			console.log(user);
 		}
@@ -374,13 +377,6 @@ class MedicineInputScreen extends Component {
 							<Input
 								value={this.state.medicine}
 								onChangeText={text => this.setState({ medicine: text })}
-							/>
-						</Item>
-						<Item stackedLabel num1 style={{ borderColor: "#53e1ae" }}>
-							<Label>Frequency</Label>
-							<Input
-								value={this.state.frequency}
-								onChangeText={text => this.setState({ frequency: text })}
 							/>
 						</Item>
 						<Item stackedLabel num2 style={{ borderColor: "#53e1ae" }}>
@@ -421,9 +417,9 @@ class MedicineInputScreen extends Component {
 							if (this.state.toUpdate) {
 								this.updateMedication(
 									this.state.medicine,
-									this.state.frequency,
 									this.state.date,
-									this.state.time
+									this.state.time,
+									this.state.remindEvery
 								);
 							} else {
 								this.addMedication(

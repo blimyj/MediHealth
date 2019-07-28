@@ -80,11 +80,15 @@ class AppointmentScreen extends Component {
 				.once("value", snapshot => {
 					const fbObject = snapshot.val();
 					console.log("Here: ", fbObject);
-					const newArr = Object.keys(fbObject).map(key => {
-						fbObject[key].id = key;
-						return fbObject[key];
-					});
-					this.setState({ listViewData: newArr });
+					if( fbObject != null ) {
+						const newArr = Object.keys(fbObject).map(key => {
+							fbObject[key].id = key;
+							return fbObject[key];
+						});
+						this.setState({ listViewData: newArr });
+					} else {
+						this.setState({ listViewData: [] });
+					}
 				});
 		} else {
 			console.log(user);

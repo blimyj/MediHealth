@@ -242,10 +242,10 @@ class AppointmentInputScreen extends Component {
 
 			//Increment notification count
 			firebase
-			.database()
-			.ref("/users_URW/" + uid + "/appointments/metaData")
-			.set({
-				count: this.state.notifCount+1
+				.database()
+				.ref("/users_URW/" + uid + "/appointments/metaData")
+				.set({
+					count: this.state.notifCount+1
 			});
 
 			//Set local notification

@@ -13,6 +13,7 @@ import { NavigationEvents } from "react-navigation";
 import styles from "./appStyle";
 import * as firebase from "firebase";
 import { SwipeListView, SwipeRow } from "react-native-swipe-list-view";
+import PushNotification from "react-native-push-notification";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -76,12 +77,17 @@ class MedicineScreen extends Component {
 				.database()
 				.ref("/users_URW/" + uid + "/medications/list")
 				.once("value", snapshot => {
+					console.log("ERROR")
 					const fbObject = snapshot.val();
-					const newArr = Object.keys(fbObject).map(key => {
-						fbObject[key].id = key;
-						return fbObject[key];
-					});
-					this.setState({ listViewData: newArr });
+					if(fbObject != null ) {
+						const newArr = Object.keys(fbObject).map(key => {
+							fbObject[key].id = key;
+							return fbObject[key];
+						});
+						this.setState({ listViewData: newArr });
+					} else {
+						this.setState({ listViewData: [] });
+					}
 				});
 		} else {
 			console.log(user);
@@ -95,13 +101,17 @@ class MedicineScreen extends Component {
 			//Cancel Notification		
 			firebase
 				.database()
-				.ref("/users_URW/" + uid + "/appointments/list")
+				.ref("/users_URW/" + uid + "/medications/list")
 				.child(key)
 				.once("value", snapshot => {
 					const fbObject = snapshot.val();
+					console.log(fbObject);
 					try {
+						console.log(fbObject.notifID.toString())
 						PushNotification.cancelLocalNotifications({id: fbObject.notifID.toString()});
+					
 					} catch (err){
+						console.log(err)
 					}
 
 					firebase
