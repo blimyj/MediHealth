@@ -129,6 +129,7 @@ class HomeScreen extends Component {
 						</View>
 					</TouchableOpacity>
 					*/
+					/*
 					<TouchableOpacity
 						
 						onPress={() => {
@@ -156,6 +157,7 @@ class HomeScreen extends Component {
 					>
 						<Text>Notif</Text>
 					</TouchableOpacity>
+					*/
 					}
 				</Content>
 			</Container>

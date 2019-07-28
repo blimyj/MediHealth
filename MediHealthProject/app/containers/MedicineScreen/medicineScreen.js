@@ -133,7 +133,6 @@ class MedicineScreen extends Component {
 		return displayDate;
 	}
 
-
 	render() {
 		return (
 			<Container>

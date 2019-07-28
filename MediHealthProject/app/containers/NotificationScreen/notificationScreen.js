@@ -181,9 +181,13 @@ class NotificationScreen extends Component {
 				<NavigationEvents/>
 				<Content contentContainerStyle={{ flex: 1 }}>
 					<View style={{flex: 1 }}>
-						<Text style={{ textAlign: "center" }}>
-							{this.state.displayString}
-						</Text>
+						<View style={{flex: 0.5 }}></View>
+						<View style={{flex: 1 }}>
+							<Text style={{ textAlign: "center", fontSize: 18 }}>
+								{this.state.displayString}
+							</Text>
+						</View>
+						<View style={{flex: 0.5 }}></View>
 					</View>
 					<View style={{flex: 1 }}>
 						<View style={{flex: 1 }}></View>
@@ -196,7 +200,7 @@ class NotificationScreen extends Component {
 							style={{}}
 						>
 							<Image
-								source={require("../../assets/images/plus-icon.png")}
+								source={require("../../assets/images/tick.png")}
 								style={styles.takenButton}
 							/>
 						</Button>
@@ -208,7 +212,7 @@ class NotificationScreen extends Component {
 							style={{}}
 						>
 							<Image
-								source={require("../../assets/images/plus-icon.png")}
+								source={require("../../assets/images/snooze.png")}
 								style={styles.snoozeButton}
 							/>
 						</Button>
@@ -220,7 +224,7 @@ class NotificationScreen extends Component {
 							style={{}}
 						>
 							<Image
-								source={require("../../assets/images/plus-icon.png")}
+								source={require("../../assets/images/cross.png")}
 								style={styles.skipButton}
 							/>
 						</Button>
