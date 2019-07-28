@@ -81,13 +81,13 @@ class SignUpScreen extends Component {
 			.set({
 				//Profile
 				Profile: {
-					profilePic:
-						"https://i.imgur.com/MQHYB.jpg",
+					profilePic: "https://i.imgur.com/MQHYB.jpg",
 					displayName: this.state.name,
 					age: this.state.age,
 					weight: this.state.weight,
 					height: this.state.height,
-					birthday: this.state.birthday
+					birthday: this.state.birthday,
+					job: this.state.job
 				}
 			});
 
