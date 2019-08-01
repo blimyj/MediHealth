@@ -99,6 +99,8 @@ We hope to build a user-friendly medical health tracker mobile application that 
 ---
 
 ## :pill: Features
+
+### Core Features
 - **Medicine**
   - A form to input the name, date, time and frequency of the medication for tracking.
   - Notifications will be sent at the specified date and time.
@@ -107,16 +109,18 @@ We hope to build a user-friendly medical health tracker mobile application that 
   - A form to input the name, date, time and location of the appointment for tracking.
   - Notifications will be sent before the specified date and time.
   - Able to update and/or delete the appointment from the database.
-- **Profile**
-  - User will be able to input their details (e.g. Name, Birthday, Height and Weight) upon signing up.
-  - Able to edit and update their details at anytime. 
-  - Toggle weight to kilogram or pounds.
-  - Toggle height to feet or centimetres.
 - **Maps**
   - Able to see user’s current location.
   - In-built maps feature that shows pharmacy locations in Singapore.
   - Search bar for users to find their desired pharmacy.
   - Users will be redirected to Google Maps for directions to the desired pharmacy.
+  
+### Extension Features
+- **Profile**
+  - User will be able to input their details (e.g. Name, Birthday, Height and Weight) upon signing up.
+  - Able to edit and update their details at anytime. 
+  - Toggle weight to kilogram or pounds.
+  - Toggle height to feet or centimetres.
 - **Medical News**
   - We used News API, a simple HTTP REST API for searching and retrieving live articles from all over the web. In particular we searched for medical news and prioritised medical news from Singapore.
   - Listed from latest to oldest medical news.
