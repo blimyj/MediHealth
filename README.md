@@ -68,7 +68,7 @@ We hope to build a user-friendly medical health tracker mobile application that 
   - Used **MediHealth** Prototype App on Android Phone for Ten Days
 
 **Background**:
-- Age: 49
+- Age: 72
 - Computer Expertise: Low
 - Condition: Alzheimer’s Disease
 
