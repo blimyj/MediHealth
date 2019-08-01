@@ -3,7 +3,7 @@
 MediHealth an Android mobile application that keep tracks and reminds the user about their medicinal intake and medical appointments.
 
 ## :trophy: Level Of Achievement
-**Apollo 11**
+**:rocket: Apollo 11**
 
 ## :ledger: Index
 * [Motivation](#muscle-motivation)
@@ -13,6 +13,8 @@ MediHealth an Android mobile application that keep tracks and reminds the user a
 * [User Stories](#book-user-stories)
 
 * [Features](#pill-features)
+  - [Core Features](#core-features)
+  - [Extension Features](#extension-features)
 
 * [Comparison to Existing/Related Apps](#syringe-how-are-we-different-from-similar-platforms)
 
