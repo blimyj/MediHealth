@@ -39,6 +39,7 @@ We hope to build a user-friendly medical health tracker mobile application that 
 
 ## :clipboard: User Testing
 ### :book: User Stories
+  - In addition to **Self Evaluation**, **Actual User Focus Group** and **User Testing with Potential Users with _MediHealth_ Prototype**.
 #### **_1. Squidward Clarry (Anonymized for privacy)_**
   - Used **MediHealth** Prototype App on Android Phone for Seven Days
 
