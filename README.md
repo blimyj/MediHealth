@@ -104,10 +104,12 @@ We hope to build a user-friendly medical health tracker mobile application that 
 - **Medicine**
   - A form to input the name, date, time and frequency of the medication for tracking.
   - Notifications will be sent at the specified date and time.
+  - Able to snooze the notifications and be reminded later.
   - Able to update and/or delete the medicine from the database.
 - **Appointment**
   - A form to input the name, date, time and location of the appointment for tracking.
   - Notifications will be sent before the specified date and time.
+  - Able to snooze the notifications and be reminded later.
   - Able to update and/or delete the appointment from the database.
 - **Maps**
   - Able to see user’s current location.
