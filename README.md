@@ -10,7 +10,8 @@ MediHealth an Android mobile application that keep tracks and reminds the user a
 
 * [Aim](#mag-aim)
 
-* [User Stories](#book-user-stories)
+* [User Testing](#clipboard-user-testing)
+  - [User Stories](#book-user-stories)
 
 * [Features](#pill-features)
   - [Core Features](#core-features)
@@ -26,8 +27,9 @@ People often go about their busy lives and have little room in their mind to rem
 
 We hope to build a user-friendly medical health tracker mobile application that tracks and reminds you of your medicinal intake and medical appointments.
 
-## :book: User Stories
-### **_1. Squidward Clarry (Anonymized for privacy)_**
+## :clipboard: User Testing
+### :book: User Stories
+#### **_1. Squidward Clarry (Anonymized for privacy)_**
 
 **Background**:
 - Age: 47
@@ -50,7 +52,7 @@ We hope to build a user-friendly medical health tracker mobile application that 
 
 ---
 
-### **_2. Patrick DeStar (Anonymized for privacy)_**
+#### **_2. Patrick DeStar (Anonymized for privacy)_**
 
 **Background**:
 - Age: 49
@@ -80,7 +82,7 @@ We hope to build a user-friendly medical health tracker mobile application that 
 
 ---
 
-### **_3. Spongebob Squarepants (Anonymized for privacy)_**
+#### **_3. Spongebob Squarepants (Anonymized for privacy)_**
 
 **Background**:
 - Age: 33
