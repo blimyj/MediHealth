@@ -30,6 +30,7 @@ We hope to build a user-friendly medical health tracker mobile application that 
 ## :clipboard: User Testing
 ### :book: User Stories
 #### **_1. Squidward Clarry (Anonymized for privacy)_**
+  - Used **MediHealth** Prototype App on Android Phone for Seven Days
 
 **Background**:
 - Age: 47
@@ -46,13 +47,14 @@ We hope to build a user-friendly medical health tracker mobile application that 
 **Pain Points**:
 - Too many medications, dosages and frequencies to remember.
 
-> As a patient, Squidward needs to take various medications at differing frequencies. He needs an easy and efficient method of handling these schedules flexibly.
+> As a patient, Squidward needs to take various medications at differing frequencies. He needs an easy and efficient method of handling these schedules flexibly. With **MediHealth**, Squidward is able to track his medications easily.
 
-> As an outpatient, Squidward has many medical appointments that can range from 1 week to 1 year later. He wants an easy way to keep track of them while being able to see all of them at once.
+> As an outpatient, Squidward has many medical appointments that can range from 1 week to 1 year later. He wants an easy way to keep track of them while being able to see all of them at once. With **MediHealth**, Squidward is able to track his appointments easily.
 
 ---
 
 #### **_2. Patrick DeStar (Anonymized for privacy)_**
+  - Used **MediHealth** Prototype App on Android Phone for Ten Days
 
 **Background**:
 - Age: 49
@@ -74,15 +76,16 @@ We hope to build a user-friendly medical health tracker mobile application that 
 - Often presses the wrong buttons
 - Will forget what he is trying to do
 
-> As a forgetful person, Patrick wants to be reminded to take his medications and check if he has taken his medication.
+> As a forgetful person, Patrick wants to be reminded to take his medications and check if he has taken his medication. With **MediHealth**, Patrick has not been missing his medications anymore.
 
 > Patrick would prefer that the user interface is clear and simple enough for him to use.
 
-> As a patient who has run out of medication, Patrick wants to be able to find the nearest pharmacy so he can restock his supply. Whether it’s from his workplace or home.
+> As a patient who has run out of medication, Patrick wants to be able to find the nearest pharmacy so he can restock his supply. Whether it’s from his workplace or home. With **MediHealth**, Patrick has little trouble finding the nearest pharmacy.
 
 ---
 
 #### **_3. Spongebob Squarepants (Anonymized for privacy)_**
+  - Used **MediHealth** Prototype App on Android Phone for Three Days
 
 **Background**:
 - Age: 33
@@ -99,7 +102,7 @@ We hope to build a user-friendly medical health tracker mobile application that 
 - Wants to spend time productively instead of playing games
 - Wants to be entertained
 
-> While waiting for his turn at the doctor, Spongebob would like to read some medical news to pass his time.
+> While waiting for his turn at the doctor, Spongebob would like to read some medical news to pass his time. With **MediHealth**, Spongebob has gained greater medical knowledge.
 
 ---
 
