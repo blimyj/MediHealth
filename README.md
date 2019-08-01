@@ -19,6 +19,16 @@ MediHealth an Android mobile application that keep tracks and reminds the user a
 
 * [Comparison to Existing/Related Apps](#syringe-how-are-we-different-from-similar-platforms)
 
+* [Usage](#sunny-usage)
+  - [Installation](#electric_plug-installation)
+  - [Commands](#package-commands)
+
+* [Development](#wrench-development)
+  - [Contribution](#fire-contribution)
+  - [Build](#hammer-build)
+  
+* [Credits](#star2-credits)
+
 ## :muscle: Motivation
 
 People often go about their busy lives and have little room in their mind to remember the little things they have to do in order to stay healthy. This includes attending appointments, adhering to medication, supplementation or rehabilitation regimes. Attending an appointment, swallowing a pill or doing your daily wrist exercises seem simple in isolation. However, stack them together  and many people are so busy they will simply forget one of them. For example, many medications need to be taken with food or on an empty stomach. Some patients are on multiple medications that cannot be taken at the same time as others. This can result in a very careful scheduling balancing act every day. 
@@ -206,7 +216,7 @@ It can't get better than this, your pull request will be appreciated by the comm
 - React Native Vector Icons v6.5.0
 - Moment v2.24.0
 
-## :star2: Credit/Acknowledgment
+## :star2: Credits
 [Author 1](https://github.com/blimyj)
 
 [Author 2](https://github.com/joloong)
