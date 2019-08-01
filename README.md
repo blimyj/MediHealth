@@ -47,9 +47,9 @@ We hope to build a user-friendly medical health tracker mobile application that 
 **Pain Points**:
 - Too many medications, dosages and frequencies to remember.
 
-> As a patient, Squidward needs to take various medications at differing frequencies. He needs an easy and efficient method of handling these schedules flexibly. With **MediHealth**, Squidward is able to track his medications easily.
+> As a patient, Squidward needs to take various medications at differing frequencies. He needs an easy and efficient method of handling these schedules flexibly. With **MediHealth**, Squidward has been able to track his medications easily.
 
-> As an outpatient, Squidward has many medical appointments that can range from 1 week to 1 year later. He wants an easy way to keep track of them while being able to see all of them at once. With **MediHealth**, Squidward is able to track his appointments easily.
+> As an outpatient, Squidward has many medical appointments that can range from 1 week to 1 year later. He wants an easy way to keep track of them while being able to see all of them at once. With **MediHealth**, Squidward has been able to track his appointments easily.
 
 ---
 
