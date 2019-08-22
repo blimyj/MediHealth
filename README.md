@@ -218,6 +218,6 @@ It can't get better than this, your pull request will be appreciated by the comm
 - Moment v2.24.0
 
 ## :star2: Credits
-[Author 1](https://github.com/blimyj)
+[Bryan Lim](https://github.com/blimyj)
 
-[Author 2](https://github.com/joloong)
+[Joel Loong](https://github.com/joloong)
